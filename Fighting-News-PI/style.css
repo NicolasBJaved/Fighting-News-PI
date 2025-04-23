@@ -2,10 +2,40 @@
     margin: 0;
 }
 
-header{
- background-color: black;   
+body{
+    background-color: #222222;
 }
 
+a{
+    all: unset;
+    cursor: pointer;
+}
+
+/* HEADER */
+header{
+    background-color: black;   
+    position: fixed;
+    width: 100%;
+}
+
+header .conteudoHeader{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    width: 20%;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+}
 
 header nav ul{
     display: flex;
@@ -17,4 +47,31 @@ header nav ul li{
 
 header nav ul li{
     list-style-type: none;
+}
+
+/* FOOTER */
+
+footer{
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer .conteudoFooter{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    color: white;
+}
+
+footer .redesSociais{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+footer .redesSociais a img{
+    width: 30px;
 }
