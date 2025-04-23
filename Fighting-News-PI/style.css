@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+}
+
+header{
+ background-color: black;   
+}
+
+
+header nav ul{
+    display: flex;
+}
+
+header nav ul li{
+    color: red;
+}
+
+header nav ul li{
+    list-style-type: none;
+}
