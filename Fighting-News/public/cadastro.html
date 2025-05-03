@@ -49,6 +49,9 @@
             <div class="botaoCadastro">
                 <button onclick="cadastrar()"><b>Cadastrar</b></button>
             </div>
+            <div style="margin-top: 10px;" id="div_resultado">
+
+            </div>
         </div>
     </div>
 
@@ -62,12 +65,58 @@
             <div class="copyright">
                 <p>Fighting News &copy; 2025</p>
             </div>
-            <div class="dados">
-                <p>Desenvolvido por: Nicolas B. Javed</p>
-                <p>Contato: nicolas.javed@sptech.school</p>
-            </div>
+        </div>
+        <div class="dados">
+            <p>Desenvolvido por: Nicolas B. Javed</p>
+            <p>Contato: nicolas.javed@sptech.school</p>
         </div>
     </footer>
 </body>
+<script>
+    function cadastrar() {
+        div_resultado.innerHTML = "";
 
+        const nome = ipt_nome.value;
+        const email = ipt_cadastro.value;
+        const senha = ipt_senha.value;
+        const confirmacaoSenha = ipt_confirmacaoSenha.value;
+
+        console.log("nome: " + nome);
+        console.log("email: " + email);
+        console.log("senha: " + senha);
+
+        if (nome == "" || email == "" || senha == "" || confirmacaoSenha == "") {
+            div_resultado.innerHTML = "Preencha todos os campos!";
+            return;
+        }
+
+        if (senha !== confirmacaoSenha) {
+            div_resultado.innerHTML = "As senhas não coincidem!";
+            return;
+        }
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                nomeServer: nome,
+                emailServer: email,
+                senhaServer: senha
+            }),
+        }).then(function(resposta){
+            console.log("resposta: ", resposta);
+
+            if(resposta.ok){
+                div_resultado.innerHTML = "Cadastrado com sucesso!";
+            } else {
+                div_resultado.innerHTML = "Erro ao cadastrar!";
+            }
+        }).catch(function(erro){
+            console.log("Erro: ", erro);
+            div_resultado.innerHTML = "Erro ao cadastrar!";
+        });
+        return false;
+    }
+</script>
 </html>
