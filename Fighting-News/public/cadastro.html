@@ -30,7 +30,7 @@
         <div class="conteudoCadastro">
             <div class="camposCadastro">
                 <div class="campoCadastro">
-                    <h3>Email:</h3>
+                    <h3>Nome:</h3>
                     <input type="text" id="ipt_nome" placeholder="Digite seu nome">
                 </div>
                 <div class="campoCadastro">
@@ -81,12 +81,21 @@
         const senha = ipt_senha.value;
         const confirmacaoSenha = ipt_confirmacaoSenha.value;
 
-        console.log("nome: " + nome);
-        console.log("email: " + email);
-        console.log("senha: " + senha);
+        var emailValido = email.includes("@");
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?/\\])[A-Za-z0-9!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?/\\]{8,}$/;
 
         if (nome == "" || email == "" || senha == "" || confirmacaoSenha == "") {
             div_resultado.innerHTML = "Preencha todos os campos!";
+            return;
+        }
+
+        if (!emailValido) {
+            div_resultado.innerHTML = "Email inválido!";
+            return;
+        }
+
+        if(regex.test(senha) == false){
+            div_resultado.innerHTML = "A senha deve ter pelo menos 8 caracteres, incluindo números e símbolos!";
             return;
         }
 
