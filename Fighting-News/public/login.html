@@ -29,7 +29,7 @@
             <div class="camposLogin">
                 <div class="campoLogin">
                     <h3>Email:</h3>
-                    <input type="text" id="ipt_cadastro" placeholder="Digite seu email">
+                    <input type="text" id="ipt_email" placeholder="Digite seu email">
                 </div>
                 <div class="campoLogin">
                     <h3>Senha:</h3>
@@ -37,7 +37,10 @@
                 </div>
             </div>
             <div class="botaoLogin">
-                <button onclick="cadastrar()"><b>Fazer login</b></button>
+                <button onclick="logar()"><b>Fazer login</b></button>
+            </div>
+            <div style="margin-top: 10px;" id="div_resultado">
+
             </div>
         </div>
     </div>
@@ -59,4 +62,46 @@
         </div>
     </footer>
 </body>
+<script>
+    function logar(){
+        div_resultado.innerHTML = "";
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+
+        if(email == "" || senha == ""){
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function(resposta){
+            console.log("RETORNOU");
+            if(resposta.ok){
+                console.log("Resposta ok");
+                resposta.json().then(function(resposta){
+                    console.log(resposta.length);
+                    if(resposta.length == 1){
+                        sessionStorage.EMAIL_USUARIO = email;
+                        sessionStorage.SENHA_USUARIO = senha;
+                        sessionStorage.NOME_USUARIO = resposta.nome;
+                        sessionStorage.ID_USUARIO = resposta.idUsuario;
+                        window.location = "index.html";
+                    } else {
+                        div_resultado.innerHTML = "<h3 style='color: red;'>Email ou senha incorretos!</h3>";
+                    }
+                });
+            } else {
+                div_resultado.innerHTML = "Houve um erro ao tentar fazer o login!";
+            }
+        });
+    }
+</script>
 </html>

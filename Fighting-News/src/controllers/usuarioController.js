@@ -31,6 +31,33 @@ function cadastrar(req, res) {
     }
 }
 
+function autenticar(req, res) {
+    console.log("Entrou no autenticar");
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    console.log("Email: ", email);
+    console.log("Senha: ", senha);
+
+    if (email == undefined) {
+        console.log("Email está undefined");
+        res.status(400).send("Seu email está undefined");
+    } else if (senha == undefined) {
+        console.log("Senha está undefined");
+        res.status(400).send("Sua senha está undefined");
+    } else {
+        usuarioModel.autenticar(email, senha)
+            .then(function (resultado) {
+                console.log("Resultado: ", resultado);
+                res.json(resultado);
+            }).catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    autenticar
 }
