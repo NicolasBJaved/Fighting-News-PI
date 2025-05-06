@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Noticia 1</title>
+</head>
+
+<body onload="carregarNoticia()">
+    <header>
+        <div class="conteudoHeader">
+            <span class="logo">
+                <img style="width: 100px;" src="../imgs/logo.png" alt="">
+            </span>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../cadastro.html">Cadastro</a></li>
+                    <li><a href=",,/login.html">Login</a></li>
+                    <li><a href="">Dados</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="conteudoNoticia">
+        <div class="imagemNoticia">
+            <img width="900px" height="500px" id="imagemNoticia" src="" alt="">
+        </div>
+        <div class="tituloNoticia">
+            <h1 id="tituloNoticia">
+            </h1>
+        </div>
+        <div id="conteudoNoticia">
+        </div>
+
+        <div class="comentarios">
+            <div class="comentario">
+                <div class="informacoesUsuario">
+                    <img src="../imgs/defaultProfile.jpg" alt="">
+                    <h3>Nome do usuário</h3>
+                    <h4>Data do comentário</h4>
+                </div>
+                <div class="conteudoComentario">
+                    <p>Conteúdo do comentário</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="conteudoFooter">
+            <div class="redesSociais">
+                <a href="https://www.instagram.com/"><img src="../imgs/instagram.png" alt=""></a>
+                <a href="https://www.facebook.com/"><img src="../imgs/facebook.png" alt=""></a>
+                <a href="https://twitter.com/"><img src="../imgs/twitter.png" alt=""></a>
+            </div>
+            <div class="copyright">
+                <p>Fighting News &copy; 2025</p>
+            </div>
+            <div class="dados">
+                <p>Desenvolvido por: Nicolas B. Javed</p>
+                <p>Contato: nicolas.javed@sptech.school</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    function carregarNoticia() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        console.log("ID: " + id);
+
+        fetch("/noticias/carregarNoticia", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idServer: id
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                console.log("Noticia carregada com sucesso!");
+                resposta.json().then(function (resposta) {
+
+                    tituloNoticia.innerHTML = resposta[0].tituloNoticia;
+                    conteudoNoticia.innerHTML = resposta[0].conteudoNoticia;
+                    imagemNoticia.src = resposta[0].caminhoImagem;
+
+                    console.log(resposta[0].idNoticia);
+                    console.log(resposta[0].tituloNoticia);
+                    console.log(resposta[0].conteudoNoticia);
+                    console.log(resposta[0].caminhoImagem);
+                    console.log(resposta[0].visualizacoes);
+                })
+            } else {
+                console.log("Erro ao carregar a noticia: " + resposta.status);
+            }
+
+        })
+    }
+</script>
+
+</html>
