@@ -8,7 +8,7 @@
     <title>Noticia 1</title>
 </head>
 
-<body onload="carregarNoticia()">
+<body onload="carregarNoticia(), carregarLikes()">
     <header>
         <div class="conteudoHeader">
             <span class="logo">
@@ -34,6 +34,10 @@
             </h1>
         </div>
         <div id="conteudoNoticia">
+        </div>
+        <div class="likes">
+            <h3 id="qtdLikes">10</h3>
+            <button onclick="darLike()">dar like</button>
         </div>
 
         <div id="comentarios" class="comentarios">
@@ -117,11 +121,57 @@
         })
     }
 
+    function carregarLikes() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        fetch("/noticias/carregarLikes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idServer: id
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("QUANTIDADE DE LIKES: " + resposta[0].qtdLikes);
+                    qtdLikes.innerHTML = resposta[0].qtdLikes;
+                })
+            } else {
+                console.log("Erro ao carregar os likes: " + resposta.status);
+            }
+        })
+    }
+
+    function darLike(){
+        const urlParams = new URLSearchParams(window.location.search);
+        var idUsuario = sessionStorage.ID_USUARIO;
+        const idNoticia = urlParams.get('id');
+
+        fetch("/noticias/darLike", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                idNoticiaServer: idNoticia
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function(resposta){
+                    qtdLikes.innerHTML = resposta[0].qtdLikes;
+                })
+            } else {
+                console.log("Erro ao dar like: " + resposta.status);
+            }
+        })
+    }
+
     function comentar(){
         const urlParams = new URLSearchParams(window.location.search);
         var comentario = ipt_comentario.value;
         var idUsuario = sessionStorage.ID_USUARIO;
-        console.log("ID do usuario: " + idUsuario);
         const idNoticia = urlParams.get('id');
 
         if(comentario == "" || comentario == null){

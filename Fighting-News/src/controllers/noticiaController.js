@@ -9,6 +9,25 @@ function carregarNoticia(req, res) {
     })
 }
 
+function carregarLikes(req, res){
+    var idNoticia = req.body.idServer;
+
+    noticiaModel.carregarLikes(idNoticia).then(function (resultado){
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
+function darLike(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var idNoticia = req.body.idNoticiaServer;
+
+    noticiaModel.darLike(idUsuario, idNoticia).then(function (resultado) {
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
 function comentar(req, res) {
     var idUsuario = req.body.idUsuarioServer;
     var comentario = req.body.comentarioServer;
@@ -22,5 +41,7 @@ function comentar(req, res) {
 
 module.exports = {
     carregarNoticia,
+    carregarLikes,
+    darLike,
     comentar
 };
