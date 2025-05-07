@@ -36,17 +36,7 @@
         <div id="conteudoNoticia">
         </div>
 
-        <div class="comentarios">
-            <div class="comentario">
-                <div class="informacoesUsuario">
-                    <img src="../imgs/defaultProfile.jpg" alt="">
-                    <h3>Nome do usuário</h3>
-                    <h4>Data do comentário</h4>
-                </div>
-                <div class="conteudoComentario">
-                    <p>Conteúdo do comentário</p>
-                </div>
-            </div>
+        <div id="comentarios" class="comentarios">
         </div>
     </div>
 
@@ -95,6 +85,25 @@
                     console.log(resposta[0].conteudoNoticia);
                     console.log(resposta[0].caminhoImagem);
                     console.log(resposta[0].visualizacoes);
+
+                    for (var i = 0; i < resposta.length; i++) {
+                        comentarios.innerHTML += `
+                        <div class="comentario">
+                            <div class="informacoesUsuario">
+                                <img src="../imgs/defaultProfile.jpg" alt="">
+                                <h3>${resposta[i].nome}</h3>
+                                <h4>${resposta[i].data}</h4>
+                            </div>
+                            <div class="conteudoComentario">
+                                <p>${resposta[i].comentario}</p>
+                            </div>
+                        </div>
+                        `
+
+                        console.log(resposta[i].nome);
+                        console.log(resposta[i].data);
+                        console.log(resposta[i].comentario);
+                    }
                 })
             } else {
                 console.log("Erro ao carregar a noticia: " + resposta.status);
