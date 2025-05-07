@@ -12,8 +12,15 @@ CREATE TABLE Noticia(
 	idNoticia INT PRIMARY KEY AUTO_INCREMENT,
     tituloNoticia VARCHAR(100) NOT NULL,
     conteudoNoticia VARCHAR(5000) NOT NULL,
-    caminhoImagem VARCHAR(60) NOT NULL,
-    visualizacoes INT NOT NULL DEFAULT 0
+    caminhoImagem VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE likeNoticia(
+	idNoticia INT,
+    idUsuario INT,
+    CONSTRAINT likeNoticiafkNoticia FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia),
+	CONSTRAINT likeNoticiafkUsuario FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario),
+    PRIMARY KEY(idNoticia, idUsuario)
 );
 
 CREATE TABLE Comentario(
@@ -48,5 +55,3 @@ CREATE TABLE LutadorNoticia(
 	CONSTRAINT fkLutador FOREIGN KEY(idLutador) REFERENCES Lutador(idLutador),
     PRIMARY KEY(idNoticia, idLutador)
 );
-
-SELECT * FROM Usuario;
