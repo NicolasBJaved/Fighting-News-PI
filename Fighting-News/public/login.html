@@ -87,12 +87,12 @@
             if(resposta.ok){
                 console.log("Resposta ok");
                 resposta.json().then(function(resposta){
-                    console.log(resposta.length);
+                    console.log(resposta[0]);
                     if(resposta.length == 1){
                         sessionStorage.EMAIL_USUARIO = email;
                         sessionStorage.SENHA_USUARIO = senha;
-                        sessionStorage.NOME_USUARIO = resposta.nome;
-                        sessionStorage.ID_USUARIO = resposta.idUsuario;
+                        sessionStorage.NOME_USUARIO = resposta[0].nome;
+                        sessionStorage.ID_USUARIO = resposta[0].idUsuario;
                         window.location = "index.html";
                     } else {
                         div_resultado.innerHTML = "<h3 style='color: red;'>Email ou senha incorretos!</h3>";

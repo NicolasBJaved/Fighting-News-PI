@@ -8,4 +8,9 @@ router.post("/carregarNoticia", function (req, res) {
     noticiasController.carregarNoticia(req, res);
 });
 
+router.post("/comentar", function (req, res) {
+    console.log("Entrou na rota /comentar");
+    noticiasController.comentar(req, res);
+});
+
 module.exports = router;

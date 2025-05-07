@@ -18,7 +18,7 @@
                 <ul>
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="../cadastro.html">Cadastro</a></li>
-                    <li><a href=",,/login.html">Login</a></li>
+                    <li><a href="../login.html">Login</a></li>
                     <li><a href="">Dados</a></li>
                 </ul>
             </nav>
@@ -37,6 +37,11 @@
         </div>
 
         <div id="comentarios" class="comentarios">
+            <div class="comentar">
+                <h2>Faça um comentário</h2>
+                <input type="text" id="ipt_comentario" placeholder="Digite seu comentário">
+                <button onclick="comentar()">Comentar</button>
+            </div>
         </div>
     </div>
 
@@ -91,7 +96,8 @@
                             <div class="informacoesUsuario">
                                 <img src="../imgs/defaultProfile.jpg" alt="">
                                 <h3>${resposta[i].nome}</h3>
-                                <h4>${resposta[i].data}</h4>
+                                <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
+                                    .replaceAll(".000Z", " ")}</h4>
                             </div>
                             <div class="conteudoComentario">
                                 <p>${resposta[i].comentario}</p>
@@ -108,6 +114,51 @@
                 console.log("Erro ao carregar a noticia: " + resposta.status);
             }
 
+        })
+    }
+
+    function comentar(){
+        const urlParams = new URLSearchParams(window.location.search);
+        var comentario = ipt_comentario.value;
+        var idUsuario = sessionStorage.ID_USUARIO;
+        console.log("ID do usuario: " + idUsuario);
+        const idNoticia = urlParams.get('id');
+
+        if(comentario == "" || comentario == null){
+            alert("Preencha o campo de comentário!");
+            return;
+        }
+
+        if(idNoticia == null || idNoticia == ""){
+            alert("Notícia não encontrada!");
+            return;
+        }
+
+        if(idUsuario == null || idUsuario == ""){
+            alert("Você precisa estar logado para comentar!");
+            window.location = "../login.html";
+        }
+
+        if(comentario.length > 400){
+            alert("O comentário deve ter no máximo 400 caracteres!");
+            return;
+        }
+        
+        fetch("/noticias/comentar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                comentarioServer: comentario,
+                idNoticiaServer: idNoticia
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                window.location.reload();
+            } else {
+                console.log("Erro ao comentar: " + resposta.status);
+            }
         })
     }
 </script>

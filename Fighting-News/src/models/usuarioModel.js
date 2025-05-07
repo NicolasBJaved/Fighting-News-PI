@@ -5,7 +5,7 @@ function cadastrar(nome, email, senha) {
     var instrucao = `
         INSERT INTO Usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
-    console.log("Executando a instrução: \n" + instrucao);
+    console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
 }
 
@@ -14,7 +14,7 @@ function autenticar(email, senha) {
     var instrucao = `
         SELECT * FROM Usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
-    console.log("Executando a instrução: \n" + instrucao);
+    console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
 }
 

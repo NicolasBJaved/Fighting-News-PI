@@ -379,3 +379,9 @@ footer .redesSociais a img{
     height: 50px;
     border-radius: 50%;
 }
+
+.comentarios .comentar input{
+    height: 150px;
+    width: 600px;
+
+}

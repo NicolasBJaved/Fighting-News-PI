@@ -1,14 +1,26 @@
-var noticaModel = require('../models/noticiaModel');
+var noticiaModel = require('../models/noticiaModel');
 
 function carregarNoticia(req, res) {
     var idNoticia = req.body.idServer;
 
-    noticaModel.carregarNoticia(idNoticia).then(function (resultado) {
+    noticiaModel.carregarNoticia(idNoticia).then(function (resultado) {
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
+function comentar(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var comentario = req.body.comentarioServer;
+    var idNoticia = req.body.idNoticiaServer;
+
+    noticiaModel.comentar(idUsuario, comentario, idNoticia).then(function (resultado) {
         console.log("Resultado: ", resultado);
         res.json(resultado);
     })
 }
 
 module.exports = {
-    carregarNoticia
+    carregarNoticia,
+    comentar
 };
