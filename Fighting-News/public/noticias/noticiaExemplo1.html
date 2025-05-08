@@ -37,7 +37,7 @@
         </div>
         <div class="likes">
             <h3 id="qtdLikes">10</h3>
-            <button onclick="darLike()">dar like</button>
+            <button id="botaoLike" onclick="darLike()">dar like</button>
         </div>
 
         <div id="comentarios" class="comentarios">
@@ -160,13 +160,16 @@
         }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function(resposta){
-                    qtdLikes.innerHTML = resposta[0].qtdLikes;
+                    qtdLikes.innerHTML = Number(qtdLikes.innerText) + 1;    
+                    botaoLike.style.color = "red";
                 })
             } else {
                 console.log("Erro ao dar like: " + resposta.status);
             }
         })
     }
+
+    
 
     function comentar(){
         const urlParams = new URLSearchParams(window.location.search);
