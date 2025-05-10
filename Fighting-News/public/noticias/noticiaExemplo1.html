@@ -71,6 +71,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
         console.log("ID: " + id);
+        var idUsuarioSession = sessionStorage.ID_USUARIO;
 
         fetch("/noticias/carregarNoticia", {
             method: "POST",
@@ -95,20 +96,39 @@
                     console.log(resposta[0].caminhoImagem);
 
                     for (var i = 0; i < resposta.length; i++) {
-                        comentarios.innerHTML += `
-                        <div class="comentario">
-                            <div class="informacoesUsuario">
-                                <img src="../imgs/defaultProfile.jpg" alt="">
-                                <h3>${resposta[i].nome}</h3>
-                                <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
-                                    .replaceAll(".000Z", " ")}</h4>
-                            </div>
-                            <div class="conteudoComentario">
-                                <p>${resposta[i].comentario}</p>
-                            </div>
-                        </div>
-                        `
+                        var idUsuario = resposta[i].idUsuario;
 
+                        if (idUsuarioSession == idUsuario) {
+                            comentarios.innerHTML += `
+                            <div class="comentario">
+                                <div class="informacoesUsuario">
+                                    <img src="../imgs/defaultProfile.jpg" alt="">
+                                    <h3>${resposta[i].nome}</h3>
+                                    <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
+                                        .replaceAll(".000Z", " ")}</h4>
+                                    <button onclick=deletarComentario(${resposta[i].idComentario})>Deletar</button>
+                                </div>
+                                <div class="conteudoComentario">
+                                    <p>${resposta[i].comentario}</p>
+                                </div>
+                            </div>
+                            `
+                        }else{
+                            comentarios.innerHTML += `
+                            <div class="comentario">
+                                <div class="informacoesUsuario">
+                                    <img src="../imgs/defaultProfile.jpg" alt="">
+                                    <h3>${resposta[i].nome}</h3>
+                                    <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
+                                    .replaceAll(".000Z", " ")}</h4>
+                                </div>
+                                <div class="conteudoComentario">
+                                    <p>${resposta[i].comentario}</p>
+                                </div>
+                            </div>
+                            `
+                        }
+                        
                         console.log(resposta[i].nome);
                         console.log(resposta[i].data);
                         console.log(resposta[i].comentario);
@@ -144,12 +164,12 @@
         })
     }
 
-    function verificarLike(){
+    function verificarLike() {
         const urlParams = new URLSearchParams(window.location.search);
         var idUsuario = sessionStorage.ID_USUARIO;
         const idNoticia = urlParams.get('id');
 
-        if(sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == ""){
+        if (sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
             alert("Você precisa estar logado para dar like!");
             window.location = "../login.html";
             return;
@@ -165,8 +185,8 @@
             })
         }).then(function (resposta) {
             if (resposta.ok) {
-                resposta.json().then(function(resposta){
-                    if(resposta[0].jaDeuLike == 1){
+                resposta.json().then(function (resposta) {
+                    if (resposta[0].jaDeuLike == 1) {
                         console.log("JA DEU LIKE");
                         removerLike(idUsuario, idNoticia);
                         return;
@@ -192,8 +212,8 @@
             })
         }).then(function (resposta) {
             if (resposta.ok) {
-                resposta.json().then(function(resposta){
-                    qtdLikes.innerHTML = Number(qtdLikes.innerText) + 1;    
+                resposta.json().then(function (resposta) {
+                    qtdLikes.innerHTML = Number(qtdLikes.innerText) + 1;
                     botaoLike.style.color = "red";
                 })
             } else {
@@ -214,7 +234,7 @@
             })
         }).then(function (resposta) {
             if (resposta.ok) {
-                resposta.json().then(function(resposta){
+                resposta.json().then(function (resposta) {
                     qtdLikes.innerHTML = Number(qtdLikes.innerText) - 1;
                     botaoLike.style.color = "blue";
                 })
@@ -224,38 +244,38 @@
         })
     }
 
-    function comentar(){
+    function comentar() {
         const urlParams = new URLSearchParams(window.location.search);
         var comentario = ipt_comentario.value;
         var idUsuario = sessionStorage.ID_USUARIO;
         const idNoticia = urlParams.get('id');
 
-        if(sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == ""){
+        if (sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
             alert("Você precisa estar logado para comentar!");
             window.location = "../login.html";
             return;
         }
 
-        if(comentario == "" || comentario == null){
+        if (comentario == "" || comentario == null) {
             alert("Preencha o campo de comentário!");
             return;
         }
 
-        if(idNoticia == null || idNoticia == ""){
+        if (idNoticia == null || idNoticia == "") {
             alert("Notícia não encontrada!");
             return;
         }
 
-        if(idUsuario == null || idUsuario == ""){
+        if (idUsuario == null || idUsuario == "") {
             alert("Você precisa estar logado para comentar!");
             window.location = "../login.html";
         }
 
-        if(comentario.length > 400){
+        if (comentario.length > 400) {
             alert("O comentário deve ter no máximo 400 caracteres!");
             return;
         }
-        
+
         fetch("/noticias/comentar", {
             method: "POST",
             headers: {
@@ -270,6 +290,31 @@
                 window.location.reload();
             } else {
                 console.log("Erro ao comentar: " + resposta.status);
+            }
+        })
+    }
+
+    function deletarComentario(idComentario) {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
+            alert("Você precisa estar logado!");
+            window.location = "../login.html";
+            return;
+        }
+
+        fetch("/noticias/deletarComentario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idComentarioServer: idComentario
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                window.location.reload();
+            } else {
+                console.log("Erro ao deletar comentário: " + resposta.status);
             }
         })
     }

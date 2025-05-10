@@ -34,4 +34,9 @@ router.post("/comentar", function (req, res) {
     noticiasController.comentar(req, res);
 });
 
+router.post("/deletarComentario", function (req, res) {
+    console.log("Entrou na rota /deletarComentario");
+    noticiasController.deletarComentario(req, res);
+})
+
 module.exports = router;

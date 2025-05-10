@@ -56,11 +56,21 @@ function comentar(idUsuario, comentario, idNoticia) {
     return database.executar(instrucao);
 }
 
+function deletarComentario(idComentario) {
+    console.log("Entrou no noticiaModel");
+    var instrucao = `
+        DELETE FROM Comentario WHERE idComentario = ${idComentario};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     carregarNoticia,
     carregarLikes,
     jaDeuLike,
     removerLike,
     comentar,
+    deletarComentario,
     darLike
 }

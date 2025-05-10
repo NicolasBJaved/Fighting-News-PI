@@ -59,11 +59,21 @@ function comentar(req, res) {
     })
 }
 
+function deletarComentario(req, res) {
+    var idComentario = req.body.idComentarioServer;
+
+    noticiaModel.deletarComentario(idComentario).then(function (resultado) {
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
 module.exports = {
     carregarNoticia,
     carregarLikes,
     jaDeuLike,
     darLike,
     removerLike,
-    comentar
+    comentar,
+    deletarComentario
 };
