@@ -37,7 +37,7 @@
         </div>
         <div class="likes">
             <h3 id="qtdLikes">10</h3>
-            <button id="botaoLike" onclick="darLike()">dar like</button>
+            <button id="botaoLike" onclick="verificarLike()">dar like</button>
         </div>
 
         <div id="comentarios" class="comentarios">
@@ -144,11 +144,44 @@
         })
     }
 
-    function darLike(){
+    function verificarLike(){
         const urlParams = new URLSearchParams(window.location.search);
         var idUsuario = sessionStorage.ID_USUARIO;
         const idNoticia = urlParams.get('id');
 
+        if(sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == ""){
+            alert("Você precisa estar logado para dar like!");
+            window.location = "../login.html";
+            return;
+        }
+
+        fetch("/noticias/jaDeuLike", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                idNoticiaServer: idNoticia
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function(resposta){
+                    if(resposta[0].jaDeuLike == 1){
+                        console.log("JA DEU LIKE");
+                        removerLike(idUsuario, idNoticia);
+                        return;
+                    } else {
+                        darLike(idUsuario, idNoticia);
+                        return;
+                    }
+                })
+            } else {
+                console.log("Erro ao verificar se já deu like: " + resposta.status);
+            }
+        })
+    }
+
+    function darLike(idUsuario, idNoticia) {
         fetch("/noticias/darLike", {
             method: "POST",
             headers: {
@@ -169,13 +202,39 @@
         })
     }
 
-    
+    function removerLike(idUsuario, idNoticia) {
+        console.log("REMOVER LIKE");
+        fetch("/noticias/removerLike", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                idNoticiaServer: idNoticia
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function(resposta){
+                    qtdLikes.innerHTML = Number(qtdLikes.innerText) - 1;
+                    botaoLike.style.color = "blue";
+                })
+            } else {
+                console.log("Erro ao remover like: " + resposta.status);
+            }
+        })
+    }
 
     function comentar(){
         const urlParams = new URLSearchParams(window.location.search);
         var comentario = ipt_comentario.value;
         var idUsuario = sessionStorage.ID_USUARIO;
         const idNoticia = urlParams.get('id');
+
+        if(sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == ""){
+            alert("Você precisa estar logado para comentar!");
+            window.location = "../login.html";
+            return;
+        }
 
         if(comentario == "" || comentario == null){
             alert("Preencha o campo de comentário!");

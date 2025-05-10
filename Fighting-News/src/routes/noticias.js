@@ -13,9 +13,20 @@ router.post("/carregarLikes", function(req, res){
     noticiasController.carregarLikes(req, res);
 })
 
+router.post("/jaDeuLike", function (req, res) {
+    console.log("Entrou na rota /jaDeuLike");
+    noticiasController.jaDeuLike(req, res);
+});
+
+
 router.post("/darLike", function (req, res) {
     console.log("Entrou na rota /darLike");
     noticiasController.darLike(req, res);
+});
+
+router.post("/removerLike", function (req, res) {
+    console.log("Entrou na rota /removerLike");
+    noticiasController.removerLike(req, res);
 });
 
 router.post("/comentar", function (req, res) {

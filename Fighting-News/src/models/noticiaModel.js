@@ -19,10 +19,28 @@ function carregarLikes(idNoticia){
     return database.executar(instrucao);
 }
 
+function jaDeuLike(idUsuario, idNoticia) {
+    console.log("Entrou no noticiaModel");
+    var instrucao = `
+        SELECT COUNT(*) AS jaDeuLike FROM likeNoticia WHERE idUsuario = ${idUsuario} AND idNoticia = ${idNoticia};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function darLike(idUsuario, idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
         INSERT INTO likeNoticia (idUsuario, idNoticia) VALUES (${idUsuario}, ${idNoticia});
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function removerLike(idUsuario, idNoticia) {
+    console.log("Entrou no noticiaModel");
+    var instrucao = `
+        DELETE FROM likeNoticia WHERE idUsuario = ${idUsuario} AND idNoticia = ${idNoticia};
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
@@ -41,6 +59,8 @@ function comentar(idUsuario, comentario, idNoticia) {
 module.exports = {
     carregarNoticia,
     carregarLikes,
+    jaDeuLike,
+    removerLike,
     comentar,
     darLike
 }

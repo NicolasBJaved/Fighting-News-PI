@@ -9,6 +9,16 @@ function carregarNoticia(req, res) {
     })
 }
 
+function jaDeuLike(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var idNoticia = req.body.idNoticiaServer;
+
+    noticiaModel.jaDeuLike(idUsuario, idNoticia).then(function (resultado) {
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
 function carregarLikes(req, res){
     var idNoticia = req.body.idServer;
 
@@ -28,6 +38,16 @@ function darLike(req, res) {
     })
 }
 
+function removerLike(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var idNoticia = req.body.idNoticiaServer;
+
+    noticiaModel.removerLike(idUsuario, idNoticia).then(function (resultado) {
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
 function comentar(req, res) {
     var idUsuario = req.body.idUsuarioServer;
     var comentario = req.body.comentarioServer;
@@ -42,6 +62,8 @@ function comentar(req, res) {
 module.exports = {
     carregarNoticia,
     carregarLikes,
+    jaDeuLike,
     darLike,
+    removerLike,
     comentar
 };
