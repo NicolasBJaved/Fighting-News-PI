@@ -49,44 +49,40 @@ CREATE TABLE LutadorNoticia(
     PRIMARY KEY(idNoticia, idLutador)
 );
 
-SELECT * FROM Usuario;
-
--- INSERTS
-INSERT INTO Categoria (nome, pesoKG)
-VALUES ('Peso Pena', 66);
-
-INSERT INTO Lutador (nome, cartel, idCategoria)
-VALUES ('José Aldo', '31-8-0', 1);
-
-INSERT INTO Noticia (tituloNoticia, conteudoNoticia, caminhoImagem)
-VALUES (
-  'José Aldo anuncia possível retorno ao UFC',
-  'Após um tempo afastado, José Aldo revela em entrevista que está considerando voltar ao octógono.',
-  '../imagens/jose-aldo-retorno.jpg'
+CREATE TABLE Card(
+	idCard INT PRIMARY KEY AUTO_INCREMENT,
+    local VARCHAR(45) NOT NULL,
+    data DATE NOT NULL,
+    fightNight boolean NOT NULL,
+    numerado boolean NOT NULL,
+    numeroCard INT
 );
 
-INSERT INTO LutadorNoticia (idNoticia, idLutador)
-VALUES (1, 1);
+CREATE TABLE Luta(
+	idLuta INT PRIMARY KEY AUTO_INCREMENT,
+    idLutador1 INT NOT NULL,
+    idLutador2 INT NOT NULL,
+    idCategoria INT NOT NULL,
+    idCard INT NOT NULL,
+    rounds INT NOT NULL CHECK(rounds IN(3,5)),
+    foreign key(idLutador1) REFERENCES Lutador(idLutador),
+    foreign key(idLutador2) REFERENCES Lutador(idLutador),
+    foreign key(idCategoria) references Categoria(idCategoria),
+    foreign key(idCard) REFERENCES Card(idCard)
+);
 
-INSERT INTO Usuario (nome, email, senha) 
-VALUES ('nicolas', 'nicolas@email.com', '123456');
+CREATE TABLE LutaCard(
+	idLuta INT,
+    idCard INT,
+    FOREIGN KEY(idLuta) REFERENCES Luta(idLuta),
+    FOREIGN KEY(idCard) REFERENCES Card(idCard)
+);
 
-INSERT INTO Comentario (idUsuario, idNoticia, comentario, data)
-VALUES (10, 1, 'Grande notícia! Ansioso pelo retorno.', NOW());
-
-INSERT INTO Comentario (idUsuario, idNoticia, comentario, data)
-VALUES (10, 1, 'Grande notícia! Ansioso pelo retorno.', NOW());
-
-DELETE FROM Usuario WHERE idUsuario = 8;
-
-SELECT * FROM Usuario;
-SELECT * FROM Comentario;
-SELECT * FROM Noticia;
-SELECT * FROM likeNoticia;
-
-UPDATE Noticia SET caminhoImagem = "../imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg" WHERE idNoticia = 1;
-
-SELECT n.*, c.*, u.* FROM Noticia n INNER JOIN Comentario c ON c.idNoticia = n.idNoticia
- INNER JOIN Usuario u ON c.idUsuario = u.idUsuario WHERE n.idNoticia = 1;
+CREATE TABLE LutaNoticia(
+	idNoticia INT,
+    idLuta INT,
+    foreign key(idNoticia) REFERENCES Noticia(idNoticia),
+    FOREIGN KEY(idLuta) REFERENCES Luta(idLuta)
+);
 
  
