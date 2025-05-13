@@ -9,6 +9,15 @@ function carregarNoticia(req, res) {
     })
 }
 
+function carregarComentarios(req, res) {
+    var idNoticia = req.body.idServer;
+
+    noticiaModel.carregarComentarios(idNoticia).then(function (resultado) {
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
 function jaDeuLike(req, res) {
     var idUsuario = req.body.idUsuarioServer;
     var idNoticia = req.body.idNoticiaServer;
@@ -70,6 +79,7 @@ function deletarComentario(req, res) {
 
 module.exports = {
     carregarNoticia,
+    carregarComentarios,
     carregarLikes,
     jaDeuLike,
     darLike,

@@ -8,6 +8,11 @@ router.post("/carregarNoticia", function (req, res) {
     noticiasController.carregarNoticia(req, res);
 });
 
+router.post("/carregarComentarios", function (req, res) {
+    console.log("Entrou na rota /carregarComentarios");
+    noticiasController.carregarComentarios(req, res);
+});
+
 router.post("/carregarLikes", function(req, res){
     console.log("Entrou na rota /carregarLikes");
     noticiasController.carregarLikes(req, res);

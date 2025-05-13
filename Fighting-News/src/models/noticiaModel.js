@@ -3,8 +3,16 @@ var database = require('../database/config');
 function carregarNoticia(idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
-        SELECT n.*, c.*, u.* FROM Noticia n INNER JOIN Comentario c ON c.idNoticia = n.idNoticia
-        INNER JOIN Usuario u ON c.idUsuario = u.idUsuario WHERE n.idNoticia = ${idNoticia};
+        SELECT n.* FROM Noticia n WHERE n.idNoticia = ${idNoticia};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function carregarComentarios(idNoticia) {
+    console.log("Entrou no noticiaModel");
+    var instrucao = `
+        SELECT c.*, u.* FROM Comentario c INNER JOIN Usuario u ON c.idUsuario = u.idUsuario WHERE c.idNoticia = ${idNoticia};
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
@@ -67,6 +75,7 @@ function deletarComentario(idComentario) {
 
 module.exports = {
     carregarNoticia,
+    carregarComentarios,
     carregarLikes,
     jaDeuLike,
     removerLike,

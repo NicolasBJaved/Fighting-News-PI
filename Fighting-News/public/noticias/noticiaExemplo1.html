@@ -8,7 +8,7 @@
     <title>Noticia 1</title>
 </head>
 
-<body onload="carregarNoticia(), carregarLikes()">
+<body onload="carregarNoticia(), carregarComentarios(), carregarLikes()">
     <header>
         <div class="conteudoHeader">
             <span class="logo">
@@ -71,7 +71,6 @@
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
         console.log("ID: " + id);
-        var idUsuarioSession = sessionStorage.ID_USUARIO;
 
         fetch("/noticias/carregarNoticia", {
             method: "POST",
@@ -94,7 +93,29 @@
                     console.log(resposta[0].tituloNoticia);
                     console.log(resposta[0].conteudoNoticia);
                     console.log(resposta[0].caminhoImagem);
+                })
+            } else {
+                console.log("Erro ao carregar a noticia: " + resposta.status);
+            }
 
+        })
+    }
+
+    function carregarComentarios() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        var idUsuarioSession = sessionStorage.ID_USUARIO;
+
+        fetch("/noticias/carregarComentarios", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idServer: id
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
                     for (var i = 0; i < resposta.length; i++) {
                         var idUsuario = resposta[i].idUsuario;
 
@@ -133,11 +154,11 @@
                         console.log(resposta[i].data);
                         console.log(resposta[i].comentario);
                     }
+                    console.log("Comentarios carregados com sucesso!");
                 })
             } else {
-                console.log("Erro ao carregar a noticia: " + resposta.status);
+                console.log("Erro ao carregar os comentarios: " + resposta.status);
             }
-
         })
     }
 
