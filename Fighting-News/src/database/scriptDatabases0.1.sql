@@ -12,8 +12,15 @@ CREATE TABLE Noticia(
 	idNoticia INT PRIMARY KEY AUTO_INCREMENT,
     tituloNoticia VARCHAR(100) NOT NULL,
     conteudoNoticia VARCHAR(5000) NOT NULL,
-    caminhoImagem VARCHAR(60) NOT NULL,
-    visualizacoes INT NOT NULL DEFAULT 0
+    caminhoImagem VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE LikeNoticia(
+	idNoticia INT,
+    idUsuario INT,
+    FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia),
+    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario),
+    PRIMARY KEY(idNoticia, idUsuario)
 );
 
 CREATE TABLE Comentario(
@@ -53,9 +60,7 @@ CREATE TABLE Card(
 	idCard INT PRIMARY KEY AUTO_INCREMENT,
     local VARCHAR(45) NOT NULL,
     data DATE NOT NULL,
-    fightNight boolean NOT NULL,
-    numerado boolean NOT NULL,
-    numeroCard INT
+    nome VARCHAR(70) NOT NULL
 );
 
 CREATE TABLE Luta(
@@ -65,6 +70,8 @@ CREATE TABLE Luta(
     idCategoria INT NOT NULL,
     idCard INT NOT NULL,
     rounds INT NOT NULL CHECK(rounds IN(3,5)),
+    valendoCinturao boolean NOT NULL,
+    caminhoImagem varchar(100),
     foreign key(idLutador1) REFERENCES Lutador(idLutador),
     foreign key(idLutador2) REFERENCES Lutador(idLutador),
     foreign key(idCategoria) references Categoria(idCategoria),

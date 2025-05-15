@@ -109,7 +109,6 @@ footer .redesSociais a img{
 
 .maisAcessadoSemana{
     padding-top: 100px;
-    padding-top: 100px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -384,4 +383,80 @@ footer .redesSociais a img{
     height: 150px;
     width: 600px;
 
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lutasMaisHypadas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 60vw;
+    padding-top: 100px;
+    height: 100%;
+}
+
+.conteudoGeralLuta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.tituloLuta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lutas{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 80%;
+    height: 100%;
+}
+
+.lutas .luta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin-bottom: 30px;
+}
+
+.lutas .luta .imagemLuta{
+    width: 300px
+}
+
+.lutas .luta h4{
+    color: grey;
+}
+
+.informacoesLuta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.informacoesLutaCima{
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.informacoesLutaBaixo{
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
 }
