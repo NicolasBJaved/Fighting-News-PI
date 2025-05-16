@@ -12,6 +12,7 @@ CREATE TABLE Noticia(
 	idNoticia INT PRIMARY KEY AUTO_INCREMENT,
     tituloNoticia VARCHAR(100) NOT NULL,
     conteudoNoticia VARCHAR(5000) NOT NULL,
+    dataPostagem DATE NOT NULL,
     caminhoImagem VARCHAR(60) NOT NULL
 );
 
@@ -43,8 +44,12 @@ CREATE TABLE Categoria(
 CREATE TABLE Lutador(
 	idLutador INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
-    cartel VARCHAR(8) NOT NULL,
+    vitorias INT NOT NULL,
+    derrotas INT NOT NULL,
+    empate INT NOT NULL,
+    nc INT NOT NULL,
     idCategoria INT,
+	caminhoImagem VARCHAR(60) NOT NULL,
     CONSTRAINT fkCategoria FOREIGN KEY(idCategoria) REFERENCES Categoria(idCategoria)
 );
 

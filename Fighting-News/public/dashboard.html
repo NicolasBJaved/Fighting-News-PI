@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 
-<body onload="carregarLutas()">
+<body onload="carregarLutas(), carregarLutadores()">
     <header>
         <div class="conteudoHeader">
             <span class="logo">
@@ -27,9 +27,53 @@
 
     <div class="dashboard">
         <div class="lutasMaisHypadas">
-            <h1 style="font-size: 60px; color: white;">Lutas mais hypadas</h1>
-            <hr style="border: 1px solid red; width: 50%;">
+            <h1 style="font-size: 45px; color: white;">Lutas mais hypadas da semana</h1>
+            <hr style="border: 1px solid red; width: 80%;">
             <div id="lutas" class="lutas">
+                <!-- <div class="luta">
+                    <img class="imagemLuta" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg" alt="">
+                    <div class="conteudoGeralLuta">
+                        <div class="tituloLuta">
+                            <h3>Lutador A vs Lutador C</h3>
+                            
+                            <h3></h3>
+                        </div>
+                        <div class="informacoesLuta">
+                            <div class="informacoesLutaCima">
+                                <p>UFC 300</p>
+                                <p>-</p>
+                                <p>2025/06/01 </p>
+                            </div>
+                            <div class="informacoesLutaBaixo">
+                                <p>Peso Leve</p>
+                                <p>-</p>
+                                <p>5 rounds</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="lutadoresMaisHypados">
+            <h1 style="font-size: 45px; color: white;">Lutadores mais hypados da semana</h1>
+            <hr style="border: 1px solid red; width: 93%;">
+            <div id="lutadores" class="lutadores">
+                <!-- <div class="lutador">
+                    <img class="imagemLutador" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg" alt="">
+                    <div class="conteudoGeralLutador">
+                        <h3>Lutador A</h3>
+                        <p>Peso Leve</p>
+                        <p>10-3-0-0</p>
+                    </div>
+                </div>
+                <div class="lutador">
+                    <img class="imagemLutador" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg" alt="">
+                    <div class="conteudoGeralLutador">
+                        <h3>Lutador A</h3>
+                        <p>Peso Leve</p>
+                        <p>10-3-0-0</p>
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -52,20 +96,20 @@
     </footer>
 </body>
 <script>
-    function carregarLutas(){
+    function carregarLutas() {
         fetch("/lutas/maisHypadas", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             }
-        }).then(function(resposta){
+        }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
-                    for(var i = 0; i < resposta.length; i++){
+                    for (var i = 0; i < resposta.length; i++) {
                         console.log(resposta[i]);
 
                         var valendoCinturao = resposta[i].valendoCinturao;
-                        if(valendoCinturao == 1){
+                        if (valendoCinturao == 1) {
                             lutas.innerHTML += `
                                 <div class="luta">
                                     <img class="imagemLuta"
@@ -82,7 +126,7 @@
                                                 <p>${resposta[i].nomeCard}</p>
                                                 <p>-</p>
                                                 <p>${resposta[i].dataLuta.replaceAll("-", "/").replaceAll("T", " ")
-                                                .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
+                                    .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
                                             </div>
                                             <div class="informacoesLutaBaixo">
                                                 <p>${resposta[i].nomeCategoria}</p>
@@ -113,7 +157,7 @@
                                             <p>${resposta[i].nomeCard}</p>
                                             <p>-</p>
                                             <p>${resposta[i].dataLuta.replaceAll("-", "/").replaceAll("T", " ")
-                                            .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
+                                    .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
                                         </div>
                                         <div class="informacoesLutaBaixo">
                                             <p>${resposta[i].nomeCategoria}</p>
@@ -132,5 +176,36 @@
             }
         })
     }
+
+    function carregarLutadores() {
+        fetch("/lutadores/maisHypados", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        console.log(resposta[i]);
+                        lutadores.innerHTML += `
+                            <div class="lutador">
+                                <h1>${i+1}.</h1>
+                                <img class="imagemLutador" src="${resposta[i].caminhoImagem}" alt="">
+                                <div class="conteudoGeralLutador">
+                                    <h3>${resposta[i].nomeLutador}</h3>
+                                    <p>${resposta[i].nomeCategoria}</p>
+                                    <p>${resposta[i].vitorias}-${resposta[i].derrotas}-${resposta[i].empate}-${resposta[i].noContest}</p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                })
+            } else {
+                console.log("Erro ao carregar lutadores mais hypados: " + resposta.status);
+            }
+        })
+    }
 </script>
+
 </html>
