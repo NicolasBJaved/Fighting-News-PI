@@ -19,6 +19,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="cadastro.html">Cadastro</a></li>
                     <li><a href="login.html">Login</a></li>
+                    <li><a href="quiz.html">Quiz</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
                 </ul>
             </nav>
@@ -65,10 +66,10 @@
             <div class="copyright">
                 <p>Fighting News &copy; 2025</p>
             </div>
-        </div>
-        <div class="dados">
-            <p>Desenvolvido por: Nicolas B. Javed</p>
-            <p>Contato: nicolas.javed@sptech.school</p>
+            <div class="dados">
+                <p>Desenvolvido por: Nicolas B. Javed</p>
+                <p>Contato: nicolas.javed@sptech.school</p>
+            </div>
         </div>
     </footer>
 </body>
@@ -122,9 +123,6 @@
             } else {
                 div_resultado.innerHTML = "Erro ao cadastrar!";
             }
-        }).catch(function(erro){
-            console.log("Erro: ", erro);
-            div_resultado.innerHTML = "Erro ao cadastrar!";
         });
         return false;
     }

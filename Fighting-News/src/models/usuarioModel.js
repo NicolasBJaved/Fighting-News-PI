@@ -18,7 +18,19 @@ function autenticar(email, senha) {
     return database.executar(instrucao);
 }
 
+function listarTop10() {
+    console.log("Entrou no listarTop10");
+    var instrucao = `
+        SELECT usuario.caminhoImagem, usuario.nome, resultadoQuiz.acertos  FROM ResultadoQuiz resultadoQuiz 
+        INNER JOIN Usuario usuario ON resultadoQuiz.idUsuario = usuario.idUsuario
+        ORDER BY acertos DESC LIMIT 10;
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrar,
-    autenticar
+    autenticar,
+    listarTop10
 }

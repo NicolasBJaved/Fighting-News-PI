@@ -35,7 +35,7 @@ header .conteudoHeader{
 nav{
     display: flex;
     align-items: center;
-    width: 20%;
+    width: 25%;
 }
 
 nav ul{
@@ -385,11 +385,50 @@ footer .redesSociais a img{
 
 }
 
+/* QUIZ */
+
+.quizContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.telaInicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 20px;
+    width: 20vw;
+    height: 40vh;
+}
+
+.questoes{
+    color: white;
+    display: none;
+}
+
+.resultado{
+    color: white;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25vw;
+    height: 40vh;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 20px;
+}
+
 /* DASHBOARD */
 
 .dashboard{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .lutasMaisHypadas{
@@ -397,14 +436,12 @@ footer .redesSociais a img{
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    width: 42vw;
+    width: 50vw;
     padding-top: 130px;
     padding-bottom: 100px;
     height: 100%;
     color: white;
 }
-
-
 
 .conteudoGeralLuta{
     display: flex;
@@ -421,6 +458,7 @@ footer .redesSociais a img{
 
 .lutas{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
@@ -439,7 +477,7 @@ footer .redesSociais a img{
 }
 
 .lutas .luta h4{
-    color: grey;
+    color: #808080;
 }
 
 .informacoesLuta{
@@ -462,9 +500,37 @@ footer .redesSociais a img{
     width: 50%;
 }
 
+.rankingQuizSemanal{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 25vw;
+    padding-top: 130px;
+    padding-bottom: 100px;
+    height: 100%;
+    color: white;
+}
+
+.top10Usuarios{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.top10Usuarios .usuario{
+    display: flex;
+    align-items: center;
+}
+
+
+.top10Usuarios .informacoesUsuario{
+    display: flex;
+    align-items: center;
+}
+
 .lutadoresMaisHypados{
     height: 100vh;
-    width: 42vw;
+    width: 20vw;
     padding-top: 130px;
     padding-bottom: 100px;
     height: 100%;
@@ -478,7 +544,7 @@ footer .redesSociais a img{
 .lutador{
     display: flex;
     color: white;
-    width: 50%;
+    width: 100%;
 }
 
 .lutadoresMaisHypados .imagemLutador{

@@ -13,4 +13,9 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 })
 
+router.get("/top10", function (req, res) {
+    console.log("Entrou na rota /top10");
+    usuarioController.listarTop10(req, res);
+});
+
 module.exports = router; 

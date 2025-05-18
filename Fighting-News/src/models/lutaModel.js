@@ -13,7 +13,7 @@ function maisHypadas() {
     var instrucao = `
             SELECT lutador1.nome nome1, lutador2.nome nome2, card.nome nomeCard, card.data dataLuta,
         categoria.nome nomeCategoria, luta.rounds rounds, luta.valendoCinturao valendoCinturao,
-        luta.caminhoImagem caminhoImagem
+        luta.caminhoImagem caminhoImagem, COUNT(likeNoticia.idUsuario) totalLikes
         FROM 
         Luta luta INNER JOIN Lutador lutador1 ON luta.idLutador1 = lutador1.idLutador 
         inner join Lutador lutador2 on luta.idLutador2 = lutador2.idLutador 
@@ -29,7 +29,10 @@ function maisHypadas() {
         (SELECT AVG(qtdLikes) 
         FROM (SELECT COUNT(*) as qtdLikes FROM LikeNoticia likeNoticia INNER JOIN Noticia noticia
         ON likeNoticia.idNoticia = noticia.idNoticia WHERE noticia.dataPostagem > '${dataFormatada}'
-        GROUP BY likeNoticia.idNoticia) as likesPorNoticia) ;
+        GROUP BY likeNoticia.idNoticia) as likesPorNoticia) 
+        ORDER BY 
+            totalLikes DESC
+        LIMIT 4;
         `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);

@@ -5,7 +5,8 @@ CREATE TABLE Usuario(
 	idUsuario INT PRIMARY KEY auto_increment,
     nome VARCHAR(45) NOT NULL UNIQUE,
 	email VARCHAR(45) NOT NULL UNIQUE,
-    senha VARCHAR(45) NOT NULL
+    senha VARCHAR(45) NOT NULL,
+    caminhoImagem VARCHAR(60) NOT NULL DEFAULT './imgs/defaultProfile.jpg'
 );
 
 CREATE TABLE Noticia(
@@ -97,4 +98,17 @@ CREATE TABLE LutaNoticia(
     FOREIGN KEY(idLuta) REFERENCES Luta(idLuta)
 );
 
- 
+CREATE TABLE Quiz(
+	idQuiz INT PRIMARY KEY AUTO_INCREMENT,
+	dataInicio DATETIME NOT NULL,
+    dataFim DATETIME NOT NULL
+);
+
+CREATE TABLE ResultadoQuiz(
+	idUsuario INT,
+    idQuiz INT,
+    acertos INT,
+    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY(idQuiz) REFERENCES Quiz(idQuiz),
+    PRIMARY KEY(idUsuario, idQuiz)
+);

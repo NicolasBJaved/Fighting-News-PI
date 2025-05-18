@@ -21,7 +21,7 @@ function carregarComentarios(idNoticia) {
 function carregarLikes(idNoticia){
     console.log("Entrou no noticiaModel");
     var instrucao = `
-        SELECT COUNT(*) AS qtdLikes FROM likeNoticia WHERE idNoticia = ${idNoticia};
+        SELECT COUNT(*) AS qtdLikes FROM LikeNoticia WHERE idNoticia = ${idNoticia};
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
@@ -30,7 +30,7 @@ function carregarLikes(idNoticia){
 function jaDeuLike(idUsuario, idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
-        SELECT COUNT(*) AS jaDeuLike FROM likeNoticia WHERE idUsuario = ${idUsuario} AND idNoticia = ${idNoticia};
+        SELECT COUNT(*) AS jaDeuLike FROM LikeNoticia WHERE idUsuario = ${idUsuario} AND idNoticia = ${idNoticia};
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
@@ -39,7 +39,7 @@ function jaDeuLike(idUsuario, idNoticia) {
 function darLike(idUsuario, idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
-        INSERT INTO likeNoticia (idUsuario, idNoticia) VALUES (${idUsuario}, ${idNoticia});
+        INSERT INTO ikeNoticia (idUsuario, idNoticia) VALUES (${idUsuario}, ${idNoticia});
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
@@ -48,7 +48,7 @@ function darLike(idUsuario, idNoticia) {
 function removerLike(idUsuario, idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
-        DELETE FROM likeNoticia WHERE idUsuario = ${idUsuario} AND idNoticia = ${idNoticia};
+        DELETE FROM LikeNoticia WHERE idUsuario = ${idUsuario} AND idNoticia = ${idNoticia};
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);

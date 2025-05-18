@@ -24,9 +24,6 @@ function cadastrar(req, res) {
             .then(function (resultado) {
                 console.log("Resultado: ", resultado);
                 res.json(resultado);
-            }).catch(function (erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
             });
     }
 }
@@ -50,14 +47,21 @@ function autenticar(req, res) {
             .then(function (resultado) {
                 console.log("Resultado: ", resultado);
                 res.json(resultado);
-            }).catch(function (erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
             });
     }
 }
 
+function listarTop10(req, res) {
+    console.log("Entrou no listarTop10");
+    usuarioModel.listarTop10()
+        .then(function (resultado) {
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+}
+
 module.exports = {
     cadastrar,
-    autenticar
+    autenticar,
+    listarTop10
 }
