@@ -1,5 +1,18 @@
 var database = require('../database/config');
 
+function carregarMaisCurtidas(){
+    console.log("Entrou no noticiaModel");
+    var instrucao = `
+        SELECT n.idNoticia, n.caminhoImagem, n.tituloNoticia, COUNT(likeNoticia.idNoticia) likes FROM Noticia n
+        INNER JOIN LikeNoticia likeNoticia
+        ON likeNoticia.idNoticia = n.idNoticia
+        GROUP BY n.idNoticia, n.caminhoImagem, n.tituloNoticia
+        ORDER BY likes DESC LIMIT 3;
+        `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function carregarUltimasNoticias(){
     console.log("Entrou no noticiaModel");
     var instrucao = `
@@ -84,6 +97,7 @@ function deletarComentario(idComentario) {
 }
 
 module.exports = {
+    carregarMaisCurtidas,
     carregarUltimasNoticias,
     carregarNoticia,
     carregarComentarios,

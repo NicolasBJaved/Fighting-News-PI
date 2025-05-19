@@ -3,6 +3,12 @@ var router = express.Router();
 
 var noticiasController = require("../controllers/noticiaController");
 
+router.get("/carregarMaisCurtidas", function (req, res) {
+    console.log("Entrou na rota /carregarMaisCurtidas");
+    noticiasController.carregarMaisCurtidas(req, res);
+}
+);
+
 router.get("/carregarUltimasNoticias", function (req, res) {
     console.log("Entrou na rota /carregarUltimasNoticias");
     noticiasController.carregarUltimasNoticias(req, res);
