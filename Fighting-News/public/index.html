@@ -8,11 +8,13 @@
     <title>Fighting News</title>
 </head>
 
-<body>
+<body onload="carregarNoticias()">
     <header>
         <div class="conteudoHeader">
             <span class="logo">
-                <img style="width: 100px;" src="./imgs/logo.png" alt="">
+                <a href="index.html">
+                    <img style="width: 100px;" src="./imgs/logo.png" alt="">
+                </a>
             </span>
             <nav>
                 <ul>
@@ -62,8 +64,8 @@
                 <h1 style="color: white; font-size: 60px;">Últimas notícias</h1>
                 <hr>
             </div>
-            <div class="conteudoUltimasNoticias">
-                <a href="">
+            <div id="conteudoUltimasNoticias" class="conteudoUltimasNoticias">
+                <!-- <a href="">
                     <div class="noticia">
                         <img class="imagemNoticia"
                             src="https://agfight.com/wp-content/uploads/2024/04/diego-lima-charles-do-bronxs-ufc-300-400x240.jpg"
@@ -158,7 +160,7 @@
                             nihil
                             praesentium eaque modi eius aliquid.</h4>
                     </div>
-                </a>
+                </a> -->
             </div>
         </div>
     </div>
@@ -180,5 +182,38 @@
         </div>
     </footer>
 </body>
+<script>
+    function carregarNoticias() {
+        fetch("/noticias/carregarUltimasNoticias", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        conteudoUltimasNoticias.innerHTML += `
+                        <a href="./noticia.html?id=${resposta[i].idNoticia}">
+                            <div class="noticia">
+                                <img class="imagemNoticia"
+                                    src="${resposta[i].caminhoImagem}"
+                                    alt="">
+                                <p class="data">${resposta[i].dataPostagem.replaceAll("-", "/").replaceAll("T", " ")
+                                    .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
+                                <h3 class="tituloNoticia">${resposta[i].tituloNoticia}</h3>
+                                <h4 class="resumo">${resposta[i].previaNoticia}</h4>
+                            </div>
+                        </a>
+                    `
+                    }
+                })
+            }else{
+                console.log("Erro ao carregar as últimas noticias: " + resposta.status);
+            }
+
+        })
+    }
+</script>
 
 </html>

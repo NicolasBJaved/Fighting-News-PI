@@ -1,5 +1,13 @@
 var database = require('../database/config');
 
+function carregarUltimasNoticias(){
+    console.log("Entrou no noticiaModel");
+    var instrucao = `
+        SELECT n.idNoticia, n.caminhoImagem, n.dataPostagem, n.tituloNoticia, n.previaNoticia FROM Noticia n ORDER BY n.dataPostagem DESC LIMIT 9;    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function carregarNoticia(idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
@@ -76,6 +84,7 @@ function deletarComentario(idComentario) {
 }
 
 module.exports = {
+    carregarUltimasNoticias,
     carregarNoticia,
     carregarComentarios,
     carregarLikes,

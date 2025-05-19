@@ -12,6 +12,7 @@ CREATE TABLE Usuario(
 CREATE TABLE Noticia(
 	idNoticia INT PRIMARY KEY AUTO_INCREMENT,
     tituloNoticia VARCHAR(100) NOT NULL,
+    previaNoticia VARCHAR(300) NOT NULL,
     dataPostagem DATE NOT NULL,
     caminhoImagem VARCHAR(60) NOT NULL
 );
