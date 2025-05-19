@@ -623,3 +623,23 @@ footer .redesSociais a img{
     align-items: center;
     width: 100%;
 }
+
+/* PERFIL */
+
+.containerPerfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.perfil{
+    color: white;
+}
+
+.perfil .imagemUsuario img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+
+<body onload="carregarInformacoes()">
+    <header>
+        <div class="conteudoHeader">
+            <span class="logo">
+                <a href="index.html">
+                    <img style="width: 100px;" src="./imgs/logo.png" alt="">
+                </a>
+            </span>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="quiz.html">Quiz</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="containerPerfil">
+        <div class="perfil">
+            <h1>Perfil</h1>
+            <div class="Containerinformacoes">
+                <div id="imagemUsuario" class="imagemUsuario">
+                    <!-- <img src="./imgs/defaultProfile.jpg" alt="Imagem do Usuário"> -->
+                </div>
+                <div id="informacoesUsuario" class="informacoesUsuario">
+                    <!-- <h3>Nome do Usuário</h3>
+                    <h3>Email usuario</h3>
+                    <h3>Senha Usuario</h3> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="conteudoFooter">
+            <div class="redesSociais">
+                <a href="https://www.instagram.com/"><img src="./imgs/instagram.png" alt=""></a>
+                <a href="https://www.facebook.com/"><img src="./imgs/facebook.png" alt=""></a>
+                <a href="https://twitter.com/"><img src="./imgs/twitter.png" alt=""></a>
+            </div>
+            <div class="copyright">
+                <p>Fighting News &copy; 2025</p>
+            </div>
+            <div class="dados">
+                <p>Desenvolvido por: Nicolas B. Javed</p>
+                <p>Contato: nicolas.javed@sptech.school</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    function carregarInformacoes() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const idUsuario = urlParams.get('id');
+        var idUsuarioSession = sessionStorage.ID_USUARIO;
+
+        // if (idUsuarioSession == null || idUsuarioSession == "") {
+        //     alert("Você precisa estar logado para visualizar o perfil!");
+        //     window.location = "./login.html";
+        //     return;
+        // }
+
+        // if(idUsuarioSession != id){
+        //     alert("Você não pode acessar o perfil de outro usuário!");
+        //     window.location = "./index.html";
+        //     return;
+        // }
+
+        fetch("/usuarios/carregarInformacoes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    imagemUsuario.innerHTML = `
+                    <img src="${resposta[0].caminhoImagem}" alt="Imagem do Usuário">
+                    `;
+
+                    informacoesUsuario.innerHTML += `
+                    <h3>${resposta[0].nome}</h3>
+                    <h3>${resposta[0].email}</h3>
+                    <h3>${resposta[0].senha}</h3>
+                    `
+                })
+            }
+        })
+    }
+</script>
+
+</html>

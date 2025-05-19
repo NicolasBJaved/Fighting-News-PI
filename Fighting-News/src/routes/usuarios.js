@@ -3,6 +3,11 @@ var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
 
+router.post("/carregarInformacoes", function (req, res) {
+    console.log("Entrou na rota /carregarInformacoes");
+    usuarioController.carregarInformacoes(req, res);
+});
+
 router.post("/cadastrar", function (req, res) {
     console.log("Entrou na rota /cadastrar");
     usuarioController.cadastrar(req, res);

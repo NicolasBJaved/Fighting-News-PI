@@ -1,5 +1,19 @@
 var usuarioModel = require('../models/usuarioModel');
 
+function carregarInformacoes(req, res) {
+    console.log("Entrou no carregarInformacoes");
+    var idUsuario = req.body.idUsuarioServer;
+
+    console.log("ID do usuário: ", idUsuario);
+    
+    usuarioModel.carregarInformacoes(idUsuario)
+        .then(function (resultado) {
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+    
+}
+
 function cadastrar(req, res) {
     console.log("Entrou no usuarioController");
     var nome = req.body.nomeServer;
@@ -61,6 +75,7 @@ function listarTop10(req, res) {
 }
 
 module.exports = {
+    carregarInformacoes,
     cadastrar,
     autenticar,
     listarTop10

@@ -1,5 +1,14 @@
 var database = require("../database/config")
 
+function carregarInformacoes(idUsuario) {
+    console.log("Entrou no usuarioModel");
+    var instrucao = `
+        SELECT * FROM Usuario WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function cadastrar(nome, email, senha) {
     console.log("Entrou no usuarioModel");
     var instrucao = `
@@ -30,6 +39,7 @@ function listarTop10() {
 }
 
 module.exports = {
+    carregarInformacoes,
     cadastrar,
     autenticar,
     listarTop10
