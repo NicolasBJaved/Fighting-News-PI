@@ -12,9 +12,16 @@ CREATE TABLE Usuario(
 CREATE TABLE Noticia(
 	idNoticia INT PRIMARY KEY AUTO_INCREMENT,
     tituloNoticia VARCHAR(100) NOT NULL,
-    conteudoNoticia VARCHAR(5000) NOT NULL,
     dataPostagem DATE NOT NULL,
     caminhoImagem VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE ParagrafoNoticia(
+	idParagrafoNoticia INT PRIMARY KEY auto_increment,
+	idNoticia INT,
+    conteudo VARCHAR(650) NOT NULL,
+    ordem INT NOT NULL,
+    FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia)
 );
 
 CREATE TABLE LikeNoticia(

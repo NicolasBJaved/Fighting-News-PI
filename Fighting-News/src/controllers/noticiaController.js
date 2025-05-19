@@ -1,5 +1,15 @@
 var noticiaModel = require('../models/noticiaModel');
 
+function verificarLikeDado(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var idNoticia = req.body.idServer;
+
+    noticiaModel.jaDeuLike(idUsuario, idNoticia).then(function (resultado) {
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
 function carregarNoticia(req, res) {
     var idNoticia = req.body.idServer;
 
@@ -78,6 +88,7 @@ function deletarComentario(req, res) {
 }
 
 module.exports = {
+    verificarLikeDado,
     carregarNoticia,
     carregarComentarios,
     carregarLikes,

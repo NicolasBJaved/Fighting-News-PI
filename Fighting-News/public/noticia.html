@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Noticia 1</title>
 </head>
 
@@ -26,29 +27,72 @@
         </div>
     </header>
 
-    <div class="conteudoNoticia">
-        <div class="imagemNoticia">
-            <img width="900px" height="500px" id="imagemNoticia" src="" alt="">
-        </div>
-        <div class="tituloNoticia">
-            <h1 id="tituloNoticia">
-            </h1>
-        </div>
-        <div id="conteudoNoticia">
-        </div>
-        <div class="likes">
-            <h3 id="qtdLikes">10</h3>
-            <button id="botaoLike" onclick="verificarLike()">dar like</button>
-        </div>
-
-        <div id="comentarios" class="comentarios">
-            <div class="comentar">
-                <h2>Faça um comentário</h2>
-                <input type="text" id="ipt_comentario" placeholder="Digite seu comentário">
-                <button onclick="comentar()">Comentar</button>
+    <div class="containerNoticia">
+        <div class="conteudoNoticia">
+            <div class="imagemNoticia">
+                <img width="1000px" height="600px" id="imagemNoticia" src="" alt="">
+            </div>
+            <div class="tituloNoticia">
+                <h1 id="tituloNoticia">
+                    Stephen Thompson propõe duelo de strikers contra Carlos Prates no UFC
+                </h1>
+                <hr style="border: 1px solid red; width: 95%;">
+            </div>
+            <div class="informacoesNoticia" id="informacoesNoticia">
+                <p id="dataPostagem" style="font-size: 25px; color: red;"></p>
+                <div class="likes">
+                    <i class="fa fa-solid fa-thumbs-up" onclick="verificarLike()" id="botaoLike"
+                        style="cursor: pointer;"></i>
+                    <h3 id="qtdLikes">10</h3>
+                </div>
+            </div>
+            <div id="conteudoNoticia" class="textoNoticia">
+                <!-- <p class="paragrafoNoticia">
+                    A derrota para Ian Machado Garry na luta principal do UFC Kansas City, no último sábado (26),
+                    colocou um
+                    ponto final na sequência de vitórias de Carlos Prates, mas não parece ter afetado o prestígio que o
+                    meio-médio (77 kg) conquistou em pouco mais de um ano na organização. Prova disso é que, apesar do
+                    tropeço do brasileiro, um dos principais nomes da categoria na década demonstrou interesse em medir
+                    forças com o atleta paulista no octógono mais famoso do mundo.
+                </p>
+                <p class="paragrafoNoticia">Em entrevista ao ‘MMA Today’, Stephen ‘Wonderboy’ Thompson propôs um desafio entre strikers ao
+                    lutador da
+                    equipe ‘Fighting Nerds’. Como sempre respeitoso, o carateca americano – que atualmente ocupa a 11ª
+                    colocação no ranking dos meio-médios do UFC, duas posições acima do brasileiro – se mostrou
+                    empolgado
+                    com a possibilidade de duelar contra outro especialista na luta em pé.</p> -->
+            </div>
+            <div id="comentarios" class="comentarios">
+                <div class="comentar">
+                    <h2>Faça um comentário</h2>
+                    <textarea id="ipt_comentario" placeholder="Digite seu comentário"
+                        style="width: 100%; word-break: break-word;" rows="4"></textarea>
+                    <button onclick="comentar()">Comentar</button>
+                </div>
+                <!-- <div class="comentario">
+                    <div class="imagemUsuario">
+                        <div>
+                            <img src="./imgs/defaultProfile.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="textoComentario">
+                        <div class="informacoesUsuario">
+                            <h3>Nom3</h3>
+                            <h4>Data</h4>
+                        </div>
+                        <div class="conteudoComentario">
+                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                            </p>
+                        </div>
+                    </div>
+                    <div class="botaoDeletar">
+                        <button onclick=deletarComentario()>Deletar</button>
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>
+
 
     <footer>
         <div class="conteudoFooter">
@@ -71,7 +115,33 @@
     function carregarNoticia() {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
+        var idUsuarioSession = sessionStorage.ID_USUARIO;
         console.log("ID: " + id);
+
+        if (idUsuarioSession != null && idUsuarioSession != "" && idUsuarioSession != undefined) {
+            fetch("/noticias/verificarLikeDado", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                }, body: JSON.stringify({
+                    idServer: id,
+                    idUsuarioServer: idUsuarioSession
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        if (resposta[0].jaDeuLike == 1) {
+                            botaoLike.style.color = "red";
+                        } else {
+                            botaoLike.style.color = "white";
+                        }
+                    })
+                } else {
+                    console.log("Erro ao verificar se já deu like: " + resposta.status);
+                }
+            })
+        }
+
 
         fetch("/noticias/carregarNoticia", {
             method: "POST",
@@ -85,15 +155,19 @@
             if (resposta.ok) {
                 console.log("Noticia carregada com sucesso!");
                 resposta.json().then(function (resposta) {
-
                     tituloNoticia.innerHTML = resposta[0].tituloNoticia;
-                    conteudoNoticia.innerHTML = resposta[0].conteudoNoticia;
                     imagemNoticia.src = resposta[0].caminhoImagem;
-
-                    console.log(resposta[0].idNoticia);
-                    console.log(resposta[0].tituloNoticia);
-                    console.log(resposta[0].conteudoNoticia);
-                    console.log(resposta[0].caminhoImagem);
+                    dataPostagem.innerHTML = resposta[0].dataPostagem.replaceAll("-", "/").replaceAll("T", " ")
+                        .replaceAll(".000Z", " ").replaceAll("00:00:00", " ");
+                    for (var i = 0; i < resposta.length; i++) {
+                        console.log(resposta[i].tituloNoticia);
+                        conteudoNoticia.innerHTML += `
+                            <p class="paragrafoNoticia">
+                                ${resposta[i].conteudo}
+                            </p>
+                            <br>
+                        `
+                    }
                 })
             } else {
                 console.log("Erro ao carregar a noticia: " + resposta.status);
@@ -123,34 +197,52 @@
                         if (idUsuarioSession == idUsuario) {
                             comentarios.innerHTML += `
                             <div class="comentario">
-                                <div class="informacoesUsuario">
-                                    <img src="./imgs/defaultProfile.jpg" alt="">
-                                    <h3>${resposta[i].nome}</h3>
-                                    <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
-                                        .replaceAll(".000Z", " ")}</h4>
-                                    <button onclick=deletarComentario(${resposta[i].idComentario})>Deletar</button>
+                                <div class="imagemUsuario">
+                                    <div>
+                                    <img src="${resposta[i].caminhoImagem}" alt="">
+                                    </div>
                                 </div>
-                                <div class="conteudoComentario">
-                                    <p>${resposta[i].comentario}</p>
+                                <div class="textoComentario">
+                                    <div class="informacoesUsuario">
+                                        <h3>${resposta[i].nome}</h3>
+                                        <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
+                                    .replaceAll(".000Z", " ")}</h4>
+                                    </div>
+                                    <div class="conteudoComentario">
+                                        <p>
+                                            ${resposta[i].comentario}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="botaoDeletar">
+                                    <button onclick=deletarComentario(${resposta[i].idComentario})>Deletar</button>
                                 </div>
                             </div>
                             `
-                        }else{
+                        } else {
                             comentarios.innerHTML += `
                             <div class="comentario">
-                                <div class="informacoesUsuario">
-                                    <img src="./imgs/defaultProfile.jpg" alt="">
-                                    <h3>${resposta[i].nome}</h3>
-                                    <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
-                                    .replaceAll(".000Z", " ")}</h4>
+                                <div class="imagemUsuario">
+                                    <div>
+                                    <img src="${resposta[i].caminhoImagem}" alt="">
+                                    </div>
                                 </div>
-                                <div class="conteudoComentario">
-                                    <p>${resposta[i].comentario}</p>
+                                <div class="textoComentario">
+                                    <div class="informacoesUsuario">
+                                        <h3>${resposta[i].nome}</h3>
+                                        <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
+                                    .replaceAll(".000Z", " ")}</h4>
+                                    </div>
+                                    <div class="conteudoComentario">
+                                        <p>
+                                            ${resposta[i].comentario}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             `
                         }
-                        
+
                         console.log(resposta[i].nome);
                         console.log(resposta[i].data);
                         console.log(resposta[i].comentario);
@@ -258,7 +350,7 @@
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     qtdLikes.innerHTML = Number(qtdLikes.innerText) - 1;
-                    botaoLike.style.color = "blue";
+                    botaoLike.style.color = "white";
                 })
             } else {
                 console.log("Erro ao remover like: " + resposta.status);

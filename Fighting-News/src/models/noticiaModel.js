@@ -3,7 +3,8 @@ var database = require('../database/config');
 function carregarNoticia(idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
-        SELECT n.* FROM Noticia n WHERE n.idNoticia = ${idNoticia};
+         SELECT n.*, p.* FROM Noticia n INNER JOIN ParagrafoNoticia p ON p.idNoticia =
+          n.idNoticia WHERE n.idNoticia = ${idNoticia} ORDER BY ordem;
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
@@ -12,7 +13,8 @@ function carregarNoticia(idNoticia) {
 function carregarComentarios(idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
-        SELECT c.*, u.* FROM Comentario c INNER JOIN Usuario u ON c.idUsuario = u.idUsuario WHERE c.idNoticia = ${idNoticia};
+        SELECT c.*, u.* FROM Comentario c INNER JOIN Usuario u ON c.idUsuario = u.idUsuario WHERE c.idNoticia = ${idNoticia}
+        ORDER BY c.data DESC;
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
@@ -39,7 +41,7 @@ function jaDeuLike(idUsuario, idNoticia) {
 function darLike(idUsuario, idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
-        INSERT INTO ikeNoticia (idUsuario, idNoticia) VALUES (${idUsuario}, ${idNoticia});
+        INSERT INTO LikeNoticia (idUsuario, idNoticia) VALUES (${idUsuario}, ${idNoticia});
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
