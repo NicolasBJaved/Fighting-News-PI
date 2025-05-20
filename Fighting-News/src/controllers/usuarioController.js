@@ -1,5 +1,18 @@
 var usuarioModel = require('../models/usuarioModel');
 
+function verificarLogado(req, res) {
+    console.log("Entrou no verificarLogado");
+    var idUsuario = req.body.idUsuarioServer;
+
+    console.log("ID do usuário: ", idUsuario);
+    
+    usuarioModel.verificarLogado(idUsuario)
+        .then(function (resultado) {
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+}
+
 function carregarInformacoes(req, res) {
     console.log("Entrou no carregarInformacoes");
     var idUsuario = req.body.idUsuarioServer;
@@ -87,6 +100,7 @@ function listarTop10(req, res) {
 }
 
 module.exports = {
+    verificarLogado,
     carregarInformacoes,
     mudarFotoDePerfil,
     cadastrar,

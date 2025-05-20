@@ -4,6 +4,12 @@ var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
 
+router.post("/verificarLogado", function (req, res) {
+    console.log("Entrou na rota /verificarLogado");
+    usuarioController.verificarLogado(req, res);
+}
+);
+
 router.post("/carregarInformacoes", function (req, res) {
     console.log("Entrou na rota /carregarInformacoes");
     usuarioController.carregarInformacoes(req, res);

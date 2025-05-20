@@ -32,16 +32,37 @@ header .conteudoHeader{
     width: 100%;
 }
 
+header .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 nav{
     display: flex;
     align-items: center;
-    width: 25%;
+    width: 20%;
 }
 
 nav ul{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 500px;
+}
+
+nav .perfilNav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    padding: 10px;
+}
+
+nav .perfilNav img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 header nav ul{
@@ -107,8 +128,8 @@ footer .redesSociais a img{
     align-items: center;
 }
 
-.maisAcessadoSemana{
-    padding-top: 100px;
+.maisCurtidoSemana{
+    padding-top: 150px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -124,11 +145,11 @@ footer .redesSociais a img{
     margin-top: 30px;
 }
 
-.tituloMaisAcessadoSemana hr{
+.tituloMaisCurtidoSemana hr{
     color: red;
 }
 
-.maisAcessadoSemana .noticia1{
+.maisCurtidoSemana .noticia1{
     display: flex;
     justify-content: center;
     align-items: end;
@@ -138,7 +159,7 @@ footer .redesSociais a img{
     background-size: cover;
 }
 
-.maisAcessadoSemana .noticia2{
+.maisCurtidoSemana .noticia2{
     display: flex;
     justify-content: center;
     align-items: end;
@@ -149,7 +170,7 @@ footer .redesSociais a img{
     background-size: cover;
 }
 
-.maisAcessadoSemana .noticia3{
+.maisCurtidoSemana .noticia3{
     display: flex;
     justify-content: center;
     align-items: end;
@@ -160,16 +181,16 @@ footer .redesSociais a img{
     background-size: cover;
 }
 
-.maisAcessadoSemana .noticia .titulo{
+.maisCurtidoSemana .noticia .titulo{
     width: 90%;
     color: white;
 }
 
-.maisAcessadoSemana .noticia .imagemNoticia{
+.maisCurtidoSemana .noticia .imagemNoticia{
     width: 400px;
 }
 
-.maisAcessadoSemana .noticia{
+.maisCurtidoSemana .noticia{
     text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9),
      -10px -10px 10px rgb(0, 0, 0);
 }

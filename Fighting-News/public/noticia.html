@@ -8,22 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Noticia 1</title>
 </head>
-
-<body onload="carregarNoticia(), carregarComentarios(), carregarLikes()">
-    <header>
+<script src="./js/script.js"></script>
+<body onload="carregarNoticia(), carregarComentarios(), carregarLikes(), verificarLogado()">
+    <header id="header">
         <div class="conteudoHeader">
             <span class="logo">
                 <a href="index.html">
-                    <img style="width: 100px;" src="./imgs/logo.png" alt="">
+                    <img style="width: 90px; height: 70px;" src="./imgs/logo.png" alt="">
                 </a>
             </span>
-            <nav>
-                <ul>
+            <nav id="nav">
+                <ul id="ulNav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="cadastro.html">Cadastro</a></li>
                     <li><a href="login.html">Login</a></li>
                     <li><a href="quiz.html">Quiz</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
+                    
                 </ul>
             </nav>
         </div>

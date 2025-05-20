@@ -1,5 +1,13 @@
 var database = require("../database/config")
 
+function verificarLogado(idUsuario) {
+    console.log("Entrou no usuarioModel");
+    var instrucao = `
+        SELECT u.idUsuario, u.nome, u.caminhoImagem FROM Usuario u WHERE u.idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 function carregarInformacoes(idUsuario) {
     console.log("Entrou no usuarioModel");
@@ -48,6 +56,7 @@ function listarTop10() {
 }
 
 module.exports = {
+    verificarLogado,
     carregarInformacoes,
     mudarFotoDePerfil,
     cadastrar,

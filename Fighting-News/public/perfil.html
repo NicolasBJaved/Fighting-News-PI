@@ -7,22 +7,23 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
-
-<body onload="carregarInformacoes()">
-    <header>
+<script src="./js/script.js"></script>
+<body onload="carregarInformacoes(), verificarLogado()">
+    <header id="header">
         <div class="conteudoHeader">
             <span class="logo">
                 <a href="index.html">
-                    <img style="width: 100px;" src="./imgs/logo.png" alt="">
+                    <img style="width: 90px; height: 70px;" src="./imgs/logo.png" alt="">
                 </a>
             </span>
-            <nav>
-                <ul>
+            <nav id="nav">
+                <ul id="ulNav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="cadastro.html">Cadastro</a></li>
                     <li><a href="login.html">Login</a></li>
                     <li><a href="quiz.html">Quiz</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
+                    
                 </ul>
             </nav>
         </div>
@@ -70,7 +71,6 @@
         const idUsuario = urlParams.get('id');
         var idUsuarioSession = sessionStorage.ID_USUARIO;
 
-        console.log("ID USUARIO SESSION: " +idUsuarioSession);
         if (idUsuarioSession == null || idUsuarioSession == "") {
             alert("Você precisa estar logado para visualizar o perfil!");
             window.location = "./login.html";
