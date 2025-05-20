@@ -1,4 +1,5 @@
 var express = require("express");
+const upload = require('../config/configUpload'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
 var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
@@ -7,6 +8,12 @@ router.post("/carregarInformacoes", function (req, res) {
     console.log("Entrou na rota /carregarInformacoes");
     usuarioController.carregarInformacoes(req, res);
 });
+
+router.post("/mudarFotoDePerfil", upload.single('foto'), function (req, res) {
+    console.log("Entrou na rota /mudarFotoDePerfil");
+    usuarioController.mudarFotoDePerfil(req, res);
+}
+);
 
 router.post("/cadastrar", function (req, res) {
     console.log("Entrou na rota /cadastrar");

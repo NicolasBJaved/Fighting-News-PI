@@ -34,6 +34,8 @@
             <div class="Containerinformacoes">
                 <div id="imagemUsuario" class="imagemUsuario">
                     <!-- <img src="./imgs/defaultProfile.jpg" alt="Imagem do Usuário"> -->
+                    <input name="foto" id="foto" type="file" />
+                    <button onclick="enviar()">Enviar</button>
                 </div>
                 <div id="informacoesUsuario" class="informacoesUsuario">
                     <!-- <h3>Nome do Usuário</h3>
@@ -68,17 +70,18 @@
         const idUsuario = urlParams.get('id');
         var idUsuarioSession = sessionStorage.ID_USUARIO;
 
-        // if (idUsuarioSession == null || idUsuarioSession == "") {
-        //     alert("Você precisa estar logado para visualizar o perfil!");
-        //     window.location = "./login.html";
-        //     return;
-        // }
+        console.log("ID USUARIO SESSION: " +idUsuarioSession);
+        if (idUsuarioSession == null || idUsuarioSession == "") {
+            alert("Você precisa estar logado para visualizar o perfil!");
+            window.location = "./login.html";
+            return;
+        }
 
-        // if(idUsuarioSession != id){
-        //     alert("Você não pode acessar o perfil de outro usuário!");
-        //     window.location = "./index.html";
-        //     return;
-        // }
+        if(idUsuarioSession != idUsuario){
+            alert("Você não pode acessar o perfil de outro usuário!");
+            window.location = "./index.html";
+            return;
+        }
 
         fetch("/usuarios/carregarInformacoes", {
             method: "POST",
@@ -90,8 +93,11 @@
         }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
+                    console.log(resposta);
                     imagemUsuario.innerHTML = `
                     <img src="${resposta[0].caminhoImagem}" alt="Imagem do Usuário">
+                    <input name="foto" id="foto" type="file" />
+                    <button onclick="enviar()">Enviar</button>
                     `;
 
                     informacoesUsuario.innerHTML += `
@@ -102,6 +108,28 @@
                 })
             }
         })
+    }
+
+    function enviar() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const idUsuarioServer = urlParams.get('id');
+
+        const formData = new FormData();
+        console.log(foto.files[0]);
+        formData.append('foto', foto.files[0])
+        formData.append('id', idUsuarioServer)
+
+        fetch("/usuarios/mudarFotoDePerfil", {
+            method: "POST",
+            body: formData
+        })
+            .then(res => {
+                window.location = "./perfil.html?id=" + idUsuarioServer;
+                console.log("CHEGOU AQUI");
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 </script>
 

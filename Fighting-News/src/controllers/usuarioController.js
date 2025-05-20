@@ -14,6 +14,18 @@ function carregarInformacoes(req, res) {
     
 }
 
+function mudarFotoDePerfil(req, res){
+    const imagem = req.file.filename;
+    const idUsuario = req.body.id;
+    console.log("ID do usuário mudar foto de perfil: ", idUsuario);
+
+    usuarioModel.mudarFotoDePerfil(imagem, idUsuario)
+        .then(function (resultado) {
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+}
+
 function cadastrar(req, res) {
     console.log("Entrou no usuarioController");
     var nome = req.body.nomeServer;
@@ -76,6 +88,7 @@ function listarTop10(req, res) {
 
 module.exports = {
     carregarInformacoes,
+    mudarFotoDePerfil,
     cadastrar,
     autenticar,
     listarTop10

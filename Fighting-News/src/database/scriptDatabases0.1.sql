@@ -6,7 +6,7 @@ CREATE TABLE Usuario(
     nome VARCHAR(45) NOT NULL UNIQUE,
 	email VARCHAR(45) NOT NULL UNIQUE,
     senha VARCHAR(45) NOT NULL,
-    caminhoImagem VARCHAR(60) NOT NULL DEFAULT './imgs/defaultProfile.jpg'
+    caminhoImagem VARCHAR(500) NOT NULL DEFAULT './imgs/defaultProfile.jpg'
 );
 
 CREATE TABLE Noticia(
