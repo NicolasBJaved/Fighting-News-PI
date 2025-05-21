@@ -1,4 +1,5 @@
 var express = require("express");
+const upload = require('../config/configUploadImagemNoticia'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
 var router = express.Router();
 
 var noticiasController = require("../controllers/noticiaController");
@@ -59,6 +60,16 @@ router.post("/comentar", function (req, res) {
 router.post("/deletarComentario", function (req, res) {
     console.log("Entrou na rota /deletarComentario");
     noticiasController.deletarComentario(req, res);
+})
+
+router.post("/publicarNoticia", upload.single('foto'), function (req, res) {
+    console.log("Entrou na rota /publicarNoticia");
+    noticiasController.publicarNoticia(req, res);
+});
+
+router.post("/adicionarParagrafos", function(req, res){
+    console.log("Entrou na rota /adicionarParagrafos");
+    noticiasController.adicionarParagrafos(req, res);
 })
 
 module.exports = router;

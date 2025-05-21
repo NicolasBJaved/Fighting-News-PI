@@ -105,6 +105,28 @@ function deletarComentario(req, res) {
     })
 }
 
+function publicarNoticia(req, res){
+    const imagem = req.file.filename;
+    const titulo = req.body.titulo;
+    const previa = req.body.previa;
+    
+
+    noticiaModel.publicarNoticia(titulo, previa, imagem)
+        .then(function (resultado) {
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+}
+
+function adicionarParagrafos(req, res){
+    var idNoticia = req.body.idNoticiaServer;
+    var paragrafos = req.body.paragrafosServer;
+
+    console.log("VALORES PARAGRAFOS: " + paragrafos);
+
+    noticiaModel.adicionarParagrafos(idNoticia, paragrafos);
+}
+
 module.exports = {
     carregarMaisCurtidas,
     carregarUltimasNoticias,
@@ -116,5 +138,7 @@ module.exports = {
     darLike,
     removerLike,
     comentar,
-    deletarComentario
+    deletarComentario,
+    publicarNoticia,
+    adicionarParagrafos
 };

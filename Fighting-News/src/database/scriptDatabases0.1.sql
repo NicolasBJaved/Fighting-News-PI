@@ -14,7 +14,7 @@ CREATE TABLE Noticia(
     tituloNoticia VARCHAR(100) NOT NULL,
     previaNoticia VARCHAR(300) NOT NULL,
     dataPostagem DATE NOT NULL,
-    caminhoImagem VARCHAR(60) NOT NULL
+    caminhoImagem VARCHAR(500) NOT NULL
 );
 
 CREATE TABLE ParagrafoNoticia(

@@ -41,7 +41,7 @@ header .logo{
 nav{
     display: flex;
     align-items: center;
-    width: 20%;
+    width: 22%;
 }
 
 nav ul{
@@ -663,4 +663,16 @@ footer .redesSociais a img{
     width: 200px;
     height: 200px;
     border-radius: 50%;
+}
+
+/* ADICIONAR NOTICIA */
+
+.containerAdicionarNoticia{
+    height: 100vh;
+}
+
+.conteudoAdicionarNoticia{
+    color: white;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }

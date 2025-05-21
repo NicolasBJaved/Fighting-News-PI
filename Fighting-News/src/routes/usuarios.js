@@ -1,5 +1,5 @@
 var express = require("express");
-const upload = require('../config/configUpload'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
+const upload = require('../config/configUploadImagemPerfil'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
 var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");

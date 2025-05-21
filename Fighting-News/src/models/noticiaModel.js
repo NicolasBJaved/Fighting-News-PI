@@ -96,6 +96,31 @@ function deletarComentario(idComentario) {
     return database.executar(instrucao);
 }
 
+function publicarNoticia(titulo, previa, caminhoImagem) {
+    console.log("Entrou no noticiaModel");
+    var instrucao = `
+        INSERT INTO Noticia (tituloNoticia, dataPostagem, previaNoticia, caminhoImagem) VALUES ('${titulo}',
+        CURDATE() ,'${previa}', './imgs/imagens-noticias/${caminhoImagem}');
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function adicionarParagrafos(idNoticia, paragrafos){
+    console.log("Entrou no noticiaModel");
+    var ordem = 1;
+    for(var i = 0; i < paragrafos.length; i++){
+        var instrucao = `
+        INSERT INTO ParagrafoNoticia(idNoticia, conteudo, ordem) VALUES (${idNoticia}, '${paragrafos[i]}', ${ordem})
+        `;
+        ordem++;
+        database.executar(instrucao);
+        console.log("Executando a query: \n" + instrucao);
+    }
+    
+    return;
+}
+
 module.exports = {
     carregarMaisCurtidas,
     carregarUltimasNoticias,
@@ -106,5 +131,7 @@ module.exports = {
     removerLike,
     comentar,
     deletarComentario,
-    darLike
+    darLike,
+    publicarNoticia,
+    adicionarParagrafos
 }

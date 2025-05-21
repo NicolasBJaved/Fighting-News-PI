@@ -3,7 +3,7 @@ var database = require('../database/config');
 function maisHypados(){
     console.log("Entrou no noticiaModel");
 
-    const data = new Date();
+    const data = new Date();  
     data.setDate(data.getDate() - 7);
 
     const dataFormatada = data.toISOString().split('T')[0];
