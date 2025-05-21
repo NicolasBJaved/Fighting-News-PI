@@ -99,11 +99,22 @@ function listarTop10(req, res) {
         });
 }
 
+function verificarAdmin(req, res){
+    console.log("Entrou no verificarAdmin");
+    var idUsuario = req.body.idUsuarioServer;
+    usuarioModel.verificarAdmin(idUsuario)
+        .then(function(resultado){
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+}
+
 module.exports = {
     verificarLogado,
     carregarInformacoes,
     mudarFotoDePerfil,
     cadastrar,
     autenticar,
-    listarTop10
+    listarTop10,
+    verificarAdmin
 }

@@ -55,11 +55,21 @@ function listarTop10() {
     return database.executar(instrucao);
 }
 
+function verificarAdmin(idUsuario){
+    console.log("Entrou no verificarAdmin");
+    var instrucao = `
+        SELECT * FROM Usuario WHERE idUsuario = ${idUsuario} AND admin = 1;
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     verificarLogado,
     carregarInformacoes,
     mudarFotoDePerfil,
     cadastrar,
     autenticar,
-    listarTop10
+    listarTop10,
+    verificarAdmin
 }

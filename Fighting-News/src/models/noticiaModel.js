@@ -118,7 +118,7 @@ function adicionarParagrafos(idNoticia, paragrafos){
         console.log("Executando a query: \n" + instrucao);
     }
     
-    return;
+    return ;
 }
 
 module.exports = {

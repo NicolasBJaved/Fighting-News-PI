@@ -98,7 +98,11 @@
                         sessionStorage.SENHA_USUARIO = senha;
                         sessionStorage.NOME_USUARIO = resposta[0].nome;
                         sessionStorage.ID_USUARIO = resposta[0].idUsuario;
-                        window.location = "index.html";
+                        if(resposta[0].admin == 1){
+                            window.location = "adicionarNoticia.html";
+                        }else{
+                            window.location = "index.html";
+                        }
                     } else {
                         div_resultado.innerHTML = "<h3 style='color: red;'>Email ou senha incorretos!</h3>";
                     }

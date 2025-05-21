@@ -36,4 +36,9 @@ router.get("/top10", function (req, res) {
     usuarioController.listarTop10(req, res);
 });
 
+router.post("/verificarAdmin", function(req, res){
+    console.log("Entrou na rota /verificarAdmin");
+    usuarioController.verificarAdmin(req, res);
+});
+
 module.exports = router; 
