@@ -318,9 +318,10 @@
     function verificarLike() {
         const urlParams = new URLSearchParams(window.location.search);
         var idUsuario = sessionStorage.ID_USUARIO;
+        console.log("ID USUARIO: " + idUsuario)
         const idNoticia = urlParams.get('id');
 
-        if (sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
+        if (idUsuario == null || idUsuario == "" || idUsuario == undefined || idUsuario == "null") {
             alert("Você precisa estar logado para dar like!");
             window.location = "./login.html";
             return;

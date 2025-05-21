@@ -44,7 +44,11 @@
                     <h3>Senha Usuario</h3> -->
                 </div>
             </div>
-
+        </div>
+        <div id="deslogar" class="deslogar">
+            <button onclick="sair()">Sair</button>
+        </div>
+        <div id="adicionarNoticia" class="adicionarNoticia">
         </div>
     </div>
 
@@ -66,10 +70,29 @@
     </footer>
 </body>
 <script>
+
+    function sair(){
+        sessionStorage.EMAIL_USUARIO = null;
+        sessionStorage.SENHA_USUARIO = null;
+        sessionStorage.NOME_USUARIO = null;
+        sessionStorage.ID_USUARIO = null;
+        sessionStorage.USUARIO_ADMIN = null;
+
+        window.location = "./login.html";
+    }
+
     function carregarInformacoes() {
         const urlParams = new URLSearchParams(window.location.search);
         const idUsuario = urlParams.get('id');
         var idUsuarioSession = sessionStorage.ID_USUARIO;
+        var admin = sessionStorage.USUARIO_ADMIN;
+
+        if(admin == 1){
+            adicionarNoticia.innerHTML = `
+                <a href="">Adicionar noticias</a>
+
+            `
+        }
 
         if (idUsuarioSession == null || idUsuarioSession == "") {
             alert("Você precisa estar logado para visualizar o perfil!");
