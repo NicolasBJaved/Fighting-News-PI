@@ -41,6 +41,10 @@ router.post("/jaDeuLike", function (req, res) {
     noticiasController.jaDeuLike(req, res);
 });
 
+router.post("/excluirNoticia", function(req, res){
+    console.log("Entrou na rota /excluirNoticia");
+    noticiasController.excluirNoticia(req, res);
+})
 
 router.post("/darLike", function (req, res) {
     console.log("Entrou na rota /darLike");

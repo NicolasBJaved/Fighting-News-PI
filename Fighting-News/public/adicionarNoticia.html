@@ -31,19 +31,19 @@
     <div class="containerAdicionarNoticia">
         <div class="conteudoAdicionarNoticia">
             <div class="tituloAdicionarNoticia">
-                <h1>Adicionar noticia</h1>
+                <h1>Adicionar notícia</h1>
             </div>
             <div class="formularioAdicionarNoticia">
                 <div class="tituloNoticia">
                     <h2>Titulo da notícia</h2>
-                    <textarea type="text" id="titulo" placeholder="Digite o título da noticia"></textarea>
+                    <textarea type="text" id="titulo" placeholder="Digite o título da notícia"></textarea>
                 </div>
                 <div class="previaNoticia">
-                    <h1>Previa da noticia</h1>
-                    <textarea type="text" id="previa" placeholder="Digite a previa da noticia"></textarea>
+                    <h1>Previa da notícia</h1>
+                    <textarea type="text" id="previa" placeholder="Digite a previa da notícia"></textarea>
                 </div>
                 <div class="imagemNoticia">
-                    <h1>Imagem da noticia</h1>
+                    <h1>Imagem da notícia</h1>
                     <input name="foto" id="foto" type="file" />
                 </div>
                 <div id="paragrafosNoticia" class="paragrafosNoticia">
@@ -54,7 +54,7 @@
                 </div>
                 <button onclick="adicionarParagrafo()">Adicionar paragrafo</button>
             </div>
-            <button onclick="publicarNoticia()">Publicar noticia</button>
+            <button onclick="publicarNoticia()">Publicar notícia</button>
         </div>
 
     </div>
@@ -129,7 +129,7 @@
                     idNoticia = resposta.insertId;
                     console.log(idNoticia)
                     adicionarParagrafos(idNoticia);
-                    alert("Noticia adicionada com sucesso!");
+                    alert("Notícia adicionada com sucesso!");
                 })
             }
         })

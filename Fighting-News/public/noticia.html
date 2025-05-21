@@ -65,6 +65,8 @@
                     empolgado
                     com a possibilidade de duelar contra outro especialista na luta em pé.</p> -->
             </div>
+            <div id="excluirNoticiaDiv" class="excluirNoticia">
+            </div>
             <div id="comentarios" class="comentarios">
                 <div class="comentar">
                     <h2>Faça um comentário</h2>
@@ -121,6 +123,15 @@
         var idUsuarioSession = sessionStorage.ID_USUARIO;
         console.log("ID: " + id);
 
+        var admin = sessionStorage.USUARIO_ADMIN;
+        console.log("ADMIN: " + admin);
+        if(admin == 1){
+            console.log("EXCLUIR NOTICIA")
+            excluirNoticiaDiv.innerHTML = `
+                <button onclick="excluirNoticia()">Excluir noticia</button>
+            `
+        }
+
         if (idUsuarioSession != null && idUsuarioSession != "" && idUsuarioSession != undefined) {
             fetch("/noticias/verificarLikeDado", {
                 method: "POST",
@@ -176,6 +187,29 @@
                 console.log("Erro ao carregar a noticia: " + resposta.status);
             }
 
+        })
+    }
+
+    function excluirNoticia(){
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        fetch("/noticias/excluirNoticia", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idServer: id
+            })
+        }).then(function(resposta){
+            if(resposta.ok){
+                resposta.json().then(function(resposta){
+                    alert("Notícia excluida com sucesso");
+                    window.location = "./index.html"
+                })
+            }else{
+                alert("Erro ao excluir noticia")
+            }
         })
     }
 

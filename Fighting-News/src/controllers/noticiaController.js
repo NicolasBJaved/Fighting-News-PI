@@ -56,6 +56,15 @@ function jaDeuLike(req, res) {
     })
 }
 
+function excluirNoticia(req, res){
+    var idNoticia = req.body.idServer;
+
+    noticiaModel.excluirNoticia(idNoticia).then(function (resultado) {
+        console.log("Resultado: ", resultado);
+        res.json(resultado);
+    })
+}
+
 function carregarLikes(req, res){
     var idNoticia = req.body.idServer;
 
@@ -134,6 +143,7 @@ module.exports = {
     carregarNoticia,
     carregarComentarios,
     carregarLikes,
+    excluirNoticia,
     jaDeuLike,
     darLike,
     removerLike,

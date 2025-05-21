@@ -23,14 +23,14 @@ CREATE TABLE ParagrafoNoticia(
 	idNoticia INT,
     conteudo VARCHAR(650) NOT NULL,
     ordem INT NOT NULL,
-    FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia)
+    FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia) ON DELETE CASCADE
 );
 
 CREATE TABLE LikeNoticia(
 	idNoticia INT,
     idUsuario INT,
-    FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia),
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia) ON DELETE CASCADE,
+    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE,
     PRIMARY KEY(idNoticia, idUsuario)
 );
 
@@ -40,9 +40,9 @@ CREATE TABLE Comentario(
     idNoticia INT,
     comentario VARCHAR(400) NOT NULL,
     data DATETIME NOT NULL,
-    CONSTRAINT fkUsuario foreign key(idUsuario) REFERENCES Usuario(idUsuario),
-	CONSTRAINT fkNoticia foreign key(idNoticia) REFERENCES Noticia(idNoticia),
-    PRIMARY KEY(idComentario, idUsuario, idNoticia)
+    CONSTRAINT fkUsuario foreign key(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE,
+	CONSTRAINT fkNoticia foreign key(idNoticia) REFERENCES Noticia(idNoticia) ON DELETE CASCADE,
+    PRIMARY KEY(idComentario)
 );
 
 CREATE TABLE Categoria(
@@ -66,7 +66,7 @@ CREATE TABLE Lutador(
 CREATE TABLE LutadorNoticia(
 	idNoticia INT,
     idLutador INT,
-    CONSTRAINT fkNoticiaDoLutador FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia),
+    CONSTRAINT fkNoticiaDoLutador FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia) ON DELETE CASCADE,
 	CONSTRAINT fkLutador FOREIGN KEY(idLutador) REFERENCES Lutador(idLutador),
     PRIMARY KEY(idNoticia, idLutador)
 );
@@ -103,7 +103,7 @@ CREATE TABLE LutaCard(
 CREATE TABLE LutaNoticia(
 	idNoticia INT,
     idLuta INT,
-    foreign key(idNoticia) REFERENCES Noticia(idNoticia),
+    foreign key(idNoticia) REFERENCES Noticia(idNoticia) ON DELETE CASCADE,
     FOREIGN KEY(idLuta) REFERENCES Luta(idLuta)
 );
 

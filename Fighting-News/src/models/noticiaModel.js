@@ -59,6 +59,15 @@ function jaDeuLike(idUsuario, idNoticia) {
     return database.executar(instrucao);
 }
 
+function excluirNoticia(idNoticia){
+    console.log("Entrou no noticiaModel");
+    var instrucao = `
+        DELETE FROM Noticia WHERE idNoticia = ${idNoticia};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function darLike(idUsuario, idNoticia) {
     console.log("Entrou no noticiaModel");
     var instrucao = `
@@ -128,6 +137,7 @@ module.exports = {
     carregarComentarios,
     carregarLikes,
     jaDeuLike,
+    excluirNoticia,
     removerLike,
     comentar,
     deletarComentario,
