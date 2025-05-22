@@ -21,6 +21,21 @@ router.post("/mudarFotoDePerfil", upload.single('foto'), function (req, res) {
 }
 );
 
+router.post("/mudarNome", function(req, res){
+    console.log("Entrou na rota /mudarNome");
+    usuarioController.mudarNome(req, res);
+});
+
+router.post("/mudarEmail", function(req, res){
+    console.log("Entrou na rota /mudarEmail");
+    usuarioController.mudarEmail(req, res);
+})
+
+router.post("/mudarSenha", function(req, res){
+    console.log("Entrou na rota /mudarSenha");
+    usuarioController.mudarSenha(req, res);
+})
+
 router.post("/cadastrar", function (req, res) {
     console.log("Entrou na rota /cadastrar");
     usuarioController.cadastrar(req, res);

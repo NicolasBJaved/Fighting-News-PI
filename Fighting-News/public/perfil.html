@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <script src="./js/script.js"></script>
+
 <body onload="carregarInformacoes(), verificarLogado()">
     <header id="header">
         <div class="conteudoHeader">
@@ -30,16 +31,22 @@
     <div class="containerPerfil">
         <div class="perfil">
             <h1>Perfil</h1>
-            <div class="Containerinformacoes">
+            <div class="containerInformacoes">
                 <div id="imagemUsuario" class="imagemUsuario">
                     <!-- <img src="./imgs/defaultProfile.jpg" alt="Imagem do Usuário"> -->
                     <input name="foto" id="foto" type="file" />
                     <button onclick="enviar()">Enviar</button>
                 </div>
                 <div id="informacoesUsuario" class="informacoesUsuario">
-                    <!-- <h3>Nome do Usuário</h3>
-                    <h3>Email usuario</h3>
-                    <h3>Senha Usuario</h3> -->
+                    <div id="nomeUsuario" class="nomeUsuario">
+
+                    </div>
+                    <div id="emailUsuario" class="emailUsuario">
+
+                    </div>
+                    <div id="senhaUsuario" class="senhaUsuario">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,7 +76,7 @@
 </body>
 <script>
 
-    function sair(){
+    function sair() {
         sessionStorage.EMAIL_USUARIO = null;
         sessionStorage.SENHA_USUARIO = null;
         sessionStorage.NOME_USUARIO = null;
@@ -85,7 +92,7 @@
         var idUsuarioSession = sessionStorage.ID_USUARIO;
         var admin = sessionStorage.USUARIO_ADMIN;
 
-        if(admin == 1){
+        if (admin == 1) {
             adicionarNoticia.innerHTML = `
                 <a href="adicionarNoticia.html">Adicionar noticias</a>
 
@@ -98,7 +105,7 @@
             return;
         }
 
-        if(idUsuarioSession != idUsuario){
+        if (idUsuarioSession != idUsuario) {
             alert("Você não pode acessar o perfil de outro usuário!");
             window.location = "./index.html";
             return;
@@ -121,37 +128,144 @@
                     <button onclick="enviar()">Enviar</button>
                     `;
 
-                    informacoesUsuario.innerHTML += `
+                    nomeUsuario.innerHTML += `
                     <h3>${resposta[0].nome}</h3>
+                    <button onclick="alterarNome()">alterar nome</button>
+                    <div id="alterarIptNome">
+                        
+                    </div>
+                    `
+                    emailUsuario.innerHTML += `
                     <h3>${resposta[0].email}</h3>
+                    <button onclick="alterarEmail()">alterar email</button>
+                    <div id="alterarIptEmail">
+                        
+                    </div>
+                    `
+                    senhaUsuario.innerHTML += `
                     <h3>${resposta[0].senha}</h3>
+                    <button onclick="alterarSenha()">alterar senha</button>
+                    <div id="alterarIptSenha">
+                        
+                    </div>
                     `
                 })
             }
         })
     }
 
+    function alterarNome() {
+        alterarIptNome.innerHTML = `
+            <input type="text" id="ipt_nome">
+        `
+    }
+
+    function alterarEmail() {
+        alterarIptEmail.innerHTML = `
+            <input type="text" id="ipt_email">
+        `
+    }
+
+    function alterarSenha() {
+        alterarIptSenha.innerHTML = `
+            <input type="text" id="ipt_senha">
+        `
+    }
+
     function enviar() {
         const urlParams = new URLSearchParams(window.location.search);
         const idUsuarioServer = urlParams.get('id');
 
-        const formData = new FormData(); 
-        console.log(foto.files[0]);
-        formData.append('foto', foto.files[0])
-        formData.append('id', idUsuarioServer)
+        console.log("FOTO: ")
+        console.log("FOTO: " + foto.files[0]);
 
-        fetch("/usuarios/mudarFotoDePerfil", {
-            method: "POST",
-            body: formData
-        })
-            .then(res => {
-                window.location = "./perfil.html?id=" + idUsuarioServer;
-                console.log("CHEGOU AQUI");
+        if (foto.files[0] != undefined && foto.files[0] != null && foto.files[0] != "" && foto.files[0] != "undefined") {
+            const formData = new FormData();
+            console.log(foto.files[0]);
+            formData.append('foto', foto.files[0])
+            formData.append('id', idUsuarioServer)
+
+            fetch("/usuarios/mudarFotoDePerfil", {
+                method: "POST",
+                body: formData
             })
-            .catch(err => {
-                console.log(err);
-            })
+                .then(res => {
+                    console.log("CHEGOU AQUI");
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+
+        atualizarNome(idUsuarioServer);
+        atualizarEmail(idUsuarioServer);
+        atualizarSenha(idUsuarioServer);
+
+        setTimeout(() => {
+            window.location = "./perfil.html?id=" + idUsuarioServer;
+        }, 1000);
     }
+
+    function atualizarNome(idUsuario) {
+        const inputNome = document.getElementById('ipt_nome');
+        if (inputNome) {
+            const novoNome = inputNome.value;
+            if (novoNome != "") {
+                console.log("Atualizando nome para:", novoNome);
+                fetch("/usuarios/mudarNome", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        nomeServer: novoNome,
+                        idUsuarioServer: idUsuario
+                    }),
+                });
+            }
+        }
+    }
+
+    function atualizarEmail(idUsuario) {
+        const inputEmail = document.getElementById('ipt_email');
+        if (inputEmail) {
+            const novoEmail = inputEmail.value;
+            if (novoEmail != "") {
+                console.log("Atualizando email para:", novoEmail);
+                fetch("/usuarios/mudarEmail", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        emailServer: novoEmail,
+                        idUsuarioServer: idUsuario
+                    }),
+                });
+            }
+        }
+    }
+
+    function atualizarSenha(idUsuario) {
+        const inputSenha = document.getElementById('ipt_senha');
+        if (inputSenha) {
+            const novaSenha = inputSenha.value;
+            if (novaSenha != "") {
+                console.log("Atualizando senha para:", novaSenha);
+                fetch("/usuarios/mudarSenha", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        senhaServer: novaSenha,
+                        idUsuarioServer: idUsuario
+                    }),
+                });
+            }
+        }
+    }
+
 </script>
 
 </html>

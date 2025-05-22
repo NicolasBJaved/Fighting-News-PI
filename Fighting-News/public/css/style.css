@@ -721,9 +721,56 @@ footer .redesSociais a img{
     height: 100vh;
 }
 
-.perfil{
-    color: white;
+.containerInformacoes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
 }
+
+.containerInformacoes .informacoesUsuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 50%;
+}
+
+.perfil .imagemUsuario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil .nomeUsuario{
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+}
+
+.perfil .emailUsuario{
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+}
+
+.perfil .senhaUsuario{
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+}
+
 
 .perfil .imagemUsuario img{
     width: 200px;

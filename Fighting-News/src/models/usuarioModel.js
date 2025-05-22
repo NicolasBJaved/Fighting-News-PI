@@ -18,11 +18,39 @@ function carregarInformacoes(idUsuario) {
     return database.executar(instrucao);
 }
 
-function mudarFotoDePerfil(imagem, idUsuario){
+function mudarFotoDePerfil(imagem, idUsuario) {
     console.log("Entrou no usuarioModel");
     var instrucao = `
         UPDATE Usuario SET caminhoImagem = './imgs/perfilUsuario/${imagem}' WHERE idUsuario = ${idUsuario};
     `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function mudarNome(novoNome, idUsuario) {
+    console.log("Entrou no usuarioModel");
+    var instrucao = `
+        UPDATE Usuario SET nome = '${novoNome}' WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function mudarEmail(novoEmail, idUsuario){
+    console.log("Entrou no usuarioModel");
+    var instrucao = `
+        UPDATE Usuario SET email = '${novoEmail}' WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function mudarSenha(novaSenha, idUsuario){
+    console.log("Entrou no usuarioModel");
+    var instrucao = `
+        UPDATE Usuario SET senha = '${novaSenha}' WHERE idUsuario = ${idUsuario};
+    `;
+    console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
 }
 
@@ -55,7 +83,7 @@ function listarTop10() {
     return database.executar(instrucao);
 }
 
-function verificarAdmin(idUsuario){
+function verificarAdmin(idUsuario) {
     console.log("Entrou no verificarAdmin");
     var instrucao = `
         SELECT * FROM Usuario WHERE idUsuario = ${idUsuario} AND admin = 1;
@@ -68,6 +96,9 @@ module.exports = {
     verificarLogado,
     carregarInformacoes,
     mudarFotoDePerfil,
+    mudarNome,
+    mudarEmail,
+    mudarSenha,
     cadastrar,
     autenticar,
     listarTop10,

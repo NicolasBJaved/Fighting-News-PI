@@ -39,6 +39,39 @@ function mudarFotoDePerfil(req, res){
         });
 }
 
+function mudarNome(req, res){
+    var novoNome = req.body.nomeServer;
+    var idUsuario = req.body.idUsuarioServer;
+
+    usuarioModel.mudarNome(novoNome, idUsuario)
+        .then(function (resultado) {
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+}
+
+function mudarEmail(req, res){
+    var novoEmail = req.body.emailServer;
+    var idUsuario = req.body.idUsuarioServer;
+
+    usuarioModel.mudarEmail(novoEmail, idUsuario)
+        .then(function (resultado) {
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+}
+
+function mudarSenha(req, res){
+    var novaSenha = req.body.senhaServer;
+    var idUsuario = req.body.idUsuarioServer;
+
+    usuarioModel.mudarSenha(novaSenha, idUsuario)
+        .then(function (resultado) {
+            console.log("Resultado: ", resultado);
+            res.json(resultado);
+        });
+}
+
 function cadastrar(req, res) {
     console.log("Entrou no usuarioController");
     var nome = req.body.nomeServer;
@@ -113,6 +146,9 @@ module.exports = {
     verificarLogado,
     carregarInformacoes,
     mudarFotoDePerfil,
+    mudarNome,
+    mudarEmail,
+    mudarSenha,
     cadastrar,
     autenticar,
     listarTop10,
