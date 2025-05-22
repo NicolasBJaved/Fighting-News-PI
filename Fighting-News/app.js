@@ -35,7 +35,7 @@ app.use(cors());
 app.use("/usuarios", usuarioRouter);
 app.use("/noticias", noticiasRouter);
 app.use("/lutas", lutasRouter);
-app.use("/lutadores", lutadoresRouter);
+app.use("/lutadores", lutadoresRouter); 
 app.use("/quiz", quizRouter);
 // app.use("/medidas", medidasRouter);
 // app.use("/aquarios", aquariosRouter);
