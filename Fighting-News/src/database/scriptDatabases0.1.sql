@@ -21,7 +21,7 @@ CREATE TABLE Noticia(
 CREATE TABLE ParagrafoNoticia(
 	idParagrafoNoticia INT PRIMARY KEY auto_increment,
 	idNoticia INT,
-    conteudo VARCHAR(650) NOT NULL,
+    conteudo VARCHAR(4000) NOT NULL,
     ordem INT NOT NULL,
     FOREIGN KEY(idNoticia) REFERENCES Noticia(idNoticia) ON DELETE CASCADE
 );

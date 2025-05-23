@@ -96,6 +96,7 @@
                         sessionStorage.SENHA_USUARIO = senha;
                         sessionStorage.NOME_USUARIO = resposta[0].nome;
                         sessionStorage.ID_USUARIO = resposta[0].idUsuario;
+                        console.log("USUARIO É ADMIN? " + resposta[0].admin)
                         sessionStorage.USUARIO_ADMIN = resposta[0].admin;
                         if(resposta[0].admin == 1){
                             window.location = "adicionarNoticia.html";

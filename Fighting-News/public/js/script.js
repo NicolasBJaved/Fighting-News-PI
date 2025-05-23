@@ -5,7 +5,7 @@ function verificarLogado() {
     if (idUsuarioSession == null || idUsuarioSession == "" || idUsuarioSession == undefined || idUsuarioSession == "null") {
         console.log("ENTROU AQ")
         header.style.height = "8%";
-        nav.style.width = "18%";
+        nav.style.width = "20%";
     } else {
         fetch("/usuarios/verificarLogado", {
             method: "POST",
@@ -18,10 +18,10 @@ function verificarLogado() {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     var admin = sessionStorage.USUARIO_ADMIN;
-
-                    if (!admin) {
+                    console.log("ADMIN: " + admin)
+                    if (admin == 0) {
                         header.style.height = "12%";
-                        nav.style.width = "25%";
+                        nav.style.width = "28%";
                         ulNav.innerHTML = `
                         <li><a href="index.html">Home</a></li>
                         <li><a href="cadastro.html">Cadastro</a></li>
@@ -34,7 +34,8 @@ function verificarLogado() {
                     `
                     }else{
                         header.style.height = "12%";
-                        nav.style.width = "30%";
+                        nav.style.width = "40%";
+                        ulNav.style.width = "100%"
                         ulNav.innerHTML = `
                         <li><a href="index.html">Home</a></li>
                         <li><a href="cadastro.html">Cadastro</a></li>
