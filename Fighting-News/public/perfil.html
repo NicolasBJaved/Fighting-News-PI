@@ -30,30 +30,37 @@
 
     <div class="containerPerfil">
         <div class="perfil">
-            <h1>Perfil</h1>
+            <div class="tituloPerfil">
+                <h1 style="font-size: 60px;">Informações do perfil</h1>
+                <hr style="border: 1px solid red; width: 100%;">
+            </div>
             <div class="containerInformacoes">
                 <div id="imagemUsuario" class="imagemUsuario">
-                    <!-- <img src="./imgs/defaultProfile.jpg" alt="Imagem do Usuário"> -->
-                    <input name="foto" id="foto" type="file" />
-                    <button onclick="enviar()">Enviar</button>
+                    <input type="file" id="foto" name="foto" hidden>
+                    <label for="foto" class="upload">
+                        Escolher imagem
+                    </label>
                 </div>
                 <div id="informacoesUsuario" class="informacoesUsuario">
-                    <div id="nomeUsuario" class="nomeUsuario">
-
+                    <div id="nomeUsuario" class="dadoUsuario">
+                        <h2>Nome</h2>
+                        <input type="text" id="ipt_nome">
                     </div>
-                    <div id="emailUsuario" class="emailUsuario">
-
+                    <div id="emailUsuario" class="dadoUsuario">
+                        <h2>Email</h2>
+                        <input type="text" id="ipt_email">
                     </div>
-                    <div id="senhaUsuario" class="senhaUsuario">
-
+                    <div id="senhaUsuario" class="dadoUsuario">
+                        <h2>Senha</h2>
+                        <input type="text" id="ipt_senha">
                     </div>
+                    <div class="botoesPerfil">
+                        <button onclick="enviar()">Enviar</button>
+                        <button onclick="sair()">Sair</button>
+                    </div>
+
                 </div>
             </div>
-        </div>
-        <div id="deslogar" class="deslogar">
-            <button onclick="sair()">Sair</button>
-        </div>
-        <div id="adicionarNoticia" class="adicionarNoticia">
         </div>
     </div>
 
@@ -90,14 +97,10 @@
         const urlParams = new URLSearchParams(window.location.search);
         const idUsuario = urlParams.get('id');
         var idUsuarioSession = sessionStorage.ID_USUARIO;
-        var admin = sessionStorage.USUARIO_ADMIN;
 
-        if (admin == 1) {
-            adicionarNoticia.innerHTML = `
-                <a href="adicionarNoticia.html">Adicionar noticias</a>
-
-            `
-        }
+        var nome = null;
+        var email = null;
+        var senha = null;
 
         if (idUsuarioSession == null || idUsuarioSession == "") {
             alert("Você precisa estar logado para visualizar o perfil!");
@@ -124,31 +127,22 @@
                     console.log(resposta);
                     imagemUsuario.innerHTML = `
                     <img src="${resposta[0].caminhoImagem}" alt="Imagem do Usuário">
-                    <input name="foto" id="foto" type="file" />
-                    <button onclick="enviar()">Enviar</button>
+                    <input type="file" id="foto" name="foto" hidden>
+                    <label for="foto" class="upload">
+                        Escolher imagem
+                    </label>
                     `;
 
-                    nomeUsuario.innerHTML += `
-                    <h3>${resposta[0].nome}</h3>
-                    <button onclick="alterarNome()">alterar nome</button>
-                    <div id="alterarIptNome">
-                        
-                    </div>
-                    `
-                    emailUsuario.innerHTML += `
-                    <h3>${resposta[0].email}</h3>
-                    <button onclick="alterarEmail()">alterar email</button>
-                    <div id="alterarIptEmail">
-                        
-                    </div>
-                    `
-                    senhaUsuario.innerHTML += `
-                    <h3>${resposta[0].senha}</h3>
-                    <button onclick="alterarSenha()">alterar senha</button>
-                    <div id="alterarIptSenha">
-                        
-                    </div>
-                    `
+                    nome = resposta[0].nome;
+                    console.log("NOME: " + nome)
+                    document.getElementById('ipt_nome').value = nome;
+
+                    email = resposta[0].email;
+                    document.getElementById('ipt_email').value = email;
+
+                    senha = resposta[0].senha;
+                    document.getElementById('ipt_senha').value = senha;
+
                 })
             }
         })
