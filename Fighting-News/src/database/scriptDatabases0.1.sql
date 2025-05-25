@@ -130,19 +130,20 @@ INSERT INTO Usuario (nome, email, senha, admin, caminhoImagem) VALUES
 INSERT INTO Categoria (nome, pesoKG) VALUES
 ('Peso Pena', 66),
 ('Peso Leve', 70),
-('Peso Meio-Médio', 77);
+('Peso Meio-Médio', 77),
+('Peso Pesado', 120);
 
 INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
-('Carlos "Pantera" Lima', 15, 2, 0, 0, 2, './imgs/lutador1.jpg');
+('Jon "Bones" Jones', 28, 1, 0, 0, 4, './imgs/imagens-lutadores/Jon-Jones.png');
 
 INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
-('Bruno "Tormenta" Souza', 12, 4, 1, 0, 2, './imgs/lutador2.jpg');
+('Tom Aspinall', 15, 3, 0, 0, 4, './imgs/imagens-lutadores/Tom-Aspinall.png');
 
 INSERT INTO Card (local, data, nome) VALUES
-('Las Vegas', '2024-12-10', 'UFC Vegas 100');
+('New York', '2026-06-06', 'UFC 325');
 
 INSERT INTO Luta (idLutador1, idLutador2, idCategoria, idCard, rounds, valendoCinturao, caminhoImagem) VALUES
-(1, 2, 2, 1, 3, false, './imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg');
+(1, 2, 4, 1, 5, true, './imgs/imagens-lutas/Jon-Jones-vs-Tom-Aspinall.webp');
 
 INSERT INTO LutaCard (idLuta, idCard) VALUES
 (1, 1);
@@ -152,39 +153,39 @@ INSERT INTO Noticia (tituloNoticia, previaNoticia, dataPostagem, caminhoImagem) 
  '2025-05-25', './imgs/imagens-noticias/belal-muhammad-alfinetada.webp'),
  
 ('Ex-campeão do UFC ironiza indefinição sobre futuro de Jon Jones: “Quem se importa?”', 'A novela sobre o eventual retorno de Jon Jones ao octógono parece não ter...',
- '2025-05-25', './imgs/imagens-noticias/robert-whittaker-ufc-298-media-day-400x240.webp'),
+ '2025-05-25', './imgs/imagens-noticias/robert-whittaker-ufc-298-media-day.webp'),
  
 ('Carlos Prates surge inconsolável após derrota para Ian Garry no UFC; veja',
  'Carlos Prates comoveu fãs e membros da comunidade do MMA ao publicar, em seu...',
- '2025-05-25', './imgs/imagens-noticias/carlos-prates-entrada-capuz-ufc-vegas-100-400x240.webp'),
+ '2025-05-25', './imgs/imagens-noticias/carlos-prates-entrada-capuz-ufc-vegas-100.webp'),
  
 ('Favorito ao title shot, Movsar Evloev indica que foi preterido pelo UFC', 
 'Invicto na carreira e com nove vitórias consecutivas no octógono mais famoso do mundo,...',
- '2025-05-25', './imgs/imagens-noticias/Movsar-Evloev-UFC-Vegas-56-400x240.webp'),
+ '2025-05-25', './imgs/imagens-noticias/Movsar-Evloev-UFC-Vegas-56.webp'),
  
 ('Charles Do Bronx cita adaptação de Topuria ao peso-leve como possível vantagem no UFC 317',
  'No dia 28 de junho, na ‘T-Mobile Arena’, em Las Vegas (EUA), Charles Oliveira...', '2025-05-23',
- './imgs/imagens-noticias/charles-do-bronx-entrada-ufc-309-nova-york-400x240.webp'),
+ './imgs/imagens-noticias/charles-do-bronx-entrada-ufc-309-nova-york.webp'),
  
 ('Jon Jones reage com dureza a Tom Aspinall e tensão aumenta no UFC: “Cale a boca”', 
 'A tensão entre Jon Jones e Tom Aspinall ganhou força nos últimos dias. O...', '2025-05-23',
- './imgs/imagens-noticias/jon-jones-ufc-309-1-400x240.webp'),
+ './imgs/imagens-noticias/jon-jones-ufc-309-1.webp'),
  
 ('Polêmica! Brasileiro levanta suspeitas de armação após sofrer nocaute relâmpago no MMA',
  'No último fim de semana, o evento Xtreme Combat Championship 2, realizado em Viena,...', '2025-05-23',
- './imgs/imagens-noticias/Burak-Kizilirmak-Delberty-Lamark-xcc2-400x240.webp'),
+ './imgs/imagens-noticias/Burak-Kizilirmak-Delberty-Lamark-xcc2.webp'),
  
 ('Refém de Jon Jones? Alexander Volkov expressa frustração com situação dos pesos-pesados',
  'A indefinição no topo da divisão dos pesos-pesados do UFC não influencia na carreira apenas dos envolvidos, no caso Jon Jones...',
- '2025-06-01', './imgs/imagens-noticias/volkov-protesto-derrota-ufc-310-dana-white-400x240.webp'),
+ '2025-06-01', './imgs/imagens-noticias/volkov-protesto-derrota-ufc-310-dana-white.webp'),
 
 ('Arman Tsarukyan abre as portas para duelo com Paddy Pimblett no UFC',
  'Primeiro colocado no ranking peso-leve (70 kg) do UFC, Arman Tsarukyan foi deixado de...',
- '2025-06-01', './imgs/imagens-noticias/arman-tsarukyan-ufc-austin-comemoracao-400x240.webp'),
+ '2025-06-01', './imgs/imagens-noticias/arman-tsarukyan-ufc-austin-comemoracao.webp'),
 
 ('Preocupa? Merab Dvalishvili sofre lesão às vésperas de luta no UFC 316',
  'Às vésperas da realização do UFC 316, marcado para acontecer no dia 7 de...', '2025-06-01',
- './imgs/imagens-noticias/merab-dvalishvili-comemoracao-ufc-311-400x240.webp');
+ './imgs/imagens-noticias/merab-dvalishvili-comemoracao-ufc-311.webp');
 
 INSERT INTO ParagrafoNoticia (idNoticia, conteudo, ordem) VALUES
 (1, '
@@ -413,21 +414,21 @@ lutador georgiano através da ferramenta ‘stories’ do seu perfil no ‘Insta
  talvez com um cinturão interino em disputa ou apenas para manter o astro americano no show.', 5);
 
 INSERT INTO LikeNoticia (idNoticia, idUsuario) VALUES
-(1, 1),
-(1, 2);
+(8, 1),
+(8, 2);
 
 INSERT INTO LikeNoticia (idNoticia, idUsuario) VALUES
-(10, 1),
-(10, 2),
-(10, 3);
+(6, 1),
+(6, 2),
+(6, 3);
 
 INSERT INTO LutadorNoticia (idNoticia, idLutador) VALUES
-(1, 1),
-(10, 1);
+(8, 1),
+(6, 1);
 
 INSERT INTO LutaNoticia (idNoticia, idLuta) VALUES
-(1, 1),
-(10, 1);
+(8, 1),
+(6, 1);
 
 INSERT INTO Quiz (dataInicio, dataFim) 
 VALUES (NOW(), '2026-01-01');
