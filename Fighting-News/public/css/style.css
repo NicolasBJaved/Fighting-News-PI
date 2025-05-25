@@ -486,7 +486,33 @@ footer .redesSociais a img {
     border: 1px solid rgba(255, 0, 0, 0.267);
     border-radius: 20px;
     width: 20vw;
-    height: 40vh;
+    height: 25vh;
+}
+
+.telaInicio .conteudoTelaInicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 65%;
+}
+
+.telaInicio .conteudoCimaTelaInicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 55%;
+}
+
+.telaInicio .botaoQuizTelaInicio button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
 .questoes {
@@ -644,7 +670,8 @@ footer .redesSociais a img {
     border-radius: 10px;
     margin-bottom: 10px;
     background-color: black;
-    width: 40%;
+    width: 35%;
+    height: 30%;
 }
 
 .top10Usuarios .conteudoUsuario {
