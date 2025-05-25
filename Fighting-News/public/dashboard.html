@@ -22,7 +22,6 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="cadastro.html">Cadastro</a></li>
                     <li><a href="login.html">Login</a></li>
-                    <li><a href="quiz.html">Quiz</a></li>
                 </ul>
             </nav>
         </div>
@@ -36,7 +35,7 @@
                     <hr style="border: 1px solid red; width: 100%;">
                 </div>
                 <div class="top10Usuarios" id="top10Usuarios">
-                    <div class="usuario">
+                    <!-- <div class="usuario">
                         <div class="conteudoUsuario">
                             <div class="numeroEImagem">
                                 <h1>1º</h1>
@@ -47,10 +46,10 @@
                                 <h3>Nome do Usuário</h3>
                                 <p>10 pontos</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
-                    <div class="usuario">
+                    <!-- <div class="usuario">
                         <div class="conteudoUsuario">
                             <div class="numeroEImagem">
                                 <h1>2º</h1>
@@ -174,7 +173,7 @@
                                 <p>10 pontos</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -184,7 +183,7 @@
                 <h1 style="font-size: 45px; color: white;">Lutas mais hypadas da semana</h1>
                 <hr style="border: 1px solid red; width: 67%;">
                 <div id="lutas" class="lutas">
-                    <div class="luta">
+                    <!-- <div class="luta">
                         <div class="conteudoLuta">
                             <img class="imagemLuta" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
                                 alt="">
@@ -276,7 +275,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -284,7 +283,7 @@
                 <h1 style="font-size: 45px; color: white;">Lutadores mais hypados da semana</h1>
                 <hr style="border: 1px solid red; width: 100%;">
                 <div id="lutadores" class="lutadores">
-                    <div class="lutador">
+                    <!-- <div class="lutador">
                         <img class="imagemLutador" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
                             alt="">
                         <div class="conteudoGeralLutador">
@@ -328,7 +327,7 @@
                             <p>Peso Leve</p>
                             <p>10-3-0-0</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -472,7 +471,7 @@
     }
 
     function carregarLutadores() {
-        fetch("/dadosDoMes/dados", {
+        fetch("/lutadores/maisHypados", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

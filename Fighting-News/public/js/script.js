@@ -21,10 +21,9 @@ function verificarLogado() {
                     console.log("ADMIN: " + admin)
                     if (admin == 0) {
                         header.style.height = "12%";
-                        nav.style.width = "28%";
+                        nav.style.width = "25%";
                         ulNav.innerHTML = `
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="cadastro.html">Cadastro</a></li>
                         <li><a href="quiz.html">Quiz</a></li>
                         <li><a href="dashboard.html">Dashboard</a></li>
                         <li><a class="perfilNav" href="perfil.html?id=${resposta[0].idUsuario}">
@@ -34,11 +33,10 @@ function verificarLogado() {
                     `
                     }else{
                         header.style.height = "12%";
-                        nav.style.width = "40%";
+                        nav.style.width = "37%";
                         ulNav.style.width = "100%"
                         ulNav.innerHTML = `
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="cadastro.html">Cadastro</a></li>
                         <li><a href="quiz.html">Quiz</a></li>
                         <li><a href="dashboard.html">Dashboard</a></li>
                         <li><a href="adicionarNoticia.html">Adicionar noticias</a></li>

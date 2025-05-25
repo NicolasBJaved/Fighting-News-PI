@@ -49,7 +49,7 @@ nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 500px;
+    width:  250px;
 }
 
 nav .perfilNav {
@@ -256,7 +256,7 @@ footer .redesSociais a img {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 350px;
+    height: 370px;
     width: 300px;
     align-items: center;
     border: 1px solid rgba(255, 0, 0, 0.267);
@@ -290,7 +290,7 @@ footer .redesSociais a img {
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.199);
+    border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
 .containerCadastro .camposCadastro {
@@ -350,7 +350,7 @@ footer .redesSociais a img {
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.199);
+    border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
 .containerLogin .camposLogin {
@@ -512,7 +512,7 @@ footer .redesSociais a img {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 100vh;
+    height: 60vh;
 }
 
 .lutasELutadores {
@@ -527,7 +527,7 @@ footer .redesSociais a img {
     align-items: center;
     height: 60%;
     width: 50vw;
-    padding-top: 130px;
+    padding-top: 160px;
     padding-bottom: 100px;
     color: white;
 }
@@ -585,24 +585,25 @@ footer .redesSociais a img {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 40%;
+    height: 100%;
 }
 
 .informacoesLutaCima {
     display: flex;
     justify-content: space-evenly;
-    width: 60%;
+    width: 100%;
 }
 
 .informacoesLutaBaixo {
     display: flex;
     justify-content: space-evenly;
-    width: 60%;
+    width: 100%;
 }
 
 .containerQuiz {
-    margin-top: 130px;
+    padding-top: 130px;
     width: 100%;
+    height: fit-content;
     display: flex;
     justify-content: center;
 }
@@ -672,7 +673,7 @@ footer .redesSociais a img {
     text-align: center;
     height: 60%;
     width: 40vw;
-    padding-top: 130px;
+    padding-top: 160px;
 }
 
 .lutadores {
@@ -822,6 +823,87 @@ footer .redesSociais a img {
 
 .conteudoAdicionarNoticia {
     color: white;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 130px;
+    height: fit-content;
 }
+
+.conteudoAdicionarNoticia .tituloAdicionarNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .tituloNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .tituloNoticia textarea{
+    width: 230px;
+    height: 48px;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .previaNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .previaNoticia textarea{
+    width: 350px;
+    height: 140px;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .imagemNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia{
+    padding-bottom: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia .paragrafo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia .botoesPerfil{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia .botoesPerfil button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia .paragrafo textarea{
+    margin-bottom: 20px;
+    height: 259px;
+    width: 596px;
+}
+
