@@ -42,14 +42,14 @@ header .logo {
 nav {
     display: flex;
     align-items: center;
-    width: 18%;
+    width: 25%;
 }
 
 nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width:  250px;
+    width:  450px;
 }
 
 nav .perfilNav {
