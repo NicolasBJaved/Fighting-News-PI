@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Login</title>
+</head>
+<script src="./js/script.js"></script>
+<body onload="verificarLogado()">
+    <header id="header">
+        <div class="conteudoHeader">
+            <span class="logo">
+                <a href="index.html">
+                    <img style="width: 90px; height: 70px;" src="./imgs/logo.png" alt="">
+                </a>
+            </span>
+            <nav id="nav">
+                <ul id="ulNav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="containerLogin">
+        <h1 style="color: white; margin-bottom: 10px;">Login</h1>
+        <div class="conteudoLogin">
+            <div class="camposLogin">
+                <div class="campoLogin">
+                    <h3>Email:</h3>
+                    <input type="text" id="ipt_email" placeholder="Digite seu email">
+                </div>
+                <div class="campoLogin">
+                    <h3>Senha:</h3>
+                    <input type="password" id="ipt_senha" placeholder="Digite sua senha">
+                </div>
+            </div>
+            <div class="botaoLogin">
+                <button onclick="logar()"><b>Fazer login</b></button>
+            </div>
+            <div style="margin-top: 20px;" id="div_resultado">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="conteudoFooter">
+            <div class="redesSociais">
+                <a href="https://www.instagram.com/"><img src="./imgs/instagram.png" alt=""></a>
+                <a href="https://www.facebook.com/"><img src="./imgs/facebook.png" alt=""></a>
+                <a href="https://twitter.com/"><img src="./imgs/twitter.png" alt=""></a>
+            </div>
+            <div class="copyright">
+                <p>Fighting News &copy; 2025</p>
+            </div>
+            <div class="dados">
+                <p>Desenvolvido por: Nicolas B. Javed</p>
+                <p>Contato: nicolas.javed@sptech.school</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    function logar(){
+        div_resultado.innerHTML = "";
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+
+        if(email == "" || senha == ""){
+            div_resultado.innerHTML += "<h3 style='color: red;'>Preencha todos os campos!</h3>";
+            return;
+        }
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function(resposta){
+            console.log("RETORNOU");
+            if(resposta.ok){
+                console.log("Resposta ok");
+                resposta.json().then(function(resposta){
+                    console.log(resposta[0]);
+                    if(resposta.length == 1){
+                        sessionStorage.EMAIL_USUARIO = email;
+                        sessionStorage.SENHA_USUARIO = senha;
+                        sessionStorage.NOME_USUARIO = resposta[0].nome;
+                        sessionStorage.ID_USUARIO = resposta[0].idUsuario;
+                        console.log("USUARIO É ADMIN? " + resposta[0].admin)
+                        sessionStorage.USUARIO_ADMIN = resposta[0].admin;
+                        if(resposta[0].admin == 1){
+                            window.location = "adicionarNoticia.html";
+                        }else{
+                            window.location = "index.html";
+                        }
+                    } else {
+                        div_resultado.innerHTML = "<h3 style='color: red;'>Email ou senha incorretos!</h3>";
+                    }
+                });
+            } else {
+                div_resultado.innerHTML = "<h3 style='color: red;'>Houve um erro ao tentar fazer o login!</h3>";
+            }
+        });
+    }
+</script>
+</html>

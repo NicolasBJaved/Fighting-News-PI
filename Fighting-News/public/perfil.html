@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+<script src="./js/script.js"></script>
+
+<body onload="carregarInformacoes(), verificarLogado()">
+    <header id="header">
+        <div class="conteudoHeader">
+            <span class="logo">
+                <a href="index.html">
+                    <img style="width: 90px; height: 70px;" src="./imgs/logo.png" alt="">
+                </a>
+            </span>
+            <nav id="nav">
+                <ul id="ulNav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="containerPerfil">
+        <div class="perfil">
+            <div class="tituloPerfil">
+                <h1 style="font-size: 60px;">Informações do perfil</h1>
+                <hr style="border: 1px solid red; width: 100%;">
+            </div>
+            <div class="containerInformacoes">
+                <div id="imagemUsuario" class="imagemUsuario">
+                    <input type="file" id="foto" name="foto" hidden>
+                    <label for="foto" class="upload">
+                        Escolher imagem
+                    </label>
+                </div>
+                <div id="informacoesUsuario" class="informacoesUsuario">
+                    <div id="nomeUsuario" class="dadoUsuario">
+                        <h2>Nome</h2>
+                        <input type="text" id="ipt_nome">
+                    </div>
+                    <div id="emailUsuario" class="dadoUsuario">
+                        <h2>Email</h2>
+                        <input type="text" id="ipt_email">
+                    </div>
+                    <div id="senhaUsuario" class="dadoUsuario">
+                        <h2>Senha</h2>
+                        <input type="text" id="ipt_senha">
+                    </div>
+                    <div class="botoesPerfil">
+                        <button onclick="enviar()">Enviar</button>
+                        <button onclick="sair()">Sair</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="conteudoFooter">
+            <div class="redesSociais">
+                <a href="https://www.instagram.com/"><img src="./imgs/instagram.png" alt=""></a>
+                <a href="https://www.facebook.com/"><img src="./imgs/facebook.png" alt=""></a>
+                <a href="https://twitter.com/"><img src="./imgs/twitter.png" alt=""></a>
+            </div>
+            <div class="copyright">
+                <p>Fighting News &copy; 2025</p>
+            </div>
+            <div class="dados">
+                <p>Desenvolvido por: Nicolas B. Javed</p>
+                <p>Contato: nicolas.javed@sptech.school</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+
+    function sair() {
+        sessionStorage.EMAIL_USUARIO = null;
+        sessionStorage.SENHA_USUARIO = null;
+        sessionStorage.NOME_USUARIO = null;
+        sessionStorage.ID_USUARIO = null;
+        sessionStorage.USUARIO_ADMIN = 0;
+
+        window.location = "./login.html";
+    }
+
+    function carregarInformacoes() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const idUsuario = urlParams.get('id');
+        var idUsuarioSession = sessionStorage.ID_USUARIO;
+
+        var nome = null;
+        var email = null;
+        var senha = null;
+
+        if (idUsuarioSession == null || idUsuarioSession == "") {
+            alert("Você precisa estar logado para visualizar o perfil!");
+            window.location = "./login.html";
+            return;
+        }
+
+        if (idUsuarioSession != idUsuario) {
+            alert("Você não pode acessar o perfil de outro usuário!");
+            window.location = "./index.html";
+            return;
+        }
+
+        fetch("/usuarios/carregarInformacoes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log(resposta);
+                    imagemUsuario.innerHTML = `
+                    <img src="${resposta[0].caminhoImagem}" alt="Imagem do Usuário">
+                    <input type="file" id="foto" name="foto" hidden>
+                    <label for="foto" class="upload">
+                        Escolher imagem
+                    </label>
+                    `;
+
+                    nome = resposta[0].nome;
+                    console.log("NOME: " + nome)
+                    document.getElementById('ipt_nome').value = nome;
+
+                    email = resposta[0].email;
+                    document.getElementById('ipt_email').value = email;
+
+                    senha = resposta[0].senha;
+                    document.getElementById('ipt_senha').value = senha;
+
+                })
+            }
+        })
+    }
+
+    function alterarNome() {
+        alterarIptNome.innerHTML = `
+            <input type="text" id="ipt_nome">
+        `
+    }
+
+    function alterarEmail() {
+        alterarIptEmail.innerHTML = `
+            <input type="text" id="ipt_email">
+        `
+    }
+
+    function alterarSenha() {
+        alterarIptSenha.innerHTML = `
+            <input type="text" id="ipt_senha">
+        `
+    }
+
+    function enviar() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const idUsuarioServer = urlParams.get('id');
+
+        console.log("FOTO: ")
+        console.log("FOTO: " + foto.files[0]);
+
+        if (foto.files[0] != undefined && foto.files[0] != null && foto.files[0] != "" && foto.files[0] != "undefined") {
+            const formData = new FormData();
+            console.log(foto.files[0]);
+            formData.append('foto', foto.files[0])
+            formData.append('id', idUsuarioServer)
+
+            fetch("/usuarios/mudarFotoDePerfil", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => {
+                    console.log("CHEGOU AQUI");
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+
+        atualizarNome(idUsuarioServer);
+        atualizarEmail(idUsuarioServer);
+        atualizarSenha(idUsuarioServer);
+
+        setTimeout(() => {
+            window.location = "./perfil.html?id=" + idUsuarioServer;
+        }, 1000);
+    }
+
+    function atualizarNome(idUsuario) {
+        const inputNome = document.getElementById('ipt_nome');
+        if (inputNome) {
+            const novoNome = inputNome.value;
+            if (novoNome != "") {
+                console.log("Atualizando nome para:", novoNome);
+                fetch("/usuarios/mudarNome", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        nomeServer: novoNome,
+                        idUsuarioServer: idUsuario
+                    }),
+                });
+            }
+        }
+    }
+
+    function atualizarEmail(idUsuario) {
+        const inputEmail = document.getElementById('ipt_email');
+        if (inputEmail) {
+            const novoEmail = inputEmail.value;
+            if (novoEmail != "") {
+                console.log("Atualizando email para:", novoEmail);
+                fetch("/usuarios/mudarEmail", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        emailServer: novoEmail,
+                        idUsuarioServer: idUsuario
+                    }),
+                });
+            }
+        }
+    }
+
+    function atualizarSenha(idUsuario) {
+        const inputSenha = document.getElementById('ipt_senha');
+        if (inputSenha) {
+            const novaSenha = inputSenha.value;
+            if (novaSenha != "") {
+                console.log("Atualizando senha para:", novaSenha);
+                fetch("/usuarios/mudarSenha", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        senhaServer: novaSenha,
+                        idUsuarioServer: idUsuario
+                    }),
+                });
+            }
+        }
+    }
+
+</script>
+
+</html>

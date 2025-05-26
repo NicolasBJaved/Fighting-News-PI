@@ -1,0 +1,936 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #222222;
+    font-size: 18px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    height: 8%;
+
+}
+
+header .conteudoHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 100%;
+}
+
+header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    width: 18%;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:  250px;
+}
+
+nav .perfilNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    padding: 10px;
+}
+
+nav .perfilNav img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul li {
+    color: red;
+}
+
+header nav ul li {
+    list-style-type: none;
+}
+
+/* FOOTER */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 10%;
+}
+
+footer .conteudoFooter {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    color: white;
+    width: 100%;
+}
+
+footer .redesSociais {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+}
+
+footer .copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .dados {
+    margin: 10px;
+}
+
+footer .redesSociais a img {
+    width: 30px;
+}
+
+/* NOTICIAS MAIS ACESSADAS DA SEMANA */
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.maisCurtidoSemana {
+    padding-top: 150px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.noticiasMaisAcessadasSemana {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.tituloMaisCurtidoSemana hr {
+    color: red;
+}
+
+.maisCurtidoSemana .noticia1 {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: fit-content;
+    width: 900px;
+    height: 500px;
+    background-size: cover;
+}
+
+.maisCurtidoSemana .noticia2 {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: fit-content;
+    background-image: url("https://agfight.com/wp-content/uploads/2025/03/Jean-Silva-Reacao-Nocaute-Ruffy-UFC-313-400x240.jpg");
+    width: 450px;
+    height: 250px;
+    background-size: cover;
+}
+
+.maisCurtidoSemana .noticia3 {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: fit-content;
+    background-image: url("https://agfight.com/wp-content/uploads/2023/03/cory-sandhagen-1-400x240.jpg");
+    width: 450px;
+    height: 250px;
+    background-size: cover;
+}
+
+.maisCurtidoSemana .noticia .titulo {
+    width: 90%;
+    color: white;
+}
+
+.maisCurtidoSemana .noticia .imagemNoticia {
+    width: 400px;
+}
+
+.maisCurtidoSemana .noticia {
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9),
+        -10px -10px 10px rgb(0, 0, 0);
+}
+
+/* ÚLTIMAS NOTICIAS */
+.ultimasNoticias {
+    flex-direction: column;
+    align-items: center;
+    width: 1350px;
+    color: red;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.ultimasNoticias .data {
+    margin-top: 10px;
+    color: white;
+}
+
+.ultimasNoticias .tituloUltimasNoticias {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-bottom: 20px;
+}
+
+.ultimasNoticias .tituloUltimasNoticias hr {
+    color: red;
+}
+
+.ultimasNoticias .conteudoUltimasNoticias {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.ultimasNoticias .noticia {
+    width: 400px;
+    margin-bottom: 30px;
+}
+
+.ultimasNoticias .noticia .imagemNoticia {
+    width: 400px
+}
+
+
+.ultimasNoticias .noticia h4 {
+    color: grey;
+}
+
+/* CADASTRO */
+
+.containerCadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.containerCadastro .conteudoCadastro {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 370px;
+    width: 300px;
+    align-items: center;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.containerCadastro .conteudoCadastro .camposCadastro .campoCadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+.containerCadastro .conteudoCadastro .camposCadastro .campoCadastro input {
+    background-color: #222222;
+    color: white;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+.containerCadastro .conteudoCadastro .botaoCadastro button {
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+}
+
+.containerCadastro .camposCadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+/* LOGIN */
+
+.containerLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.containerLogin .conteudoLogin {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 200px;
+    width: 300px;
+    align-items: center;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.containerLogin .conteudoLogin .camposLogin .campoLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+.containerLogin .conteudoLogin .camposLogin .campoLogin input {
+    background-color: #222222;
+    color: white;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+.containerLogin .conteudoLogin .botaoLogin button {
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+}
+
+.containerLogin .camposLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+/* NOTICIA */
+
+.containerNoticia {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.conteudoNoticia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: fit-content;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    color: white;
+    width: 50%;
+}
+
+.tituloNoticia {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+}
+
+.informacoesNoticia {
+    display: flex;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    margin-left: 20px;
+    width: 4%;
+}
+
+.paragrafoNoticia {
+    font-size: 20px;
+}
+
+.comentarios {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.comentarios .comentario {
+    display: flex;
+    width: 60%;
+    height: 70%;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.comentarios .comentario .informacoesUsuario {
+    display: flex;
+    justify-content: space-between;
+    width: 430px;
+    margin-bottom: 10px;
+}
+
+.comentarios .imagemUsuario img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.comentarios .textoComentario {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 30px;
+}
+
+.comentarios .botaoDeletar {
+    margin-left: 20px;
+}
+
+
+.conteudoComentario {
+    width: 430px;
+    word-break: break-word;
+}
+
+.comentarios .comentar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comentarios .comentar input {
+    height: 150px;
+    width: 600px;
+}
+
+/* QUIZ */
+
+.quizContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.telaInicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 20px;
+    width: 20vw;
+    height: 25vh;
+}
+
+.telaInicio .conteudoTelaInicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 65%;
+}
+
+.telaInicio .conteudoCimaTelaInicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 55%;
+}
+
+.telaInicio .botaoQuizTelaInicio button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+}
+
+.questoes {
+    color: white;
+    display: none;
+}
+
+.resultado {
+    color: white;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25vw;
+    height: 40vh;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 20px;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 60vh;
+}
+
+.lutasELutadores {
+    width: 100%;
+    display: flex;
+    height: fit-content;
+}
+
+.lutasMaisHypadas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60%;
+    width: 50vw;
+    padding-top: 160px;
+    padding-bottom: 100px;
+    color: white;
+}
+
+.conteudoGeralLuta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+}
+
+.tituloLuta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lutas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.lutas .luta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin-bottom: 30px;
+}
+
+.lutas .luta .imagemLuta {
+    width: 300px
+}
+
+.lutas .luta h4 {
+    color: #808080;
+}
+
+.conteudoLuta {
+    padding-bottom: 15px;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 3px;
+    background-color: black;
+}
+
+.informacoesLuta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.informacoesLutaCima {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.informacoesLutaBaixo {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.containerQuiz {
+    padding-top: 130px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.rankingQuizSemanal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 50%;
+    padding-bottom: 100px;
+    height: 100%;
+    color: white;
+}
+
+.tituloQuiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.top10Usuarios {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+}
+
+.top10Usuarios .usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: black;
+    width: 35%;
+    height: 30%;
+}
+
+.top10Usuarios .conteudoUsuario {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.top10Usuarios .numeroEImagem {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top10Usuarios .informacoesUsuario {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lutadoresMaisHypados {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 60%;
+    width: 40vw;
+    padding-top: 160px;
+}
+
+.lutadores {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    height: 100vh;
+}
+
+.lutador {
+    display: flex;
+    color: white;
+    width: 70%;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 2px;
+    padding-left: 1px;
+    background-color: black;
+}
+
+.lutadoresMaisHypados .imagemLutador {
+    height: 100px;
+    width: 200px;
+}
+
+.lutadoresMaisHypados .conteudoGeralLutador {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.lutadoresMaisHypados .conteudoGeralLutador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* PERFIL */
+
+.containerPerfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-bottom: 100px;
+}
+
+.containerInformacoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    height: 80%;
+}
+
+.containerInformacoes .informacoesUsuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+
+.containerInformacoes .informacoesUsuario button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    width: 25%;
+}
+
+.botoesPerfil{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 50%;
+    height: 70vh;
+}
+
+.perfil .imagemUsuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    transition: background-color 0.3s;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.perfil .dadoUsuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    width: 450px;
+    height: 25%;
+}
+
+.perfil .dadoUsuario input {
+    background-color: #222222;
+    color: white;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.perfil .imagemUsuario img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+/* ADICIONAR NOTICIA */
+
+.containerAdicionarNoticia {
+    height: 100vh;
+}
+
+.conteudoAdicionarNoticia {
+    color: white;
+    padding-top: 130px;
+    height: fit-content;
+}
+
+.conteudoAdicionarNoticia .tituloAdicionarNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .tituloNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .tituloNoticia textarea{
+    width: 230px;
+    height: 48px;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .previaNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .previaNoticia textarea{
+    width: 350px;
+    height: 140px;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .imagemNoticia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia{
+    padding-bottom: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia .paragrafo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia .botoesPerfil{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia .botoesPerfil button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .paragrafosNoticia .paragrafo textarea{
+    margin-bottom: 20px;
+    height: 259px;
+    width: 596px;
+}
+
