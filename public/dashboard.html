@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+<script src="./js/script.js"></script>
+
+<body onload="carregarLutas(), carregarTop10(), carregarLutadores(), verificarLogado()">
+    <header id="header">
+        <div class="conteudoHeader">
+            <span class="logo">
+                <a href="index.html">
+                    <img style="width: 90px; height: 70px;" src="./imgs/logo.png" alt="">
+                </a>
+            </span>
+            <nav id="nav">
+                <ul id="ulNav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <div class="containerQuiz">
+            <div class="rankingQuizSemanal">
+                <div class="tituloQuiz">
+                    <h1 style="font-size: 45px; color: white;">Ranking do Quiz Semanal</h1>
+                    <hr style="border: 1px solid red; width: 100%;">
+                </div>
+                <div class="top10Usuarios" id="top10Usuarios">
+                    <!-- <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>1º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <!-- <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>2º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>3º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>4º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>5º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>6º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>7º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>8º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>9º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usuario">
+                        <div class="conteudoUsuario">
+                            <div class="numeroEImagem">
+                                <h1>10º</h1>
+                                <img src="imgs/defaultProfile.jpg" alt=""
+                                    style="width: 50px; height: 50px; border-radius: 50%;">
+                            </div>
+                            <div class="informacoesUsuario">
+                                <h3>Nome do Usuário</h3>
+                                <p>10 pontos</p>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+        <div class="lutasELutadores">
+            <div class="lutasMaisHypadas">
+                <h1 style="font-size: 45px; color: white;">Lutas mais hypadas da semana</h1>
+                <hr style="border: 1px solid red; width: 67%;">
+                <div id="lutas" class="lutas">
+                    <!-- <div class="luta">
+                        <div class="conteudoLuta">
+                            <img class="imagemLuta" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                                alt="">
+                            <div class="conteudoGeralLuta">
+                                <div class="tituloLuta">
+                                    <h3>Lutador A <span style="color: red;">vs</span> Lutador C</h3>
+                                </div>
+                                <div class="informacoesLuta">
+                                    <div class="informacoesLutaCima">
+                                        <p>UFC 300</p>
+                                        <p style="color: red;">-</p>
+                                        <p>2025/06/01 </p>
+                                    </div>
+                                    <div class="informacoesLutaBaixo">
+                                        <p>Peso Leve</p>
+                                        <p style="color: red;">-</p>
+                                        <p>5 rounds</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="luta">
+                        <div class="conteudoLuta">
+                            <img class="imagemLuta" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                                alt="">
+                            <div class="conteudoGeralLuta">
+                                <div class="tituloLuta">
+                                    <h3>Lutador A <span style="color: red;">vs</span> Lutador C</h3>
+                                </div>
+                                <div class="informacoesLuta">
+                                    <div class="informacoesLutaCima">
+                                        <p>UFC 300</p>
+                                        <p style="color: red;">-</p>
+                                        <p>2025/06/01 </p>
+                                    </div>
+                                    <div class="informacoesLutaBaixo">
+                                        <p>Peso Leve</p>
+                                        <p style="color: red;">-</p>
+                                        <p>5 rounds</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="luta">
+                        <div class="conteudoLuta">
+                            <img class="imagemLuta" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                                alt="">
+                            <div class="conteudoGeralLuta">
+                                <div class="tituloLuta">
+                                    <h3>Lutador A <span style="color: red;">vs</span> Lutador C</h3>
+                                </div>
+                                <div class="informacoesLuta">
+                                    <div class="informacoesLutaCima">
+                                        <p>UFC 300</p>
+                                        <p style="color: red;">-</p>
+                                        <p>2025/06/01 </p>
+                                    </div>
+                                    <div class="informacoesLutaBaixo">
+                                        <p>Peso Leve</p>
+                                        <p style="color: red;">-</p>
+                                        <p>5 rounds</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="luta">
+                        <div class="conteudoLuta">
+                            <img class="imagemLuta" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                                alt="">
+                            <div class="conteudoGeralLuta">
+                                <div class="tituloLuta">
+                                    <h3>Lutador A <span style="color: red;">vs</span> Lutador C</h3>
+                                </div>
+                                <div class="informacoesLuta">
+                                    <div class="informacoesLutaCima">
+                                        <p>UFC 300</p>
+                                        <p style="color: red;">-</p>
+                                        <p>2025/06/01 </p>
+                                    </div>
+                                    <div class="informacoesLutaBaixo">
+                                        <p>Peso Leve</p>
+                                        <p style="color: red;">-</p>
+                                        <p>5 rounds</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+            <div class="lutadoresMaisHypados">
+                <h1 style="font-size: 45px; color: white;">Lutadores mais hypados da semana</h1>
+                <hr style="border: 1px solid red; width: 100%;">
+                <div id="lutadores" class="lutadores">
+                    <!-- <div class="lutador">
+                        <img class="imagemLutador" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                            alt="">
+                        <div class="conteudoGeralLutador">
+                            <h3>Lutador A</h3>
+                            <p>Peso Leve</p>
+                            <p>10-3-0-0</p>
+                        </div>
+                    </div>
+                    <div class="lutador">
+                        <img class="imagemLutador" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                            alt="">
+                        <div class="conteudoGeralLutador">
+                            <h3>Lutador A</h3>
+                            <p>Peso Leve</p>
+                            <p>10-3-0-0</p>
+                        </div>
+                    </div>
+                    <div class="lutador">
+                        <img class="imagemLutador" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                            alt="">
+                        <div class="conteudoGeralLutador">
+                            <h3>Lutador A</h3>
+                            <p>Peso Leve</p>
+                            <p>10-3-0-0</p>
+                        </div>
+                    </div>
+                    <div class="lutador">
+                        <img class="imagemLutador" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                            alt="">
+                        <div class="conteudoGeralLutador">
+                            <h3>Lutador A</h3>
+                            <p>Peso Leve</p>
+                            <p>10-3-0-0</p>
+                        </div>
+                    </div>
+                    <div class="lutador">
+                        <img class="imagemLutador" src="./imgs/imagens-noticias/carlos-prates-stephen-thompson.jpg"
+                            alt="">
+                        <div class="conteudoGeralLutador">
+                            <h3>Lutador A</h3>
+                            <p>Peso Leve</p>
+                            <p>10-3-0-0</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="conteudoFooter">
+            <div class="redesSociais">
+                <a href="https://www.instagram.com/"><img src="./imgs/instagram.png" alt=""></a>
+                <a href="https://www.facebook.com/"><img src="./imgs/facebook.png" alt=""></a>
+                <a href="https://twitter.com/"><img src="./imgs/twitter.png" alt=""></a>
+            </div>
+            <div class="copyright">
+                <p>Fighting News &copy; 2025</p>
+            </div>
+            <div class="dados">
+                <p>Desenvolvido por: Nicolas B. Javed</p>
+                <p>Contato: nicolas.javed@sptech.school</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    function carregarLutas() {
+        fetch("/lutas/maisHypadas", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        console.log(resposta[i]);
+
+                        var valendoCinturao = resposta[i].valendoCinturao;
+                        if (valendoCinturao == 1) {
+                            lutas.innerHTML += `
+                                <div class="luta">
+                                    <div class="conteudoLuta">
+                                        <img class="imagemLuta"
+                                            src="${resposta[i].caminhoImagem}"
+                                            alt="">
+                                        <div class="conteudoGeralLuta">
+                                            <div class="tituloLuta">
+                                                <h3>${resposta[i].nome1}</h3>
+                                                <h3><span style="color: red;">vs</span></h3>
+                                                <h3>${resposta[i].nome2}</h3>
+                                            </div>
+                                            <div class="informacoesLuta">
+                                                <div class="informacoesLutaCima">
+                                                    <p>${resposta[i].nomeCard}</p>
+                                                    <p>-</p>
+                                                    <p>${resposta[i].dataLuta.replaceAll("-", "/").replaceAll("T", " ")
+                                    .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
+                                                </div>
+                                                <div class="informacoesLutaBaixo">
+                                                    <p>${resposta[i].nomeCategoria}</p>
+                                                    <p>-</p>
+                                                    <p>${resposta[i].rounds} rounds</p>
+                                                </div>
+                                                <div class="valendoCinturao">
+                                                    <img src="./imgs/cinturão.png" alt="" style="height:20px;width:30px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+                        } else {
+                            lutas.innerHTML += `
+                            <div class="luta">
+                                <div class="conteudoLuta">
+                                    <img class="imagemLuta"
+                                        src="${resposta[i].caminhoImagem}"
+                                        alt="">
+                                    <div class="conteudoGeralLuta">
+                                        <div class="tituloLuta">
+                                            <h3>${resposta[i].nome1}</h3>
+                                            <h3><span style="color: red;">vs</span></h3>
+                                            <h3>${resposta[i].nome2}</h3>
+                                        </div>
+                                        <div class="informacoesLuta">
+                                            <div class="informacoesLutaCima">
+                                                <p>${resposta[i].nomeCard}</p>
+                                                <p>-</p>
+                                                <p>${resposta[i].dataLuta.replaceAll("-", "/").replaceAll("T", " ")
+                                    .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
+                                            </div>
+                                            <div class="informacoesLutaBaixo">
+                                                <p>${resposta[i].nomeCategoria}</p>
+                                                <p>-</p>
+                                                <p>${resposta[i].rounds} rounds</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        }
+                    }
+                })
+            } else {
+                console.log("Erro ao carregar luras mais hypadas: " + resposta.status);
+            }
+        })
+    }
+
+    function carregarTop10() {
+        fetch("/usuarios/top10", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        console.log(resposta[i]);
+                        top10Usuarios.innerHTML += `
+                            <div class="usuario">
+                                <div class="conteudoUsuario">
+                                    <div class="numeroEImagem">
+                                        <h1>${i + 1}º</h1>
+                                        <img src="${resposta[i].caminhoImagem}" alt="" 
+                                            style="width: 50px; height: 50px; border-radius: 50%;">
+                                    </div>
+                                    <div class="informacoesUsuario">
+                                        <h3>${resposta[i].nome}</h3>
+                                        <p>${resposta[i].acertos} pontos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                })
+            } else {
+                console.log("Erro ao carregar top 10: " + resposta.status);
+            }
+        })
+    }
+
+    function carregarLutadores() {
+        fetch("/lutadores/maisHypados", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        console.log(resposta[i]);
+                        lutadores.innerHTML += `
+                            <div class="lutador">
+                                <h1>${i + 1}.</h1>
+                                <img class="imagemLutador" src="${resposta[i].caminhoImagem}" alt="">
+                                <div class="conteudoGeralLutador">
+                                    <h3>${resposta[i].nomeLutador}</h3>
+                                    <p>${resposta[i].nomeCategoria}</p>
+                                    <p>${resposta[i].vitorias}-${resposta[i].derrotas}-${resposta[i].empate}-${resposta[i].noContest}</p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                })
+            } else {
+                console.log("Erro ao carregar lutadores mais hypados: " + resposta.status);
+            }
+        })
+    }
+</script>
+
+</html>
