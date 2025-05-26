@@ -518,6 +518,27 @@ footer .redesSociais a img {
 .questoes {
     color: white;
     display: none;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.questoes .botoes{
+    margin-top: 10px;
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+}
+
+
+.questoes .botoes button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
 .resultado {

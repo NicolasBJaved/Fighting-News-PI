@@ -32,7 +32,7 @@
             <div class="conteudoTelaInicio">
                 <div class="conteudoCimaTelaInicio">
                     <div class="tituloQuizTelaInicio">
-                        <h1>Quiz de Lutas</h1>
+                        <h1>Quiz do UFC</h1>
                         <hr style="border: 1px solid red; width: 100%;">
                     </div>
                     <p>Teste seu conhecimento sobre o UFC</p>
@@ -151,30 +151,35 @@
         telaInicio.style.display = "none";
         questoes.style.display = "block";
 
+        contador++;
         questoes.innerHTML = `
-            <h3>Pergunta 1 de ${perguntasVetor.length}</h3>
-            <h2>${perguntasVetor[0].pergunta}</h2>
-            <div id="divAlternativa1">
-                <input type="radio" name="alternativa" id="alternativa1" value="0">
-                <label for="alternativa1">${perguntasVetor[0].alternativas[0]}</label><br>
-            </div>
-            <div id="divAlternativa2">
-                <input type="radio" name="alternativa" id="alternativa2" value="1">
-                <label for="alternativa2">${perguntasVetor[0].alternativas[1]}</label><br>
-            </div>
-            <div id="divAlternativa3">
-                <input type="radio" name="alternativa" id="alternativa3" value="2">
-                <label for="alternativa3">${perguntasVetor[0].alternativas[2]}</label><br>
-            </div>
+            <div class="conteudoQuestoes">
+                <h3>Pergunta ${contador} de ${perguntasVetor.length}</h3>
+                <h2>${perguntasVetor[0].pergunta}</h2>
+                <div id="divAlternativa1">
+                    <input type="radio" name="alternativa" id="alternativa1" value="0">
+                    <label for="alternativa1">${perguntasVetor[0].alternativas[0]}</label><br>
+                </div>
+                <div id="divAlternativa2">
+                    <input type="radio" name="alternativa" id="alternativa2" value="1">
+                    <label for="alternativa2">${perguntasVetor[0].alternativas[1]}</label><br>
+                </div>
+                <div id="divAlternativa3">
+                    <input type="radio" name="alternativa" id="alternativa3" value="2">
+                    <label for="alternativa3">${perguntasVetor[0].alternativas[2]}</label><br>
+                </div>
 
-            <div id="divAlternativa4">
-                <input type="radio" name="alternativa" id="alternativa4" value="3">
-                <label for="alternativa4">${perguntasVetor[0].alternativas[3]}</label><br>
+                <div id="divAlternativa4">
+                    <input type="radio" name="alternativa" id="alternativa4" value="3">
+                    <label for="alternativa4">${perguntasVetor[0].alternativas[3]}</label><br>
+                </div>
             </div>
-            <button id="submeterResposta" onclick="verificarResposta()">Submeter resposta</button>
-            <button id="proximaPergunta" onclick="proximaPergunta()">Próxima Pergunta</button>
+            <div class="botoes">
+                <button id="submeterResposta" onclick="verificarResposta()">Submeter resposta</button>
+                <button id="proximaPergunta" onclick="proximaPergunta()">Próxima Pergunta</button>
+            </div>
         `;
-
+            
     }
 
     function verificarResposta() {
@@ -183,7 +188,6 @@
             var resposta = respostaSelecionada.value;
             console.log(resposta);
             if (resposta == perguntasVetor[contador].resposta) {
-                alert("Resposta correta!");
                 submeterResposta.disabled = true;
                 alternativa1.disabled = true;
                 alternativa2.disabled = true;
@@ -191,8 +195,6 @@
                 alternativa4.disabled = true;
                 acertos++;
             } else {
-                alert("Resposta errada! A resposta correta é: " + perguntasVetor[contador]
-                    .alternativas[perguntasVetor[contador].resposta]);
                 submeterResposta.disabled = true;
                 alternativa1.disabled = true;
                 alternativa2.disabled = true;
@@ -224,6 +226,12 @@
     }
 
     function proximaPergunta() {
+        var respostaSelecionada = document.querySelector('input[name="alternativa"]:checked');
+
+        if(!respostaSelecionada) {
+            alert("Responda a pergunta antes de prosseguir.");
+            return;
+        }
 
         if (contador >= perguntasVetor.length) {
             questoes.style.display = "none";
@@ -237,27 +245,31 @@
             return
         }
         questoes.innerHTML = `
-            <h3>Pergunta ${contador} de ${perguntasVetor.length}</h3>
-            <h2>${perguntasVetor[contador].pergunta}</h2>
-            <div id="divAlternativa1">
-                <input type="radio" name="alternativa" id="alternativa1" value="0">
-                <label for="alternativa1">${perguntasVetor[contador].alternativas[0]}</label><br>
-            </div>
-            <div id="divAlternativa2">
-                <input type="radio" name="alternativa" id="alternativa2" value="1">
-                <label for="alternativa2">${perguntasVetor[contador].alternativas[1]}</label><br>
-            </div>
-            <div id="divAlternativa3">
-                <input type="radio" name="alternativa" id="alternativa3" value="2">
-                <label for="alternativa3">${perguntasVetor[contador].alternativas[2]}</label><br>
-            </div>
+            <div class="conteudoQuestoes">
+                <h3>Pergunta ${contador} de ${perguntasVetor.length}</h3>
+                <h2>${perguntasVetor[contador].pergunta}</h2>
+                <div id="divAlternativa1">
+                    <input type="radio" name="alternativa" id="alternativa1" value="0">
+                    <label for="alternativa1">${perguntasVetor[contador].alternativas[0]}</label><br>
+                </div>
+                <div id="divAlternativa2">
+                    <input type="radio" name="alternativa" id="alternativa2" value="1">
+                    <label for="alternativa2">${perguntasVetor[contador].alternativas[1]}</label><br>
+                </div>
+                <div id="divAlternativa3">
+                    <input type="radio" name="alternativa" id="alternativa3" value="2">
+                    <label for="alternativa3">${perguntasVetor[contador].alternativas[2]}</label><br>
+                </div>
 
-            <div id="divAlternativa4">
-                <input type="radio" name="alternativa" id="alternativa4" value="3">
-                <label for="alternativa4">${perguntasVetor[contador].alternativas[3]}</label><br>
+                <div id="divAlternativa4">
+                    <input type="radio" name="alternativa" id="alternativa4" value="3">
+                    <label for="alternativa4">${perguntasVetor[contador].alternativas[3]}</label><br>
+                </div>
             </div>
-            <button id="submeterResposta" onclick="verificarResposta()">Submeter resposta</button>
-            <button id="proximaPergunta" onclick="proximaPergunta()">Próxima Pergunta</button>
+            <div class="botoes">
+                <button id="submeterResposta" onclick="verificarResposta()">Submeter resposta</button>
+                <button id="proximaPergunta" onclick="proximaPergunta()">Próxima Pergunta</button>
+            </div>
         `;
     }
 
