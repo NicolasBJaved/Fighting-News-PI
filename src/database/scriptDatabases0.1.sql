@@ -125,28 +125,60 @@ CREATE TABLE ResultadoQuiz(
 INSERT INTO Usuario (nome, email, senha, admin, caminhoImagem) VALUES
 ('João Silva', 'joao@email.com', '123', 0, './imgs/defaultProfile.jpg'),
 ('Maria Souza', 'maria@email.com', '123', 0, './imgs/defaultProfile.jpg'),
+('Carlos Lima', 'carlos@email.com', '123', 0, './imgs/defaultProfile.jpg'),
+('Fernanda Costa', 'fernanda@email.com', '123', 0, './imgs/defaultProfile.jpg'),
+('Bruno Almeida', 'bruno@email.com', '123', 0, './imgs/defaultProfile.jpg'),
+('Patricia Santos', 'patricia@email.com', '123', 0, './imgs/defaultProfile.jpg'),
+('Gabriel Rocha', 'gabriel@email.com', '123', 0, './imgs/defaultProfile.jpg'),
+('Juliana Pereira', 'juliana@email.com', '123', 0, './imgs/defaultProfile.jpg'),
+('Lucas Fernandes', 'lucas@email.com', '123', 0, './imgs/defaultProfile.jpg'),
 ('AdminMaster', 'admin@email.com', 'admin', 1, './imgs/defaultProfile.jpg');
 
+
+
 INSERT INTO Categoria (nome, pesoKG) VALUES
+('Peso Mosca', 57),
+('Peso Galo', 61),
 ('Peso Pena', 66),
 ('Peso Leve', 70),
 ('Peso Meio-Médio', 77),
-('Peso Pesado', 120);
+('Peso Médio', 84),
+('Peso Meio-Pesado', 93),
+('Peso Pesado', 120),
+('Peso Palha Feminino', 52),
+('Peso Mosca Feminino', 57),
+('Peso Galo Feminino', 61),
+('Peso Pena Feminino', 66);
 
 INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
-('Jon "Bones" Jones', 28, 1, 0, 0, 4, './imgs/imagens-lutadores/Jon-Jones.png');
+('Jon "Bones" Jones', 28, 1, 0, 0, 8, './imgs/imagens-lutadores/Jon-Jones.png');
 
 INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
-('Tom Aspinall', 15, 3, 0, 0, 4, './imgs/imagens-lutadores/Tom-Aspinall.png');
+('Tom Aspinall', 15, 3, 0, 0, 8, './imgs/imagens-lutadores/Tom-Aspinall.png');
+
+INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
+('Merab Dvalishvili', 19, 4, 0, 0, 2, './imgs/imagens-lutadores/Merab.png');
+
+INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
+('Sean Omalley', 18, 2, 0, 0, 2, './imgs/imagens-lutadores/Omalley.png');
 
 INSERT INTO Card (local, data, nome) VALUES
 ('New York', '2026-06-06', 'UFC 325');
 
+INSERT INTO Card (local, data, nome) VALUES
+('Prudential Center, Newark, NJ', '2025-06-07', 'UFC 316');
+
 INSERT INTO Luta (idLutador1, idLutador2, idCategoria, idCard, rounds, valendoCinturao, caminhoImagem) VALUES
-(1, 2, 4, 1, 5, true, './imgs/imagens-lutas/Jon-Jones-vs-Tom-Aspinall.webp');
+(1, 2, 8, 1, 5, true, './imgs/imagens-lutas/Jon-Jones-vs-Tom-Aspinall.webp');
+
+INSERT INTO Luta (idLutador1, idLutador2, idCategoria, idCard, rounds, valendoCinturao, caminhoImagem) VALUES
+(3,4,2,2,5,true, './imgs/imagens-lutas/Omalley-vs-Merab.jpeg');
 
 INSERT INTO LutaCard (idLuta, idCard) VALUES
 (1, 1);
+
+INSERT INTO LutaCard (idLuta, idCard) VALUES
+(2, 2);
 
 INSERT INTO Noticia (tituloNoticia, previaNoticia, dataPostagem, caminhoImagem) VALUES
 ('Belal Muhammad define alvo e data para retorno após perder título do UFC', 'No último dia 10 de maio, Belal Muhammad viu seu reinado na divisão dos...',
@@ -420,15 +452,20 @@ INSERT INTO LikeNoticia (idNoticia, idUsuario) VALUES
 INSERT INTO LikeNoticia (idNoticia, idUsuario) VALUES
 (6, 1),
 (6, 2),
-(6, 3);
+(6, 3),
+(10, 4),
+(10, 5);
 
 INSERT INTO LutadorNoticia (idNoticia, idLutador) VALUES
 (8, 1),
-(6, 1);
+(6, 1),
+(10, 3),
+(10, 4);
 
 INSERT INTO LutaNoticia (idNoticia, idLuta) VALUES
 (8, 1),
-(6, 1);
+(6, 1),
+(10, 2);
 
 INSERT INTO Quiz (dataInicio, dataFim) 
 VALUES (NOW(), '2026-01-01');
@@ -436,6 +473,14 @@ VALUES (NOW(), '2026-01-01');
 INSERT INTO ResultadoQuiz (idUsuario, idQuiz, acertos) 
 VALUES 
 (1, 1, 9),
-(2, 1, 7);
+(2, 1, 7),
+(3, 1, 8),
+(4, 1, 6),
+(5, 1, 9),
+(6, 1, 5),
+(7, 1, 10),
+(8, 1, 8),
+(9, 1, 7);
+
 
 

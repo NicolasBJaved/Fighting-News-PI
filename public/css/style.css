@@ -191,6 +191,11 @@ footer .redesSociais a img {
     width: 400px;
 }
 
+.maisCurtidoSemana .noticia .imagemNoticia img{
+    width: 400px;
+    height: 266px;
+}
+
 .maisCurtidoSemana .noticia {
     text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9),
         -10px -10px 10px rgb(0, 0, 0);
@@ -559,7 +564,7 @@ footer .redesSociais a img {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 60vh;
+    height: fit-content;
 }
 
 .lutasELutadores {
@@ -574,7 +579,6 @@ footer .redesSociais a img {
     align-items: center;
     height: 60%;
     width: 50vw;
-    padding-top: 160px;
     padding-bottom: 100px;
     color: white;
 }
@@ -659,7 +663,7 @@ footer .redesSociais a img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: fit-content;
     width: 50%;
     padding-bottom: 100px;
     height: 100%;
@@ -678,7 +682,7 @@ footer .redesSociais a img {
     justify-content: space-around;
     flex-wrap: wrap;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     margin-top: 30px;
 }
 
@@ -691,8 +695,8 @@ footer .redesSociais a img {
     border-radius: 10px;
     margin-bottom: 10px;
     background-color: black;
-    width: 35%;
-    height: 30%;
+    width: 300px;
+    height: 100px;
 }
 
 .top10Usuarios .conteudoUsuario {
@@ -721,7 +725,6 @@ footer .redesSociais a img {
     text-align: center;
     height: 60%;
     width: 40vw;
-    padding-top: 160px;
 }
 
 .lutadores {
@@ -730,7 +733,8 @@ footer .redesSociais a img {
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
-    height: 100vh;
+    height: fit-content;
+    gap: 20px;
 }
 
 .lutador {
@@ -929,7 +933,6 @@ footer .redesSociais a img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .imagemNoticia h1{
