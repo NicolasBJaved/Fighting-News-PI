@@ -18,7 +18,18 @@ function carregarQuizAtual(req, res){
             res.status(200).json(resultado);
         });
 }
+
+function verificarUsuarioJaFezQuiz(req, res){
+    var idUsuario = req.body.idUsuarioServer;
+    var idQuiz = req.body.idQuizServer;
+
+    quizModel.verificarUsuarioJaFezQuiz(idUsuario, idQuiz)
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+        });
+}
 module.exports = {
     salvarResultado,
-    carregarQuizAtual
+    carregarQuizAtual,
+    verificarUsuarioJaFezQuiz
 }

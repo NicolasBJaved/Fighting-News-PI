@@ -135,14 +135,44 @@
                 resposta.json().then(function (resposta) {
                     console.log(resposta[0].idQuiz);
                     idQuizAtual = resposta[0].idQuiz;
+                    console.log("Quiz atual carregado com sucesso.");
                 });
+                console.log("Quiz atual carregado com sucesso.");
             } else {
                 console.log("Erro ao carregar quiz atual: " + resposta.status);
             }
         });
     }
 
+    function verficiarUsuarioJaFezQuiz(){
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/quiz/verificarUsuarioJaFezQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                idQuizServer: idQuizAtual
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    if (resposta.length == 1) {
+                        alert("Você já fez o quiz dessa semana, espere o próximo ser lançado.");
+                        window.location = "./dashboard.html";
+                    }
+                });
+            } else {
+                console.log("Erro ao verificar se o usuário já fez o quiz: " + resposta.status);
+            }
+        });
+    }
+
     function iniciar() {
+        verficiarUsuarioJaFezQuiz();
+
         if (sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
             alert("Você precisa estar logado para iniciar o quiz!");
             window.location = "./login.html";
@@ -151,10 +181,9 @@
         telaInicio.style.display = "none";
         questoes.style.display = "block";
 
-        contador++;
         questoes.innerHTML = `
             <div class="conteudoQuestoes">
-                <h3>Pergunta ${contador} de ${perguntasVetor.length}</h3>
+                <h3>Pergunta 1 de ${perguntasVetor.length}</h3>
                 <h2>${perguntasVetor[0].pergunta}</h2>
                 <div id="divAlternativa1">
                     <input type="radio" name="alternativa" id="alternativa1" value="0">

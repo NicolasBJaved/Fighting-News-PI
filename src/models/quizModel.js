@@ -18,7 +18,17 @@ function carregarQuizAtual() {
     return database.executar(instrucao);
 }
 
+function verificarUsuarioJaFezQuiz(idUsuario, idQuiz) {
+    console.log("Entrou no quizModel");
+    var instrucao = `
+        SELECT * FROM ResultadoQuiz WHERE idUsuario = ${idUsuario} AND idQuiz = ${idQuiz};
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     salvarResultado,
-    carregarQuizAtual
+    carregarQuizAtual,
+    verificarUsuarioJaFezQuiz
 }

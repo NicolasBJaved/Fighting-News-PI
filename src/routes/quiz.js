@@ -13,4 +13,10 @@ router.get("/carregarQuizAtual", function (req, res) {
     quizController.carregarQuizAtual(req, res);
 });
 
+router.post("/verificarUsuarioJaFezQuiz", function (req, res) {
+    console.log("Entrou na rota /verificarUsuarioJaFezQuiz");
+    quizController.verificarUsuarioJaFezQuiz(req, res);
+}
+);
+
 module.exports = router;
