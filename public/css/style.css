@@ -49,7 +49,7 @@ nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 450px;
+    width: 400px;
 }
 
 nav .perfilNav {
@@ -261,7 +261,7 @@ footer .redesSociais a img {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 370px;
+    height: 445px;
     width: 300px;
     align-items: center;
     border: 1px solid rgba(255, 0, 0, 0.267);
@@ -279,12 +279,21 @@ footer .redesSociais a img {
     margin-bottom: 20px;
 }
 
+.containerCadastro .conteudoCadastro .camposCadastro .campoCadastro h3{
+    padding-bottom: 10px;
+}
+
+
 .containerCadastro .conteudoCadastro .camposCadastro .campoCadastro input {
     background-color: #222222;
     color: white;
     border: 1px solid rgba(255, 0, 0, 0.267);
     border-radius: 5px;
     padding: 10px;
+}
+
+.containerCadastro .conteudoCadastro .botaoCadastro{
+    margin-bottom: 15px;
 }
 
 
@@ -321,7 +330,7 @@ footer .redesSociais a img {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 200px;
+    height: 260px;
     width: 300px;
     align-items: center;
     border: 1px solid rgba(255, 0, 0, 0.267);
@@ -347,6 +356,13 @@ footer .redesSociais a img {
     padding: 10px;
 }
 
+.containerLogin .conteudoLogin .camposLogin .campoLogin h3 {
+    padding-bottom: 10px;
+}
+
+.containerLogin .conteudoLogin .botaoLogin {
+   margin-bottom: 15px;
+}
 
 .containerLogin .conteudoLogin .botaoLogin button {
     background-color: rgba(0, 0, 0, 0.185);
@@ -358,7 +374,7 @@ footer .redesSociais a img {
     border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
-.containerLogin .camposLogin {
+.conteudoLogin .camposLogin {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -416,9 +432,9 @@ footer .redesSociais a img {
 .comentarios {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: 50px;
 }
 
 .comentarios .comentario {
@@ -435,6 +451,15 @@ footer .redesSociais a img {
     justify-content: space-between;
     width: 430px;
     margin-bottom: 10px;
+    height: fit-content;
+}
+
+.comentarios .comentario .informacoesUsuario h3{
+    height: fit-content;
+}
+
+.comentarios .comentario .informacoesUsuario h4{
+    height: fit-content;
 }
 
 .comentarios .imagemUsuario img {
@@ -451,7 +476,17 @@ footer .redesSociais a img {
 }
 
 .comentarios .botaoDeletar {
-    margin-left: 20px;
+    height: fit-content;
+}
+
+.comentarios .botaoDeletar button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
 
@@ -465,6 +500,33 @@ footer .redesSociais a img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.comentarios .comentar .tituloComentario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.comentarios .comentar .areaComentario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 215px;
+    margin-bottom: 30px;
+}
+
+.comentarios .comentar .areaComentario button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    width: 20%;
 }
 
 .comentarios .comentar input {
@@ -577,10 +639,23 @@ footer .redesSociais a img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 60%;
     width: 50vw;
-    padding-bottom: 100px;
+    padding-bottom: 120px;
     color: white;
+}
+
+.lutasMaisHypadas .lutasMaisHypadasTitulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lutasMaisHypadas .containerLutas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .conteudoGeralLuta {
@@ -600,19 +675,20 @@ footer .redesSociais a img {
 
 .lutas {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     margin-top: 30px;
-    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 630px;
     height: 100%;
+    gap: 30px;
 }
 
 .lutas .luta {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
-    margin-bottom: 30px;
+    width: 300px;
+    height: 327px;
 }
 
 .lutas .luta .imagemLuta {
@@ -628,6 +704,13 @@ footer .redesSociais a img {
     border: 1px solid rgba(255, 0, 0, 0.267);
     border-radius: 3px;
     background-color: black;
+    height: 100%;
+    width: 100%;
+}
+
+.conteudoLuta .imagemLuta{
+    height: 170px;
+    width: 300px;
 }
 
 .informacoesLuta {
@@ -664,8 +747,9 @@ footer .redesSociais a img {
     flex-direction: column;
     align-items: center;
     height: fit-content;
-    width: 50%;
-    padding-bottom: 100px;
+    padding-left: 20px;
+    width: 89%;
+    padding-bottom: 60px;
     height: 100%;
     color: white;
 }
@@ -679,11 +763,12 @@ footer .redesSociais a img {
 
 .top10Usuarios {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
-    width: 100%;
+    width: 76%;
     height: fit-content;
+    gap: 20px;
     margin-top: 30px;
+    justify-content: flex-start;
 }
 
 .top10Usuarios .usuario {
@@ -695,28 +780,41 @@ footer .redesSociais a img {
     border-radius: 10px;
     margin-bottom: 10px;
     background-color: black;
-    width: 300px;
-    height: 100px;
+    width: 220px;
+    height: 150px;
 }
 
 .top10Usuarios .conteudoUsuario {
     display: flex;
-    width: 90%;
+    width: 95%;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.top10Usuarios .numeroEImagem {
+
+.top10Usuarios .acertos{
     display: flex;
-    width: 30%;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 }
 
 .top10Usuarios .informacoesUsuario {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.top10Usuarios .informacoesUsuario .imagemUsuario{
+    display: flex;
+}
+
+.top10Usuarios .informacoesUsuario .posicaoUsuario{
+    width: 150px;
+}
+
+.top10Usuarios .informacoesUsuario h3{
+    width: fit-content;
 }
 
 .lutadoresMaisHypados {
@@ -735,6 +833,7 @@ footer .redesSociais a img {
     margin-top: 30px;
     height: fit-content;
     gap: 20px;
+    margin-bottom: 100px;
 }
 
 .lutador {
@@ -745,6 +844,11 @@ footer .redesSociais a img {
     border-radius: 2px;
     padding-left: 1px;
     background-color: black;
+    align-items: center;
+}
+
+.lutador h1{
+    margin-left: 10px;
 }
 
 .lutadoresMaisHypados .imagemLutador {
@@ -802,13 +906,13 @@ footer .redesSociais a img {
     padding: 10px;
     cursor: pointer;
     border: 1px solid rgba(255, 0, 0, 0.267);
-    width: 25%;
+    width: 35%;
 }
 
 .botoesPerfil{
     display: flex;
-    justify-content: center;
-    width: 100%;
+    justify-content: space-evenly;
+    width: 50%;
 }
 
 

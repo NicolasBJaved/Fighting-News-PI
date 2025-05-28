@@ -134,8 +134,6 @@ INSERT INTO Usuario (nome, email, senha, admin, caminhoImagem) VALUES
 ('Lucas Fernandes', 'lucas@email.com', '123', 0, './imgs/defaultProfile.jpg'),
 ('AdminMaster', 'admin@email.com', 'admin', 1, './imgs/defaultProfile.jpg');
 
-
-
 INSERT INTO Categoria (nome, pesoKG) VALUES
 ('Peso Mosca', 57),
 ('Peso Galo', 61),
@@ -162,23 +160,38 @@ INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoI
 INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
 ('Sean Omalley', 18, 2, 0, 0, 2, './imgs/imagens-lutadores/Omalley.png');
 
+INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
+('Charles "Do Bronx" Oliveira', 35, 10, 0, 0, 4, './imgs/imagens-lutadores/Charles.png');
+
+INSERT INTO Lutador (nome, vitorias, derrotas, empate, nc, idCategoria, caminhoImagem) VALUES
+('Illia "El Matador" Topuria', 16, 0, 0, 0, 4, './imgs/imagens-lutadores/Topuria.png');
+
 INSERT INTO Card (local, data, nome) VALUES
 ('New York', '2026-06-06', 'UFC 325');
 
 INSERT INTO Card (local, data, nome) VALUES
 ('Prudential Center, Newark, NJ', '2025-06-07', 'UFC 316');
 
+INSERT INTO Card (local, data, nome) VALUES
+('T-Mobile Arena, Las Vegas, NV', '2025-06-28', 'UFC 317');
+
 INSERT INTO Luta (idLutador1, idLutador2, idCategoria, idCard, rounds, valendoCinturao, caminhoImagem) VALUES
 (1, 2, 8, 1, 5, true, './imgs/imagens-lutas/Jon-Jones-vs-Tom-Aspinall.webp');
 
 INSERT INTO Luta (idLutador1, idLutador2, idCategoria, idCard, rounds, valendoCinturao, caminhoImagem) VALUES
-(3,4,2,2,5,true, './imgs/imagens-lutas/Omalley-vs-Merab.jpeg');
+(3,4,2,2,5,true, './imgs/imagens-lutas/Merab-vs-Omalley.jpeg');
+
+INSERT INTO Luta (idLutador1, idLutador2, idCategoria, idCard, rounds, valendoCinturao, caminhoImagem) VALUES
+(5,6,4,3,5,true, './imgs/imagens-lutas/Ilia-Topuria-vs-Charles-Oliveira.jpg');
 
 INSERT INTO LutaCard (idLuta, idCard) VALUES
 (1, 1);
 
 INSERT INTO LutaCard (idLuta, idCard) VALUES
 (2, 2);
+
+INSERT INTO LutaCard (idLuta, idCard) VALUES
+(3, 3);
 
 INSERT INTO Noticia (tituloNoticia, previaNoticia, dataPostagem, caminhoImagem) VALUES
 ('Belal Muhammad define alvo e data para retorno após perder título do UFC', 'No último dia 10 de maio, Belal Muhammad viu seu reinado na divisão dos...',
@@ -453,19 +466,26 @@ INSERT INTO LikeNoticia (idNoticia, idUsuario) VALUES
 (6, 1),
 (6, 2),
 (6, 3),
-(10, 4),
-(10, 5);
+(10, 1),
+(10, 2),
+(10, 3),
+(5, 1),
+(5, 2),
+(5, 3);
 
 INSERT INTO LutadorNoticia (idNoticia, idLutador) VALUES
 (8, 1),
 (6, 1),
 (10, 3),
-(10, 4);
+(5, 5),
+(5, 6);
+-- (10, 4)
 
 INSERT INTO LutaNoticia (idNoticia, idLuta) VALUES
 (8, 1),
 (6, 1),
-(10, 2);
+(10, 2),
+(5, 3);
 
 INSERT INTO Quiz (dataInicio, dataFim) 
 VALUES (NOW(), '2026-01-01');

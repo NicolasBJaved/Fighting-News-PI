@@ -9,6 +9,7 @@
     <title>Noticia 1</title>
 </head>
 <script src="./js/script.js"></script>
+
 <body onload="carregarNoticia(), carregarComentarios(), carregarLikes(), verificarLogado()">
     <header id="header">
         <div class="conteudoHeader">
@@ -47,50 +48,21 @@
                 </div>
             </div>
             <div id="conteudoNoticia" class="textoNoticia">
-                <!-- <p class="paragrafoNoticia">
-                    A derrota para Ian Machado Garry na luta principal do UFC Kansas City, no último sábado (26),
-                    colocou um
-                    ponto final na sequência de vitórias de Carlos Prates, mas não parece ter afetado o prestígio que o
-                    meio-médio (77 kg) conquistou em pouco mais de um ano na organização. Prova disso é que, apesar do
-                    tropeço do brasileiro, um dos principais nomes da categoria na década demonstrou interesse em medir
-                    forças com o atleta paulista no octógono mais famoso do mundo.
-                </p>
-                <p class="paragrafoNoticia">Em entrevista ao ‘MMA Today’, Stephen ‘Wonderboy’ Thompson propôs um desafio entre strikers ao
-                    lutador da
-                    equipe ‘Fighting Nerds’. Como sempre respeitoso, o carateca americano – que atualmente ocupa a 11ª
-                    colocação no ranking dos meio-médios do UFC, duas posições acima do brasileiro – se mostrou
-                    empolgado
-                    com a possibilidade de duelar contra outro especialista na luta em pé.</p> -->
             </div>
             <div id="excluirNoticiaDiv" class="excluirNoticia">
             </div>
             <div id="comentarios" class="comentarios">
                 <div class="comentar">
-                    <h2>Faça um comentário</h2>
-                    <textarea id="ipt_comentario" placeholder="Digite seu comentário"
-                        style="width: 517px; word-break: break-word; height: 151px;" rows="4"></textarea>
-                    <button onclick="comentar()">Comentar</button>
+                    <div class="tituloComentario">
+                        <h2>Faça um comentário</h2>
+                        <hr style="border: 1px solid red; width: 48%;">
+                    </div>
+                    <div class="areaComentario">
+                        <textarea id="ipt_comentario" placeholder="Digite seu comentário"
+                            style="width: 517px; word-break: break-word; height: 151px;" rows="4"></textarea>
+                        <button onclick="comentar()">Comentar</button>
+                    </div>
                 </div>
-                <!-- <div class="comentario">
-                    <div class="imagemUsuario">
-                        <div>
-                            <img src="./imgs/defaultProfile.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="textoComentario">
-                        <div class="informacoesUsuario">
-                            <h3>Nom3</h3>
-                            <h4>Data</h4>
-                        </div>
-                        <div class="conteudoComentario">
-                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            </p>
-                        </div>
-                    </div>
-                    <div class="botaoDeletar">
-                        <button onclick=deletarComentario()>Deletar</button>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -122,7 +94,7 @@
 
         var admin = sessionStorage.USUARIO_ADMIN;
         console.log("ADMIN: " + admin);
-        if(admin == 1){
+        if (admin == 1) {
             console.log("EXCLUIR NOTICIA")
             excluirNoticiaDiv.innerHTML = `
                 <button onclick="excluirNoticia()">Excluir noticia</button>
@@ -187,7 +159,7 @@
         })
     }
 
-    function excluirNoticia(){
+    function excluirNoticia() {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
 
@@ -198,13 +170,13 @@
             }, body: JSON.stringify({
                 idServer: id
             })
-        }).then(function(resposta){
-            if(resposta.ok){
-                resposta.json().then(function(resposta){
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
                     alert("Notícia excluida com sucesso");
                     window.location = "./index.html"
                 })
-            }else{
+            } else {
                 alert("Erro ao excluir noticia")
             }
         })
@@ -241,6 +213,9 @@
                                         <h3>${resposta[i].nome}</h3>
                                         <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
                                     .replaceAll(".000Z", " ")}</h4>
+                                    <div class="botaoDeletar">
+                                        <button onclick=deletarComentario(${resposta[i].idComentario})>Deletar</button>
+                                    </div>
                                     </div>
                                     <div class="conteudoComentario">
                                         <p>
@@ -248,9 +223,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="botaoDeletar">
-                                    <button onclick=deletarComentario(${resposta[i].idComentario})>Deletar</button>
-                                </div>
+                                
                             </div>
                             `
                         } else {

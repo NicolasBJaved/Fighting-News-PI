@@ -8,6 +8,7 @@
     <title>Cadastro</title>
 </head>
 <script src="./js/script.js"></script>
+
 <body onload="verificarLogado()">
     <header id="header">
         <div class="conteudoHeader">
@@ -50,6 +51,10 @@
             <div class="botaoCadastro">
                 <button onclick="cadastrar()"><b>Cadastrar</b></button>
             </div>
+            <div class="jaTemConta">
+                <p>Já é um usuário? <a href="./login.html" style="text-decoration:
+                 underline; text-decoration-color: red; color: red;">LOGIN</a></p>
+            </div>
             <div style="margin-top: 20px;" id="div_resultado">
 
             </div>
@@ -86,22 +91,23 @@
         const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?/\\])[A-Za-z0-9!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?/\\]{8,}$/;
 
         if (nome == "" || email == "" || senha == "" || confirmacaoSenha == "") {
-            div_resultado.innerHTML = "Preencha todos os campos!";
+            div_resultado.innerHTML = "<h3 style='color: red;'>Preencha todos os campos!<h3>";
             return;
         }
 
         if (!emailValido) {
-            div_resultado.innerHTML = "Email inválido!";
+            div_resultado.innerHTML = "<h3 style='color: red;'>Email inválido!<h3>";
             return;
         }
 
-        if(regex.test(senha) == false){
-            div_resultado.innerHTML = "A senha deve ter pelo menos 8 caracteres, incluindo números e símbolos!";
+        if (regex.test(senha) == false) {
+            div_resultado.innerHTML = "<h3 style='color: red;'>A senha deve ter pelo menos 8" +
+                " caracteres, incluindo números e símbolos! <h3>";
             return;
         }
 
         if (senha !== confirmacaoSenha) {
-            div_resultado.innerHTML = "As senhas não coincidem!";
+            div_resultado.innerHTML = "<h3 style='color: red;'>As senhas não coincidem!<h3>";
             return;
         }
 
@@ -114,17 +120,18 @@
                 emailServer: email,
                 senhaServer: senha
             }),
-        }).then(function(resposta){
+        }).then(function (resposta) {
             console.log("resposta: ", resposta);
 
-            if(resposta.ok){
+            if (resposta.ok) {
                 div_resultado.innerHTML = "Cadastrado com sucesso!";
                 window.location = "./login.html";
             } else {
-                div_resultado.innerHTML = "Erro ao cadastrar!";
+                div_resultado.innerHTML = "<h3 style='color: red;'> Erro ao cadastrar!<h3>";
             }
         });
         return false;
     }
 </script>
+
 </html>
