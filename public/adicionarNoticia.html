@@ -9,7 +9,7 @@
 </head>
 <script src="./js/script.js"></script>
 
-<body onload="verificarAdmin(), verificarLogado()">
+<body onload="verificarAdmin(), verificarLogado(), carregarLutas(), carregarLutadores()">
     <header id="header">
         <div class="conteudoHeader">
             <span class="logo">
@@ -48,6 +48,17 @@
                     <div class="previaNoticia">
                         <h1>Prévia</h1>
                         <textarea type="text" id="previa" placeholder="Escreva a prévia da notícia"></textarea>
+                    </div>
+                    <div>
+                        <label>Escolha as lutas:</label>
+                        <div class="listasLutasELutadores" id="listaLutas" style="display: none;">
+                        </div>
+                        <button onclick="mostrarLutas()">Mostrar lutas</button>
+
+                        <label for="lutadores">Escolha os lutadores:</label>
+                        <div class="listasLutasELutadores" id="listaLutadores" style="display: none;">
+                        </div>
+                        <button onclick="mostrarLutadores()">Mostrar lutadores</button>
                     </div>
                 </div>
                 <div class="parteBaixoFormulario">
@@ -121,7 +132,71 @@
         })
     }
 
+    function mostrarLutas() {
+        listaLutas.style.display = "block";
+    }
+
+    function mostrarLutadores() {
+        listaLutadores.style.display = "block";
+    }
+
+    function carregarLutas() {
+        console.log("ENTROU NA FUNÇÃO CARREGARLUTAS()")
+        fetch("/lutas/carregarLutas", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        listaLutas.innerHTML += `
+                            <label>
+                                <input type="checkbox" name="lutas" value="${resposta[i].idLuta}">
+                                ${resposta[i].nome1} vs ${resposta[i].nome2}
+                            </label>
+                        `;
+
+                    }
+                })
+            }
+
+        })
+    }
+
+    function carregarLutadores() {
+        console.log("ENTROU NA FUNÇÃO CARREGARlUTADORES()")
+        fetch("/lutadores/carregarlutadores", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        listaLutadores.innerHTML += `
+                            <label>
+                                <input type="checkbox" name="lutadores" value="${resposta[i].id}">
+                                ${resposta[i].nome}
+                            </label>
+                        `;
+
+                    }
+                })
+            }
+
+        })
+    }
+
     function publicarNoticia() {
+
+        if (!foto.files[0]) {
+            alert("Você precisa adicionar uma imagem na noticia!");
+            return;
+        }
+
         const formData = new FormData()
 
         formData.append('foto', foto.files[0])
@@ -140,6 +215,8 @@
                     idNoticia = resposta.insertId;
                     console.log(idNoticia)
                     adicionarParagrafos(idNoticia);
+                    adicionarLutas(idNoticia);
+                    adicionarLutadores(idNoticia);
                     alert("Notícia adicionada com sucesso!");
                 })
             }
@@ -182,6 +259,58 @@
             }
         })
 
+    }
+
+    function adicionarLutas(idNoticia) {
+        console.log("ENTROU NO ADICIONAR LUTAS")
+        var lutasSelecionadas = document.querySelectorAll('input[name="lutas"]:checked');
+        var idLutasSelecionadas = [];
+
+        for (let i = 0; i < lutasSelecionadas.length; i++) {
+                console.log("ID LUTA : " + lutasSelecionadas[i].value)
+                idLutasSelecionadas.push(lutasSelecionadas[i].value)
+        }
+
+        fetch("/lutas/adicionarLutas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idNoticiaServer: idNoticia,
+                lutasSelecionadasServer: idLutasSelecionadas
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log("Lutas adicionadas com sucesso")
+            }
+        })
+    }
+
+    function adicionarLutadores(idNoticia) {
+        console.log("ENTROU NO ADICIONAR LUTADORES")
+        var lutadoresSelecionados = document.querySelectorAll('input[name="lutadores"]:checked');
+        var idLutadoresSelecionados = [];
+
+        for (let i = 0; i < lutadoresSelecionados.length; i++) {
+                console.log("ID LUTADOR : " + lutadoresSelecionados[i].value)
+                idLutadoresSelecionados.push(lutadoresSelecionados[i].value)
+        }
+
+        fetch("/lutadores/adicionarLutadores", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idNoticiaServer: idNoticia,
+                lutadoresSelecionadosServer: idLutadoresSelecionados
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log("Lutadores adicionados com sucesso")
+            }
+        })
     }
 
     var contadorParagrafo = 2;

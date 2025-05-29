@@ -1,9 +1,9 @@
 var database = require('../database/config');
 
-function maisHypados(){
-    console.log("Entrou no noticiaModel");
+function maisHypados() {
+    console.log("Entrou no lutadoresModel");
 
-    const data = new Date();  
+    const data = new Date();
     data.setDate(data.getDate() - 7);
 
     const dataFormatada = data.toISOString().split('T')[0];
@@ -35,6 +35,30 @@ function maisHypados(){
     return database.executar(instrucao);
 }
 
+function carregarlutadores() {
+    console.log("Entrou no lutadoresModel");
+    var instrucao = `
+        SELECT l.idLutador id, l.nome nome FROM Lutador l;
+                `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function adicionarLutadores(idNoticia, lutadoresSelecionados) {
+    console.log("Entrou no lutadoresModel");
+
+    for (var i = 0; i < lutadoresSelecionados.length; i++) {
+        var instrucao = `
+            INSERT INTO LutadorNoticia(idNoticia, idLutador) VALUES (${idNoticia}, ${lutadoresSelecionados[i]});
+            `;
+        console.log("Executando a query: \n" + instrucao);
+        database.executar(instrucao)
+    }
+    return;
+}
+
 module.exports = {
-    maisHypados
+    maisHypados,
+    carregarlutadores,
+    adicionarLutadores
 };

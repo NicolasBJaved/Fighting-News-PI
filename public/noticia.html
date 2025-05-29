@@ -140,8 +140,7 @@
                 resposta.json().then(function (resposta) {
                     tituloNoticia.innerHTML = resposta[0].tituloNoticia;
                     imagemNoticia.src = resposta[0].caminhoImagem;
-                    dataPostagem.innerHTML = resposta[0].dataPostagem.replaceAll("-", "/").replaceAll("T", " ")
-                        .replaceAll(".000Z", " ").replaceAll("00:00:00", " ");
+                    dataPostagem.innerHTML = resposta[0].dataPostagem.split('T')[0];
                     for (var i = 0; i < resposta.length; i++) {
                         console.log(resposta[i].tituloNoticia);
                         conteudoNoticia.innerHTML += `
@@ -211,8 +210,7 @@
                                 <div class="textoComentario">
                                     <div class="informacoesUsuario">
                                         <h3>${resposta[i].nome}</h3>
-                                        <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
-                                    .replaceAll(".000Z", " ")}</h4>
+                                        <h4>${resposta[i].data.split('T')[0]}</h4>
                                     <div class="botaoDeletar">
                                         <button onclick=deletarComentario(${resposta[i].idComentario})>Deletar</button>
                                     </div>
@@ -237,8 +235,7 @@
                                 <div class="textoComentario">
                                     <div class="informacoesUsuario">
                                         <h3>${resposta[i].nome}</h3>
-                                        <h4>${resposta[i].data.replaceAll("-", "/").replaceAll("T", " ")
-                                    .replaceAll(".000Z", " ")}</h4>
+                                        <h4>${resposta[i].data.split('T')[0]}</h4>
                                     </div>
                                     <div class="conteudoComentario">
                                         <p>

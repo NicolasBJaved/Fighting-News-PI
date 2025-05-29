@@ -128,7 +128,7 @@ function publicarNoticia(req, res){
 }
 
 function adicionarParagrafos(req, res){
-    var idNoticia = req.body.idNoticiaServer;
+    var idNoticia = req.body.idNoticiaServer; 
     var paragrafos = req.body.paragrafosServer;
 
     console.log("VALORES PARAGRAFOS: " + paragrafos);

@@ -38,6 +38,32 @@ function maisHypadas() {
     return database.executar(instrucao);
 }
 
+function carregarLutas(){
+    console.log("Entrou no lutaModel");
+    var instrucao = `
+        SELECT luta.idLuta idLuta, lutador1.nome nome1, lutador2.nome nome2 FROM Luta luta INNER JOIN
+        Lutador lutador1 ON luta.idLutador1 = lutador1.idLutador INNER JOIN
+        Lutador lutador2 ON luta.idLutador2 = lutador2.idLutador;
+            `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function adicionarLutas(idNoticia, lutasSelecionadas){
+    console.log("Entrou no lutaModel");
+
+    for(var i = 0; i < lutasSelecionadas.length; i++){
+        var instrucao = `
+                INSERT INTO LutaNoticia(idNoticia, idLuta) VALUES (${idNoticia}, ${lutasSelecionadas[i]});
+            `;
+        console.log("Executando a query: \n" + instrucao);
+        database.executar(instrucao)
+    }
+    return;
+}
+
 module.exports = {
-    maisHypadas
+    maisHypadas,
+    carregarLutas,
+    adicionarLutas
 }
