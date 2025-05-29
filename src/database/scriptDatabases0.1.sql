@@ -113,6 +113,18 @@ CREATE TABLE Quiz(
     dataFim DATETIME NOT NULL
 );
 
+CREATE TABLE PerguntaQuiz(
+	idPergunta INT PRIMARY KEY AUTO_INCREMENT,
+    pergunta VARCHAR(100) NOT NULL,
+    alternativa1 VARCHAR(30) NOT NULL,
+    alternativa2 VARCHAR(30) NOT NULL,
+    alternativa3 VARCHAR(30) NOT NULL,
+    alternativa4 VARCHAR(30) NOT NULL,
+	resposta INT NOT NULL,
+    idQuiz INT,
+    foreign key(idQuiz) REFERENCES Quiz(idQuiz)
+);
+
 CREATE TABLE ResultadoQuiz(
 	idUsuario INT,
     idQuiz INT,
@@ -489,6 +501,27 @@ INSERT INTO LutaNoticia (idNoticia, idLuta) VALUES
 
 INSERT INTO Quiz (dataInicio, dataFim) 
 VALUES (NOW(), '2026-01-01');
+
+INSERT INTO PerguntaQuiz (pergunta, alternativa1, alternativa2, alternativa3, alternativa4, resposta, idQuiz) VALUES
+("Qual foi o primeiro campeão do UFC?", "Ken Shamrock", "Royce Gracie", "Mark Coleman", "Dan Severn", 1, 1),
+
+("Qual lutador tem mais nocautes na história do UFC?", "Derrick Lewis", "Anderson Silva", "Francis Ngannou", "Vitor Belfort", 0, 1),
+
+("Quem derrotou Ronda Rousey pela primeira vez no UFC?", "Holly Holm", "Amanda Nunes", "Miesha Tate", "Valentina Shevchenko", 0, 1),
+
+("Qual brasileiro foi campeão simultâneo em duas categorias no UFC?", "José Aldo", "Charles Oliveira", "Anderson Silva", "Amanda Nunes", 3, 1),
+
+("Quem é conhecido como 'Bones'?", "Jon Jones", "Israel Adesanya", "Dominick Reyes", "Glover Teixeira", 0, 1),
+
+("Qual evento teve a maior venda de pay-per-view da história do UFC?", "UFC 229: Khabib vs McGregor", "UFC 100", "UFC 264: Poirier vs McGregor 3", "UFC 205: Alvarez vs McGregor", 0, 1),
+
+("Qual lutador se aposentou invicto com 29 vitórias?", "Georges St-Pierre", "Khabib Nurmagomedov", "Cain Velasquez", "BJ Penn", 1, 1),
+
+("Qual foi a nacionalidade de Anderson Silva?", "Brasileiro", "Cubano", "Nigeriano", "Americano", 0, 1),
+
+("Quem é conhecido como 'El Cucuy'?", "Tony Ferguson", "Nate Diaz", "Justin Gaethje", "Kevin Lee", 0, 1),
+
+("Qual lutadora nocauteou Amanda Nunes em 2022 para conquistar o cinturão?", "Julianna Peña", "Valentina Shevchenko", "Raquel Pennington", "Holly Holm", 0, 1);
 
 INSERT INTO ResultadoQuiz (idUsuario, idQuiz, acertos) 
 VALUES 

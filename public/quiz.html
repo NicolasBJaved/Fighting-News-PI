@@ -67,63 +67,12 @@
 </body>
 <script>
 
-    var perguntasVetor = [
-        {
-            pergunta: "Qual foi o primeiro campeão do UFC?",
-            alternativas: ["Ken Shamrock", "Royce Gracie", "Mark Coleman", "Dan Severn"],
-            resposta: 1
-        },
-        {
-            pergunta: "Qual lutador tem mais nocautes na história do UFC?",
-            alternativas: ["Derrick Lewis", "Anderson Silva", "Francis Ngannou", "Vitor Belfort"],
-            resposta: 0
-        },
-        {
-            pergunta: "Quem derrotou Ronda Rousey pela primeira vez no UFC?",
-            alternativas: ["Holly Holm", "Amanda Nunes", "Miesha Tate", "Valentina Shevchenko"],
-            resposta: 0
-        },
-        {
-            pergunta: "Qual brasileiro foi campeão simultâneo em duas categorias no UFC?",
-            alternativas: ["José Aldo", "Charles Oliveira", "Anderson Silva", "Amanda Nunes"],
-            resposta: 3
-        },
-        {
-            pergunta: "Quem é conhecido como 'Bones'?",
-            alternativas: ["Jon Jones", "Israel Adesanya", "Dominick Reyes", "Glover Teixeira"],
-            resposta: 0
-        },
-        {
-            pergunta: "Qual evento teve a maior venda de pay-per-view da história do UFC?",
-            alternativas: ["UFC 229: Khabib vs McGregor", "UFC 100", "UFC 264: Poirier vs McGregor 3", "UFC 205: Alvarez vs McGregor"],
-            resposta: 0
-        },
-        {
-            pergunta: "Qual lutador se aposentou invicto com 29 vitórias?",
-            alternativas: ["Georges St-Pierre", "Khabib Nurmagomedov", "Cain Velasquez", "BJ Penn"],
-            resposta: 1
-        },
-        {
-            pergunta: "Qual foi a nacionalidade de Anderson Silva?",
-            alternativas: ["Brasileiro", "Cubano", "Nigeriano", "Americano"],
-            resposta: 0
-        },
-        {
-            pergunta: "Quem é conhecido como 'El Cucuy'?",
-            alternativas: ["Tony Ferguson", "Nate Diaz", "Justin Gaethje", "Kevin Lee"],
-            resposta: 0
-        },
-        {
-            pergunta: "Qual lutadora nocauteou Amanda Nunes em 2022 para conquistar o cinturão?",
-            alternativas: ["Julianna Peña", "Valentina Shevchenko", "Raquel Pennington", "Holly Holm"],
-            resposta: 0
-        }
-    ];
+    var perguntasVetor = null;
 
     var idQuizAtual = null;
     var acertos = 0;
     var contador = 0;
-
+ 
     function carregarQuizAtual() {
         fetch("/quiz/carregarQuizAtual", {
             method: "GET",
@@ -135,11 +84,35 @@
                 resposta.json().then(function (resposta) {
                     console.log(resposta[0].idQuiz);
                     idQuizAtual = resposta[0].idQuiz;
+                    carregarPerguntasQuiz(idQuizAtual);
                     console.log("Quiz atual carregado com sucesso.");
                 });
                 console.log("Quiz atual carregado com sucesso.");
             } else {
                 console.log("Erro ao carregar quiz atual: " + resposta.status);
+            }
+        });
+    }
+
+    function carregarPerguntasQuiz(idQuizAtual){
+        fetch("/quiz/carregarPerguntasQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idQuizServer: idQuizAtual
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log("PERGUNTAS: " + resposta)
+                resposta.json().then(function (resposta) {
+                    console.log("PERGUNTAS: " + resposta[0].pergunta)
+                    perguntasVetor = resposta;
+                    console.log("Perguntas pegas com sucesso")
+                });
+            } else {
+                console.log("Erro ao carregar perguntas: " + resposta.status);
             }
         });
     }
@@ -187,36 +160,35 @@
                 <h2>${perguntasVetor[0].pergunta}</h2>
                 <div id="divAlternativa1">
                     <input type="radio" name="alternativa" id="alternativa1" value="0">
-                    <label for="alternativa1">${perguntasVetor[0].alternativas[0]}</label><br>
+                    <label for="alternativa1">${perguntasVetor[0].alternativa1}</label><br>
                 </div>
                 <div id="divAlternativa2">
                     <input type="radio" name="alternativa" id="alternativa2" value="1">
-                    <label for="alternativa2">${perguntasVetor[0].alternativas[1]}</label><br>
+                    <label for="alternativa2">${perguntasVetor[0].alternativa2}</label><br>
                 </div>
                 <div id="divAlternativa3">
                     <input type="radio" name="alternativa" id="alternativa3" value="2">
-                    <label for="alternativa3">${perguntasVetor[0].alternativas[2]}</label><br>
+                    <label for="alternativa3">${perguntasVetor[0].alternativa3}</label><br>
                 </div>
 
                 <div id="divAlternativa4">
                     <input type="radio" name="alternativa" id="alternativa4" value="3">
-                    <label for="alternativa4">${perguntasVetor[0].alternativas[3]}</label><br>
+                    <label for="alternativa4">${perguntasVetor[0].alternativa4}</label><br>
                 </div>
             </div>
             <div class="botoes">
                 <button id="submeterResposta" onclick="verificarResposta()">Submeter resposta</button>
                 <button id="proximaPergunta" onclick="proximaPergunta()">Próxima Pergunta</button>
             </div>
-        `;
-        contador++;
-            
+        `;            
     }
 
     function verificarResposta() {
         var respostaSelecionada = document.querySelector('input[name="alternativa"]:checked');
         if (respostaSelecionada) {
             var resposta = respostaSelecionada.value;
-            console.log(resposta);
+            console.log("RESPOSTA SELECIONADA: "+resposta);
+            console.log("RESPOSTA   CORRETA: "+perguntasVetor[contador].resposta);
             if (resposta == perguntasVetor[contador].resposta) {
                 submeterResposta.disabled = true;
                 alternativa1.disabled = true;
@@ -280,20 +252,20 @@
                 <h2>${perguntasVetor[contador].pergunta}</h2>
                 <div id="divAlternativa1">
                     <input type="radio" name="alternativa" id="alternativa1" value="0">
-                    <label for="alternativa1">${perguntasVetor[contador].alternativas[0]}</label><br>
+                    <label for="alternativa1">${perguntasVetor[contador].alternativa1}</label><br>
                 </div>
                 <div id="divAlternativa2">
                     <input type="radio" name="alternativa" id="alternativa2" value="1">
-                    <label for="alternativa2">${perguntasVetor[contador].alternativas[1]}</label><br>
+                    <label for="alternativa2">${perguntasVetor[contador].alternativa2}</label><br>
                 </div>
                 <div id="divAlternativa3">
                     <input type="radio" name="alternativa" id="alternativa3" value="2">
-                    <label for="alternativa3">${perguntasVetor[contador].alternativas[2]}</label><br>
+                    <label for="alternativa3">${perguntasVetor[contador].alternativa3}</label><br>
                 </div>
 
                 <div id="divAlternativa4">
                     <input type="radio" name="alternativa" id="alternativa4" value="3">
-                    <label for="alternativa4">${perguntasVetor[contador].alternativas[3]}</label><br>
+                    <label for="alternativa4">${perguntasVetor[contador].alternativa4}</label><br>
                 </div>
             </div>
             <div class="botoes">
@@ -318,9 +290,9 @@
             })
         }).then(function (resposta) {
             if (resposta.ok) {
-                alert("Resultado salvo com sucesso!");
+                console.log("Resultado salvo com sucesso!");
             } else {
-                alert("Erro ao salvar resultado.");
+                console.log("Erro ao salvar resultado.");
             }
         });
     }

@@ -9,10 +9,19 @@ function salvarResultado(idUsuario, idQuiz, acertos) {
     return database.executar(instrucao);
 }
 
-function carregarQuizAtual() {
+function carregarQuizAtual() { 
     console.log("Entrou no quizModel");
     var instrucao = `
         SELECT * FROM Quiz WHERE NOW() > dataInicio AND NOW() < dataFim;
+    `;
+    console.log("Executando a query: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function carregarPerguntasQuiz(idQuiz){
+    console.log("Entrou no quizModel");
+    var instrucao = `
+        SELECT * FROM PerguntaQuiz WHERE idQuiz = ${idQuiz};
     `;
     console.log("Executando a query: \n" + instrucao);
     return database.executar(instrucao);
@@ -30,5 +39,6 @@ function verificarUsuarioJaFezQuiz(idUsuario, idQuiz) {
 module.exports = {
     salvarResultado,
     carregarQuizAtual,
+    carregarPerguntasQuiz,
     verificarUsuarioJaFezQuiz
 }

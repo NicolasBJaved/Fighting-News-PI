@@ -10,8 +10,13 @@ router.post("/salvarResultado", function (req, res) {
 
 router.get("/carregarQuizAtual", function (req, res) {
     console.log("Entrou na rota /carregarQuizAtual");
-    quizController.carregarQuizAtual(req, res);
+    quizController.carregarQuizAtual(req, res); 
 });
+
+router.post("/carregarPerguntasQuiz", function(req, res){
+    console.log("Entrou na rota /carregarPerguntasQuiz");
+    quizController.carregarPerguntasQuiz(req, res); 
+})
 
 router.post("/verificarUsuarioJaFezQuiz", function (req, res) {
     console.log("Entrou na rota /verificarUsuarioJaFezQuiz");

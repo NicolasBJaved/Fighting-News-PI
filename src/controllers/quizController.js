@@ -7,13 +7,23 @@ function salvarResultado(req, res) {
 
 
     quizModel.salvarResultado(idUsuario, idQuiz, acertos)
-        .then(function (resultado) {
+        .then(function (resultado) { 
             res.status(200).json(resultado);
         });
 }
 
 function carregarQuizAtual(req, res){
     quizModel.carregarQuizAtual()
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+        });
+}
+
+function carregarPerguntasQuiz(req, res){
+
+    var idQuiz = req.body.idQuizServer;
+
+    quizModel.carregarPerguntasQuiz(idQuiz)
         .then(function (resultado) {
             res.status(200).json(resultado);
         });
@@ -31,5 +41,6 @@ function verificarUsuarioJaFezQuiz(req, res){
 module.exports = {
     salvarResultado,
     carregarQuizAtual,
+    carregarPerguntasQuiz,
     verificarUsuarioJaFezQuiz
 }
