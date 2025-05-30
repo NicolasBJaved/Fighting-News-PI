@@ -221,27 +221,27 @@ INSERT INTO Noticia (tituloNoticia, previaNoticia, dataPostagem, caminhoImagem) 
  '2025-05-25', './imgs/imagens-noticias/Movsar-Evloev-UFC-Vegas-56.webp'),
  
 ('Charles Do Bronx cita adaptação de Topuria ao peso-leve como possível vantagem no UFC 317',
- 'No dia 28 de junho, na ‘T-Mobile Arena’, em Las Vegas (EUA), Charles Oliveira...', '2025-05-23',
+ 'No dia 28 de junho, na ‘T-Mobile Arena’, em Las Vegas (EUA), Charles Oliveira...', '2025-05-25',
  './imgs/imagens-noticias/charles-do-bronx-entrada-ufc-309-nova-york.webp'),
  
 ('Jon Jones reage com dureza a Tom Aspinall e tensão aumenta no UFC: “Cale a boca”', 
-'A tensão entre Jon Jones e Tom Aspinall ganhou força nos últimos dias. O...', '2025-05-23',
+'A tensão entre Jon Jones e Tom Aspinall ganhou força nos últimos dias. O...', '2025-05-25',
  './imgs/imagens-noticias/jon-jones-ufc-309-1.webp'),
  
 ('Polêmica! Brasileiro levanta suspeitas de armação após sofrer nocaute relâmpago no MMA',
- 'No último fim de semana, o evento Xtreme Combat Championship 2, realizado em Viena,...', '2025-05-23',
+ 'No último fim de semana, o evento Xtreme Combat Championship 2, realizado em Viena,...', '2025-05-25',
  './imgs/imagens-noticias/Burak-Kizilirmak-Delberty-Lamark-xcc2.webp'),
  
 ('Refém de Jon Jones? Alexander Volkov expressa frustração com situação dos pesos-pesados',
  'A indefinição no topo da divisão dos pesos-pesados do UFC não influencia na carreira apenas dos envolvidos, no caso Jon Jones...',
- '2025-06-01', './imgs/imagens-noticias/volkov-protesto-derrota-ufc-310-dana-white.webp'),
+ '2025-05-25', './imgs/imagens-noticias/volkov-protesto-derrota-ufc-310-dana-white.webp'),
 
 ('Arman Tsarukyan abre as portas para duelo com Paddy Pimblett no UFC',
  'Primeiro colocado no ranking peso-leve (70 kg) do UFC, Arman Tsarukyan foi deixado de...',
- '2025-06-01', './imgs/imagens-noticias/arman-tsarukyan-ufc-austin-comemoracao.webp'),
+ '2025-05-25', './imgs/imagens-noticias/arman-tsarukyan-ufc-austin-comemoracao.webp'),
 
 ('Preocupa? Merab Dvalishvili sofre lesão às vésperas de luta no UFC 316',
- 'Às vésperas da realização do UFC 316, marcado para acontecer no dia 7 de...', '2025-06-01',
+ 'Às vésperas da realização do UFC 316, marcado para acontecer no dia 7 de...', '2025-05-25',
  './imgs/imagens-noticias/merab-dvalishvili-comemoracao-ufc-311.webp');
 
 INSERT INTO ParagrafoNoticia (idNoticia, conteudo, ordem) VALUES

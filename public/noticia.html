@@ -40,16 +40,21 @@
                 <hr style="border: 1px solid red; width: 95%;">
             </div>
             <div class="informacoesNoticia" id="informacoesNoticia">
-                <p id="dataPostagem" style="font-size: 25px; color: red;"></p>
-                <div class="likes">
-                    <i class="fa fa-solid fa-thumbs-up" onclick="verificarLike()" id="botaoLike"
-                        style="cursor: pointer;"></i>
-                    <h3 id="qtdLikes">10</h3>
+                <div class="conteudoInformacoesNoticia">
+                    <div class="dataELike">
+                        <p id="dataPostagem" style="font-size: 25px; color: red;"></p>
+                        <div class="likes">
+                            <i class="fa fa-solid fa-thumbs-up" onclick="verificarLike()" id="botaoLike"
+                                style="cursor: pointer;"></i>
+                            <h3 id="qtdLikes">10</h3>
+                        </div>
+                    </div>
+                    <div id="excluirNoticiaDiv" class="excluirNoticia">
+                    </div>
                 </div>
+
             </div>
             <div id="conteudoNoticia" class="textoNoticia">
-            </div>
-            <div id="excluirNoticiaDiv" class="excluirNoticia">
             </div>
             <div id="comentarios" class="comentarios">
                 <div class="comentar">
@@ -211,6 +216,7 @@
                                     <div class="informacoesUsuario">
                                         <h3>${resposta[i].nome}</h3>
                                         <h4>${resposta[i].data.split('T')[0]}</h4>
+
                                     <div class="botaoDeletar">
                                         <button onclick=deletarComentario(${resposta[i].idComentario})>Deletar</button>
                                     </div>

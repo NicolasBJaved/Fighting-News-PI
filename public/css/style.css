@@ -428,8 +428,31 @@ footer .redesSociais a img {
 
 .informacoesNoticia {
     display: flex;
+    justify-content: flex-start;
     width: 100%;
     padding-bottom: 20px;
+}
+
+.informacoesNoticia .conteudoInformacoesNoticia{
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+}
+
+.informacoesNoticia .conteudoInformacoesNoticia .dataELike{
+    display: flex;
+    width: fit-content;
+    align-items: center;
+}
+
+.informacoesNoticia .conteudoInformacoesNoticia .excluirNoticia button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
 .likes {
