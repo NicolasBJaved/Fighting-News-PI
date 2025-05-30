@@ -995,7 +995,7 @@ footer .redesSociais a img {
 
 .tituloAdicionarNoticia{
     padding-top: 150px;
-    width: 94%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1005,7 +1005,7 @@ footer .redesSociais a img {
 .conteudoAdicionarNoticia {
     color: white;
     height: fit-content;
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia{
@@ -1013,13 +1013,16 @@ footer .redesSociais a img {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 75vh;
+    height: 110vh;
 }
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .parteCimaFormulario{
     width: 80%;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    height: 1000px;
 }
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .parteBaixoFormulario{
@@ -1049,6 +1052,22 @@ footer .redesSociais a img {
     height: 80px;
 }
 
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .relacionarNoticia{
+    display: flex;
+    justify-content: space-around;
+    width: 25%;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .relacionarNoticia .relacionarLutas{
+    display: flex;
+    flex-direction: column;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .relacionarNoticia .relacionarLutadores{
+    display: flex;
+    flex-direction: column;
+}
+
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .imagemNoticia{
     display: flex;
     flex-direction: column;
@@ -1072,7 +1091,7 @@ footer .redesSociais a img {
    display: flex;
    flex-wrap: wrap;
    width: 64%;
-   justify-content: flex-start;
+   justify-content: center;
    gap: 20px;
 }
 

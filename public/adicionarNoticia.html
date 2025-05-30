@@ -28,8 +28,8 @@
     </header>
     <div class="containerAdicionarNoticia">
         <div class="tituloAdicionarNoticia">
-            <h1>Adicionar Notícia</h1>
-            <hr style="border: 1px solid red; width: 18%;">
+            <h1 style="font-size: 60px;">Adicionar Notícia</h1>
+            <hr style="border: 1px solid red; width: 27%;">
         </div>
         <div class="conteudoAdicionarNoticia">
             <div class="formularioAdicionarNoticia">
@@ -49,16 +49,19 @@
                         <h1>Prévia</h1>
                         <textarea type="text" id="previa" placeholder="Escreva a prévia da notícia"></textarea>
                     </div>
-                    <div>
-                        <label>Escolha as lutas:</label>
-                        <div class="listasLutasELutadores" id="listaLutas" style="display: none;">
+                    <div class="relacionarNoticia">
+                        <div class="relacionarLutas">
+                            <label>Escolha as lutas:</label>
+                            <div class="listasLutasELutadores" id="listaLutas" style="display: none;">
+                            </div>
+                            <button onclick="mostrarLutas()">Mostrar lutas</button>
                         </div>
-                        <button onclick="mostrarLutas()">Mostrar lutas</button>
-
-                        <label for="lutadores">Escolha os lutadores:</label>
-                        <div class="listasLutasELutadores" id="listaLutadores" style="display: none;">
+                        <div class="relacionarLutadores">
+                            <label for="lutadores">Escolha os lutadores:</label>
+                            <div class="listasLutasELutadores" id="listaLutadores" style="display: none;">
+                            </div>
+                            <button onclick="mostrarLutadores()">Mostrar lutadores</button>
                         </div>
-                        <button onclick="mostrarLutadores()">Mostrar lutadores</button>
                     </div>
                 </div>
                 <div class="parteBaixoFormulario">
@@ -132,12 +135,26 @@
         })
     }
 
+    var mostrandoLutas = 1;
     function mostrarLutas() {
-        listaLutas.style.display = "block";
+        if(mostrandoLutas == 1){
+            listaLutas.style.display = "block";
+            mostrandoLutas = 0;
+        }else{
+            listaLutas.style.display = "none";
+            mostrandoLutas = 1;
+        }
     }
 
+        var mostrandoLutadores = 1;
     function mostrarLutadores() {
-        listaLutadores.style.display = "block";
+        if(mostrandoLutadores == 1){
+            listaLutadores.style.display = "block";
+            mostrandoLutadores = 0;
+        }else{
+            listaLutadores.style.display = "none";
+            mostrandoLutadores = 1;
+        }
     }
 
     function carregarLutas() {
