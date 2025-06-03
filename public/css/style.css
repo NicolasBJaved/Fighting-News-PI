@@ -56,7 +56,6 @@ nav .perfilNav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid rgba(255, 0, 0, 0.267);
     padding: 10px;
 }
 
@@ -234,8 +233,11 @@ footer .redesSociais a img {
     width: 250px;
     max-height: 150px;
     overflow-y: auto;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: 1px solid rgba(255, 0, 0, 0.267);
 }
+
 
 .listasLutasELutadores label {
     display: block;
@@ -600,7 +602,7 @@ footer .redesSociais a img {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 65%;
+    height: 80%;
 }
 
 .telaInicio .conteudoCimaTelaInicio{
@@ -627,12 +629,13 @@ footer .redesSociais a img {
     border: 1px solid rgba(255, 0, 0, 0.267);
     padding: 20px;
     border-radius: 20px;
+    width: 700px;
 }
 
 .questoes .botoes{
     margin-top: 10px;
     display: flex;
-    width: 60%;
+    width: 40%;
     justify-content: space-between;
 }
 
@@ -860,6 +863,7 @@ footer .redesSociais a img {
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
     height: 60%;
     width: 40vw;
 }
@@ -878,7 +882,7 @@ footer .redesSociais a img {
 .lutador {
     display: flex;
     color: white;
-    width: 70%;
+    width: 100%;
     border: 1px solid rgba(255, 0, 0, 0.267);
     border-radius: 2px;
     padding-left: 1px;
@@ -915,7 +919,7 @@ footer .redesSociais a img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     margin-bottom: 100px;
 }
 
@@ -1004,6 +1008,17 @@ footer .redesSociais a img {
     padding: 10px;
 }
 
+.perfil .dadoUsuario .campoSenhaEIcone{
+    display: flex;
+    align-items: center;
+}
+
+.perfil .dadoUsuario .campoSenhaEIcone #iconeOlho{
+    border: 1px solid rgba(255, 0, 0, 0.267);
+    padding: 7px;
+    border-radius: 5px;
+}
+
 .perfil .imagemUsuario img {
     width: 200px;
     height: 200px;
@@ -1016,7 +1031,13 @@ footer .redesSociais a img {
     height: 100vh;
 }
 
+.textareaEstilo{
+    background-color:#ccc;
+    color: black;
+}
+
 .tituloAdicionarNoticia{
+    color: white;
     padding-top: 150px;
     width: 100%;
     display: flex;
@@ -1036,16 +1057,15 @@ footer .redesSociais a img {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 110vh;
+    height: 78vh;
 }
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .parteCimaFormulario{
     width: 80%;
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 1000px;
+    height: 300px;
 }
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .parteBaixoFormulario{
@@ -1078,18 +1098,43 @@ footer .redesSociais a img {
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .relacionarNoticia{
     display: flex;
     justify-content: space-around;
-    width: 25%;
+    width: 30%;
+    color: black;
 }
+
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .relacionarNoticia .relacionarLutas{
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .relacionarNoticia .relacionarLutas button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .relacionarNoticia .relacionarLutadores{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
+
+.conteudoAdicionarNoticia .formularioAdicionarNoticia .relacionarNoticia .relacionarLutadores button{
+    background-color: rgba(0, 0, 0, 0.185);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 0, 0.267);
+}
+
 
 .conteudoAdicionarNoticia .formularioAdicionarNoticia .imagemNoticia{
     display: flex;

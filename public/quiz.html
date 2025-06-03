@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="./imgs/icone.png">
+    <title>Quiz</title>
 </head>
 <script src="./js/script.js"></script>
 
@@ -35,7 +36,7 @@
                         <h1>Quiz do UFC</h1>
                         <hr style="border: 1px solid red; width: 100%;">
                     </div>
-                    <p>Teste seu conhecimento sobre o UFC</p>
+                    <p>Teste seu conhecimento sobre o UFC!</p>
                 </div>
                 <div class="botaoQuizTelaInicio">
                     <button id="iniciarQuiz" onclick="iniciar()">Iniciar Quiz</button>
@@ -109,6 +110,7 @@
                 resposta.json().then(function (resposta) {
                     console.log("PERGUNTAS: " + resposta[0].pergunta)
                     perguntasVetor = resposta;
+                    console.log("PERGUNTAS VETOR: " + perguntasVetor.length)
                     console.log("Perguntas pegas com sucesso")
                 });
             } else {
@@ -221,7 +223,6 @@
             } else if (perguntasVetor[contador].resposta == 3) {
                 divAlternativa4.style.backgroundColor = "green";
             }
-            contador++;
         } else {
             alert("Selecione uma alternativa.");
         }
@@ -234,6 +235,7 @@
             alert("Responda a pergunta antes de prosseguir.");
             return;
         }
+        contador++;
 
         if (contador >= perguntasVetor.length) {
             questoes.style.display = "none";
@@ -246,9 +248,10 @@
             `;
             return
         }
+        console.log("CONTADOR: " + contador)
         questoes.innerHTML = `
             <div class="conteudoQuestoes">
-                <h3>Pergunta ${contador} de ${perguntasVetor.length}</h3>
+                <h3>Pergunta ${contador + 1} de ${perguntasVetor.length}</h3>
                 <h2>${perguntasVetor[contador].pergunta}</h2>
                 <div id="divAlternativa1">
                     <input type="radio" name="alternativa" id="alternativa1" value="0">

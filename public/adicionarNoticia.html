@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="./imgs/icone.png">
+    <title>Adicionar Notícia</title>
 </head>
 <script src="./js/script.js"></script>
 
@@ -29,14 +30,14 @@
     <div class="containerAdicionarNoticia">
         <div class="tituloAdicionarNoticia">
             <h1 style="font-size: 60px;">Adicionar Notícia</h1>
-            <hr style="border: 1px solid red; width: 27%;">
+            <hr style="border: 1px solid red; width: 26%;">
         </div>
         <div class="conteudoAdicionarNoticia">
             <div class="formularioAdicionarNoticia">
                 <div class="parteCimaFormulario">
                     <div class="tituloNoticia">
                         <h2>Titulo</h2>
-                        <textarea type="text" id="titulo" placeholder="Escreva o título da notícia"></textarea>
+                        <textarea class="textareaEstilo" type="text" id="titulo" placeholder="Escreva o título da notícia"></textarea>
                     </div>
                     <div class="imagemNoticia">
                         <h1>Imagem</h1>
@@ -47,20 +48,20 @@
                     </div>
                     <div class="previaNoticia">
                         <h1>Prévia</h1>
-                        <textarea type="text" id="previa" placeholder="Escreva a prévia da notícia"></textarea>
+                        <textarea class="textareaEstilo" type="text" id="previa" placeholder="Escreva a prévia da notícia"></textarea>
                     </div>
                     <div class="relacionarNoticia">
                         <div class="relacionarLutas">
-                            <label>Escolha as lutas:</label>
+                            <label style="color: white;">Escolha as lutas:</label>
+                            <button class="botaoRelacionarNoticia" onclick="mostrarLutas()">Mostrar lutas</button>
                             <div class="listasLutasELutadores" id="listaLutas" style="display: none;">
                             </div>
-                            <button onclick="mostrarLutas()">Mostrar lutas</button>
                         </div>
                         <div class="relacionarLutadores">
-                            <label for="lutadores">Escolha os lutadores:</label>
+                            <label style="color: white;" for="lutadores">Escolha os lutadores:</label>
+                            <button class="botaoRelacionarNoticia" onclick="mostrarLutadores()">Mostrar lutadores</button>
                             <div class="listasLutasELutadores" id="listaLutadores" style="display: none;">
                             </div>
-                            <button onclick="mostrarLutadores()">Mostrar lutadores</button>
                         </div>
                     </div>
                 </div>
@@ -69,7 +70,7 @@
                         <div id="paragrafos" class="paragrafos">
                             <div class="paragrafo">
                                 <h1>1º Parágrafo</h1>
-                                <textarea name="text" id="paragrafo1" placeholder="Escreva o parágrafo"></textarea>
+                                <textarea class="textareaEstilo" name="text" id="paragrafo1" placeholder="Escreva o parágrafo"></textarea>
                             </div>
                         </div>
                         <div class="botoesPerfil">
@@ -210,7 +211,7 @@
     function publicarNoticia() {
 
         if (!foto.files[0]) {
-            alert("Você precisa adicionar uma imagem na noticia!");
+            alert("Você precisa adicionar uma imagem na notícia!");
             return;
         }
 
@@ -336,7 +337,7 @@
         var novoParagrafo = `
             <div class="paragrafo">
                 <h1>${contadorParagrafo}º Parágrafo </h1>
-                <textarea name="text" id="paragrafo${contadorParagrafo}" placeholder="Escreva o parágrafo"></textarea>
+                <textarea class="textareaEstilo" name="text" id="paragrafo${contadorParagrafo}" placeholder="Escreva o parágrafo"></textarea>
             </div>
         `;
 

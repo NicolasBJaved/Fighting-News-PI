@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Noticia 1</title>
+    <script src="https://kit.fontawesome.com/2cdf1a07ef.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="./imgs/icone.png">
+    <title>Notícia</title>
 </head>
 <script src="./js/script.js"></script>
 
@@ -63,7 +64,7 @@
                         <hr style="border: 1px solid red; width: 48%;">
                     </div>
                     <div class="areaComentario">
-                        <textarea id="ipt_comentario" placeholder="Digite seu comentário"
+                        <textarea class="textareaEstilo" id="ipt_comentario" placeholder="Digite seu comentário"
                             style="width: 517px; word-break: break-word; height: 151px;" rows="4"></textarea>
                         <button onclick="comentar()">Comentar</button>
                     </div>
@@ -102,7 +103,7 @@
         if (admin == 1) {
             console.log("EXCLUIR NOTICIA")
             excluirNoticiaDiv.innerHTML = `
-                <button onclick="excluirNoticia()">Excluir noticia</button>
+                <button onclick="excluirNoticia()">Excluir notícia</button>
             `
         }
 
@@ -181,7 +182,7 @@
                     window.location = "./index.html"
                 })
             } else {
-                alert("Erro ao excluir noticia")
+                alert("Erro ao excluir notícia")
             }
         })
     }

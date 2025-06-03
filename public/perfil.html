@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="./imgs/icone.png">
+    <script src="https://kit.fontawesome.com/2cdf1a07ef.js" crossorigin="anonymous"></script>
+    <title>Perfil</title>
 </head>
 <script src="./js/script.js"></script>
 
@@ -51,7 +53,12 @@
                     </div>
                     <div id="senhaUsuario" class="dadoUsuario">
                         <h2>Senha</h2>
-                        <input type="text" id="ipt_senha">
+                        <div class="campoSenhaEIcone">
+                            <input type="password" id="ipt_senha" style="width: 90%;">
+                            <div id="iconeOlho">
+                                <i class="fa-solid fa-eye-slash" onclick="visualizarSenha()"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="botoesPerfil">
                         <button onclick="enviar()">Enviar</button>
@@ -81,6 +88,17 @@
     </footer>
 </body>
 <script>
+
+    function visualizarSenha(){
+        var inputSenha = document.getElementById('ipt_senha');
+        if (inputSenha.type === 'password') {
+            iconeOlho.innerHTML = '<i class="fa-solid fa-eye" onclick="visualizarSenha()"></i>';
+            inputSenha.type = 'text';
+        } else {
+            inputSenha.type = 'password';
+            iconeOlho.innerHTML = '<i class="fa-solid fa-eye-slash" onclick="visualizarSenha()"></i>';
+        }
+    }
 
     function sair() {
         sessionStorage.EMAIL_USUARIO = null;
