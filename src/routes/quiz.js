@@ -8,6 +8,11 @@ router.post("/salvarResultado", function (req, res) {
     quizController.salvarResultado(req, res);
 });
 
+router.post("/salvarRespostasPerguntas", function(req, res){
+    console.log("Entrou na rota /salvarResultado");
+    quizController.salvarRespostasPerguntas(req, res);
+})
+
 router.get("/carregarQuizAtual", function (req, res) {
     console.log("Entrou na rota /carregarQuizAtual");
     quizController.carregarQuizAtual(req, res); 
@@ -16,6 +21,11 @@ router.get("/carregarQuizAtual", function (req, res) {
 router.post("/carregarPerguntasQuiz", function(req, res){
     console.log("Entrou na rota /carregarPerguntasQuiz");
     quizController.carregarPerguntasQuiz(req, res); 
+})
+
+router.post("/carregarAcertosErrosQuiz", function(req, res){
+    console.log("Entrou na rota /carregarAcertosErrosQuiz");
+    quizController.carregarAcertosErrosQuiz(req, res); 
 })
 
 router.post("/verificarUsuarioJaFezQuiz", function (req, res) {

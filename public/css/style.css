@@ -650,6 +650,13 @@ footer .redesSociais a img {
     border: 1px solid rgba(255, 0, 0, 0.267);
 }
 
+.questoes .conteudoQuestoes .alternativasEGrafico{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
 .resultado {
     color: white;
     display: none;

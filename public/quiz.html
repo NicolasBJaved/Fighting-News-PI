@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" type="image/png" href="./imgs/icone.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Quiz</title>
 </head>
 <script src="./js/script.js"></script>
@@ -73,6 +74,9 @@
     var idQuizAtual = null;
     var acertos = 0;
     var contador = 0;
+
+    var acertosErros = [];
+    var acertosErrosTotal = []
  
     function carregarQuizAtual() {
         fetch("/quiz/carregarQuizAtual", {
@@ -110,11 +114,36 @@
                 resposta.json().then(function (resposta) {
                     console.log("PERGUNTAS: " + resposta[0].pergunta)
                     perguntasVetor = resposta;
+                    carregarAcertosErrosQuiz();
                     console.log("PERGUNTAS VETOR: " + perguntasVetor.length)
                     console.log("Perguntas pegas com sucesso")
                 });
             } else {
                 console.log("Erro ao carregar perguntas: " + resposta.status);
+            }
+        });
+    }
+
+    function carregarAcertosErrosQuiz(){
+        var vetorIdsPerguntas = [];
+        for(var i = 0; i < perguntasVetor.length; i++){
+            vetorIdsPerguntas.push(perguntasVetor[i].idPergunta);
+        }
+        fetch("/quiz/carregarAcertosErrosQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idsPerguntasServer: vetorIdsPerguntas
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                acertosErrosTotal = resposta;
+                });
+            } else {
+                console.log("Erro ao carregar acertos e erros: " + resposta.status);
             }
         });
     }
@@ -160,29 +189,56 @@
             <div class="conteudoQuestoes">
                 <h3>Pergunta 1 de ${perguntasVetor.length}</h3>
                 <h2>${perguntasVetor[0].pergunta}</h2>
-                <div id="divAlternativa1">
-                    <input type="radio" name="alternativa" id="alternativa1" value="0">
-                    <label for="alternativa1">${perguntasVetor[0].alternativa1}</label><br>
-                </div>
-                <div id="divAlternativa2">
-                    <input type="radio" name="alternativa" id="alternativa2" value="1">
-                    <label for="alternativa2">${perguntasVetor[0].alternativa2}</label><br>
-                </div>
-                <div id="divAlternativa3">
-                    <input type="radio" name="alternativa" id="alternativa3" value="2">
-                    <label for="alternativa3">${perguntasVetor[0].alternativa3}</label><br>
-                </div>
+                <div class="alternativasEGrafico">
+                    <div class="alternativas">
+                        <div id="divAlternativa1">
+                        <input type="radio" name="alternativa" id="alternativa1" value="0">
+                        <label for="alternativa1">${perguntasVetor[0].alternativa1}</label><br>
+                        </div>
+                        <div id="divAlternativa2">
+                            <input type="radio" name="alternativa" id="alternativa2" value="1">
+                            <label for="alternativa2">${perguntasVetor[0].alternativa2}</label><br>
+                        </div>
+                        <div id="divAlternativa3">
+                            <input type="radio" name="alternativa" id="alternativa3" value="2">
+                            <label for="alternativa3">${perguntasVetor[0].alternativa3}</label><br>
+                        </div>
 
-                <div id="divAlternativa4">
-                    <input type="radio" name="alternativa" id="alternativa4" value="3">
-                    <label for="alternativa4">${perguntasVetor[0].alternativa4}</label><br>
+                        <div id="divAlternativa4">
+                            <input type="radio" name="alternativa" id="alternativa4" value="3">
+                            <label for="alternativa4">${perguntasVetor[0].alternativa4}</label><br>
+                        </div>
+                    </div>
+                    <div class="graficoAcertos">
+                        <canvas id="myChart" style="position: relative; height: 100px; width: 200px;"></canvas>
+                    </div>
                 </div>
+                
             </div>
             <div class="botoes">
                 <button id="submeterResposta" onclick="verificarResposta()">Submeter resposta</button>
                 <button id="proximaPergunta" onclick="proximaPergunta()">Próxima Pergunta</button>
             </div>
-        `;            
+        `;    
+        
+        const ctx = document.getElementById('myChart');
+
+        var totalRespostas = acertosErrosTotal[contador].totalRespostas;
+        var totalAcertos = (acertosErrosTotal[contador].totalAcertos / totalRespostas) * 100;
+        var totalErros = (acertosErrosTotal[contador].totalErros /totalRespostas) * 100;
+        
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['% Acertos', '% Erros'],
+                datasets: [{
+                    data: [Math.round(totalAcertos), Math.round(totalErros)],
+                    borderWidth: 2
+                }
+                ]
+            }
+        });
     }
 
     function verificarResposta() {
@@ -197,6 +253,7 @@
                 alternativa2.disabled = true;
                 alternativa3.disabled = true;
                 alternativa4.disabled = true;
+                acertosErros.push(1)
                 acertos++;
             } else {
                 submeterResposta.disabled = true;
@@ -213,6 +270,7 @@
                 } else if (resposta == 3) {
                     divAlternativa4.style.backgroundColor = "red";
                 }
+                acertosErros.push(0)
             }
             if (perguntasVetor[contador].resposta == 0) {
                 divAlternativa1.style.backgroundColor = "green";
@@ -241,6 +299,7 @@
             questoes.style.display = "none";
             resultado.style.display = "flex";
             salvarResultado();
+            salvarRespostasPerguntas();
             resultado.innerHTML = `
                 <h2>Resultado</h2>
                 <p>Acertos: ${acertos} de ${perguntasVetor.length}. Veja o ranking semanal abaixo.</p>
@@ -253,29 +312,54 @@
             <div class="conteudoQuestoes">
                 <h3>Pergunta ${contador + 1} de ${perguntasVetor.length}</h3>
                 <h2>${perguntasVetor[contador].pergunta}</h2>
-                <div id="divAlternativa1">
-                    <input type="radio" name="alternativa" id="alternativa1" value="0">
-                    <label for="alternativa1">${perguntasVetor[contador].alternativa1}</label><br>
-                </div>
-                <div id="divAlternativa2">
-                    <input type="radio" name="alternativa" id="alternativa2" value="1">
-                    <label for="alternativa2">${perguntasVetor[contador].alternativa2}</label><br>
-                </div>
-                <div id="divAlternativa3">
-                    <input type="radio" name="alternativa" id="alternativa3" value="2">
-                    <label for="alternativa3">${perguntasVetor[contador].alternativa3}</label><br>
-                </div>
+                <div class="alternativasEGrafico">
+                    <div class="alternativas">
+                        <div id="divAlternativa1">
+                        <input type="radio" name="alternativa" id="alternativa1" value="0">
+                        <label for="alternativa1">${perguntasVetor[contador].alternativa1}</label><br>
+                        </div>
+                        <div id="divAlternativa2">
+                            <input type="radio" name="alternativa" id="alternativa2" value="1">
+                            <label for="alternativa2">${perguntasVetor[contador].alternativa2}</label><br>
+                        </div>
+                        <div id="divAlternativa3">
+                            <input type="radio" name="alternativa" id="alternativa3" value="2">
+                            <label for="alternativa3">${perguntasVetor[contador].alternativa3}</label><br>
+                        </div>
 
-                <div id="divAlternativa4">
-                    <input type="radio" name="alternativa" id="alternativa4" value="3">
-                    <label for="alternativa4">${perguntasVetor[contador].alternativa4}</label><br>
+                        <div id="divAlternativa4">
+                            <input type="radio" name="alternativa" id="alternativa4" value="3">
+                            <label for="alternativa4">${perguntasVetor[contador].alternativa4}</label><br>
+                        </div>
+                    </div>
+                    <div class="graficoAcertos">
+                        <canvas id="myChart" style="position: relative; height: 100px; width: 200px;"></canvas>
+                    </div>
                 </div>
-            </div>
             <div class="botoes">
                 <button id="submeterResposta" onclick="verificarResposta()">Submeter resposta</button>
                 <button id="proximaPergunta" onclick="proximaPergunta()">Próxima Pergunta</button>
             </div>
         `;
+
+        const ctx = document.getElementById('myChart');
+        
+        var totalRespostas = acertosErrosTotal[contador].totalRespostas;
+        var totalAcertos = (acertosErrosTotal[contador].totalAcertos / totalRespostas) * 100;
+        var totalErros = (acertosErrosTotal[contador].totalErros /totalRespostas) * 100;
+        
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['% Acertos', '% Erros'],
+                datasets: [{
+                    data: [Math.round(totalAcertos), Math.round(totalErros)],
+                    borderWidth: 2
+                }
+                ]
+            }
+        });
     }
 
     function salvarResultado() {
@@ -296,6 +380,29 @@
                 console.log("Resultado salvo com sucesso!");
             } else {
                 console.log("Erro ao salvar resultado.");
+            }
+        });
+    }
+
+    function salvarRespostasPerguntas(){
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/quiz/salvarRespostasPerguntas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                idQuizServer: idQuizAtual,
+                acertosErrosServer: acertosErros,
+                perguntasServer: perguntasVetor
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log("Respostas salvas com sucesso!");
+            } else {
+                console.log("Erro ao salvar respostas.");
             }
         });
     }
