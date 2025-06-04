@@ -77,7 +77,7 @@
 
     var acertosErros = [];
     var acertosErrosTotal = []
- 
+
     function carregarQuizAtual() {
         fetch("/quiz/carregarQuizAtual", {
             method: "GET",
@@ -99,7 +99,7 @@
         });
     }
 
-    function carregarPerguntasQuiz(idQuizAtual){
+    function carregarPerguntasQuiz(idQuizAtual) {
         fetch("/quiz/carregarPerguntasQuiz", {
             method: "POST",
             headers: {
@@ -124,9 +124,9 @@
         });
     }
 
-    function carregarAcertosErrosQuiz(){
+    function carregarAcertosErrosQuiz() {
         var vetorIdsPerguntas = [];
-        for(var i = 0; i < perguntasVetor.length; i++){
+        for (var i = 0; i < perguntasVetor.length; i++) {
             vetorIdsPerguntas.push(perguntasVetor[i].idPergunta);
         }
         fetch("/quiz/carregarAcertosErrosQuiz", {
@@ -140,7 +140,7 @@
         }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
-                acertosErrosTotal = resposta;
+                    acertosErrosTotal = resposta;
                 });
             } else {
                 console.log("Erro ao carregar acertos e erros: " + resposta.status);
@@ -148,7 +148,7 @@
         });
     }
 
-    function verficiarUsuarioJaFezQuiz(){
+    function verficiarUsuarioJaFezQuiz() {
         var idUsuario = sessionStorage.ID_USUARIO;
 
         fetch("/quiz/verificarUsuarioJaFezQuiz", {
@@ -185,6 +185,10 @@
         telaInicio.style.display = "none";
         questoes.style.display = "block";
 
+        var totalRespostas = acertosErrosTotal[contador].totalRespostas;
+        var totalAcertos = (acertosErrosTotal[contador].totalAcertos / totalRespostas) * 100;
+        var totalErros = (acertosErrosTotal[contador].totalErros / totalRespostas) * 100;
+
         questoes.innerHTML = `
             <div class="conteudoQuestoes">
                 <h3>Pergunta 1 de ${perguntasVetor.length}</h3>
@@ -209,32 +213,39 @@
                             <label for="alternativa4">${perguntasVetor[0].alternativa4}</label><br>
                         </div>
                     </div>
-                    <div class="graficoAcertos">
-                        <canvas id="myChart" style="position: relative; height: 100px; width: 200px;"></canvas>
+                    <div class="graficoELegenda">
+                        <div class="graficoAcertosErros">
+                            <canvas id="myChart" style="position: relative; height: 100px; width: 100px;"></canvas>
+                        </div>
+                        <div class="legendaGraficoAcertosErros">
+                            <div class="erros">
+                                <div style="background-color: red; height: 10px; width: 30px"></div>
+                                <span style="padding-left: 20px">Erros: ${Math.round(totalErros)}%</span>
+                            </div>
+                            <div class="acertos">
+                                <div style="background-color: #ccc; height: 10px; width: 30px"></div>
+                                <span style="padding-left: 20px">Acertos: ${Math.round(totalAcertos)}%</span>     
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
             </div>
             <div class="botoes">
                 <button id="submeterResposta" onclick="verificarResposta()">Submeter resposta</button>
                 <button id="proximaPergunta" onclick="proximaPergunta()">Próxima Pergunta</button>
             </div>
-        `;    
-        
-        const ctx = document.getElementById('myChart');
+        `;
 
-        var totalRespostas = acertosErrosTotal[contador].totalRespostas;
-        var totalAcertos = (acertosErrosTotal[contador].totalAcertos / totalRespostas) * 100;
-        var totalErros = (acertosErrosTotal[contador].totalErros /totalRespostas) * 100;
-        
+        const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['% Acertos', '% Erros'],
                 datasets: [{
                     data: [Math.round(totalAcertos), Math.round(totalErros)],
-                    borderWidth: 2
+                    borderWidth: 2,
+                    backgroundColor: ['#ccc', '#ff0000'],
+                    borderColor: ['#000000', '#000000']
                 }
                 ]
             }
@@ -245,8 +256,8 @@
         var respostaSelecionada = document.querySelector('input[name="alternativa"]:checked');
         if (respostaSelecionada) {
             var resposta = respostaSelecionada.value;
-            console.log("RESPOSTA SELECIONADA: "+resposta);
-            console.log("RESPOSTA   CORRETA: "+perguntasVetor[contador].resposta);
+            console.log("RESPOSTA SELECIONADA: " + resposta);
+            console.log("RESPOSTA   CORRETA: " + perguntasVetor[contador].resposta);
             if (resposta == perguntasVetor[contador].resposta) {
                 submeterResposta.disabled = true;
                 alternativa1.disabled = true;
@@ -289,7 +300,7 @@
     function proximaPergunta() {
         var respostaSelecionada = document.querySelector('input[name="alternativa"]:checked');
 
-        if(!respostaSelecionada) {
+        if (!respostaSelecionada) {
             alert("Responda a pergunta antes de prosseguir.");
             return;
         }
@@ -301,13 +312,21 @@
             salvarResultado();
             salvarRespostasPerguntas();
             resultado.innerHTML = `
-                <h2>Resultado</h2>
-                <p>Acertos: ${acertos} de ${perguntasVetor.length}. Veja o ranking semanal abaixo.</p>
+                <div class="tituloAcertosResultado">
+                    <h1>Resultado</h1>
+                    <p>Acertos: ${acertos} de ${perguntasVetor.length}</p>
+                </div>
                 <a href="dashboard.html">Ver ranking</a>
             `;
             return
         }
         console.log("CONTADOR: " + contador)
+
+
+        var totalRespostas = acertosErrosTotal[contador].totalRespostas;
+        var totalAcertos = (acertosErrosTotal[contador].totalAcertos / totalRespostas) * 100;
+        var totalErros = (acertosErrosTotal[contador].totalErros / totalRespostas) * 100;
+
         questoes.innerHTML = `
             <div class="conteudoQuestoes">
                 <h3>Pergunta ${contador + 1} de ${perguntasVetor.length}</h3>
@@ -332,8 +351,20 @@
                             <label for="alternativa4">${perguntasVetor[contador].alternativa4}</label><br>
                         </div>
                     </div>
-                    <div class="graficoAcertos">
-                        <canvas id="myChart" style="position: relative; height: 100px; width: 200px;"></canvas>
+                    <div class="graficoELegenda">
+                        <div class="graficoAcertosErros">
+                            <canvas id="myChart" style="position: relative; height: 100px; width: 100px;"></canvas>
+                        </div>
+                        <div class="legendaGraficoAcertosErros">
+                            <div class="erros">
+                                <div style="background-color: red; height: 10px; width: 30px"></div>
+                                <span style="padding-left: 20px">Erros: ${Math.round(totalErros)}%</span>
+                            </div>
+                            <div class="acertos">
+                                <div style="background-color: #ccc; height: 10px; width: 30px"></div>
+                                <span style="padding-left: 20px">Acertos: ${Math.round(totalAcertos)}%</span>     
+                            </div>
+                        </div>
                     </div>
                 </div>
             <div class="botoes">
@@ -343,19 +374,15 @@
         `;
 
         const ctx = document.getElementById('myChart');
-        
-        var totalRespostas = acertosErrosTotal[contador].totalRespostas;
-        var totalAcertos = (acertosErrosTotal[contador].totalAcertos / totalRespostas) * 100;
-        var totalErros = (acertosErrosTotal[contador].totalErros /totalRespostas) * 100;
-        
 
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['% Acertos', '% Erros'],
                 datasets: [{
                     data: [Math.round(totalAcertos), Math.round(totalErros)],
-                    borderWidth: 2
+                    borderWidth: 2,
+                    backgroundColor: ['#ccc', '#ff0000'],
+                    borderColor: ['#000000', '#000000']
                 }
                 ]
             }
@@ -384,7 +411,7 @@
         });
     }
 
-    function salvarRespostasPerguntas(){
+    function salvarRespostasPerguntas() {
         var idUsuario = sessionStorage.ID_USUARIO;
 
         fetch("/quiz/salvarRespostasPerguntas", {

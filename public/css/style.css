@@ -553,9 +553,9 @@ footer .redesSociais a img {
 .comentarios .comentar .areaComentario{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
-    height: 215px;
+    height: 200px;
     margin-bottom: 30px;
 }
 
@@ -647,14 +647,37 @@ footer .redesSociais a img {
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-    border: 1px solid rgba(255, 0, 0, 0.267);
+    border: 1px solid #ff000044;
 }
 
 .questoes .conteudoQuestoes .alternativasEGrafico{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 90%;
+}
+
+.questoes .conteudoQuestoes .alternativasEGrafico .graficoELegenda{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 45%;
+}
+
+
+.questoes .conteudoQuestoes .legendaGraficoAcertosErros{
+    display: flex;
+    flex-direction: column;
+}
+
+.questoes .conteudoQuestoes .legendaGraficoAcertosErros .erros{
+    display: flex;
+    align-items: center;
+}
+
+.questoes .conteudoQuestoes .legendaGraficoAcertosErros .acertos{
+    display: flex;
+    align-items: center;
 }
 
 .resultado {
@@ -662,11 +685,25 @@ footer .redesSociais a img {
     display: none;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 25vw;
-    height: 40vh;
+    height: 17vh;
     border: 1px solid rgba(255, 0, 0, 0.267);
     border-radius: 20px;
+}
+
+.resultado .tituloAcertosResultado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 7vh;
+}
+
+.resultado a{
+    text-decoration: underline;
+    text-decoration-color: red;
+    color: red;
 }
 
 /* DASHBOARD */
@@ -982,7 +1019,8 @@ footer .redesSociais a img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    height: 255px;
 }
 
 .upload {
