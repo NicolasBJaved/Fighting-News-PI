@@ -22,7 +22,7 @@ function maisHypados() {
         GROUP BY lutador.idLutador, lutador.nome, lutador.vitorias, lutador.derrotas, lutador.empate,
         lutador.nc, categoria.nome, lutador.caminhoImagem
         HAVING COUNT(likeNoticia.idUsuario)
-            >
+            >=
             (SELECT AVG(qtdLikes) 
             FROM (SELECT COUNT(*) as qtdLikes FROM LikeNoticia likeNoticia INNER JOIN Noticia noticia
             ON likeNoticia.idNoticia = noticia.idNoticia WHERE noticia.dataPostagem > '${dataFormatada}'

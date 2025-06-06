@@ -25,7 +25,7 @@ function maisHypadas() {
         WHERE noticia.dataPostagem > '${dataFormatada}'
         GROUP BY lutador1.nome, lutador2.nome, card.nome, card.data, categoria.nome, luta.rounds, luta.valendoCinturao , luta.caminhoImagem
         HAVING COUNT(likeNoticia.idUsuario)
-        >
+        >=
         (SELECT AVG(qtdLikes) 
         FROM (SELECT COUNT(*) as qtdLikes FROM LikeNoticia likeNoticia INNER JOIN Noticia noticia
         ON likeNoticia.idNoticia = noticia.idNoticia WHERE noticia.dataPostagem > '${dataFormatada}'
