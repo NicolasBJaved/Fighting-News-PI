@@ -144,18 +144,22 @@
                                             <h3>${resposta[i].nome2}</h3>
                                         </div>
                                         <div class="informacoesLuta">
-                                            <div class="informacoesLutaCima">
-                                                <p>${resposta[i].nomeCard}</p>
-                                                <p>-</p>
-                                                <p>${resposta[i].dataLuta.replaceAll("-", "/").replaceAll("T", " ")
-                                    .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
+                                                <div class="colunas">
+                                                    <div class="coluna1">
+                                                        <p>${resposta[i].nomeCard}</p>
+                                                        <p>${resposta[i].nomeCategoria}</p>
+                                                    </div>
+                                                    <div class="coluna2">
+                                                        <p>-</p>
+                                                        <p>-</p>
+                                                    </div>
+                                                    <div class="coluna3">
+                                                        <p>${resposta[i].dataLuta.replaceAll("-", "/").replaceAll("T", " ")
+                                                        .replaceAll(".000Z", " ").replaceAll("00:00:00", " ")}</p>
+                                                        <p>${resposta[i].rounds} rounds</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="informacoesLutaBaixo">
-                                                <p>${resposta[i].nomeCategoria}</p>
-                                                <p>-</p>
-                                                <p>${resposta[i].rounds} rounds</p>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
