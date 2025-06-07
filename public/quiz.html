@@ -185,6 +185,7 @@
         telaInicio.style.display = "none";
         questoes.style.display = "block";
 
+        
         var totalRespostas = acertosErrosTotal[contador].totalRespostas;
         var totalAcertos = (acertosErrosTotal[contador].totalAcertos / totalRespostas) * 100;
         var totalErros = (acertosErrosTotal[contador].totalErros / totalRespostas) * 100;
@@ -217,7 +218,7 @@
                         <div class="graficoAcertosErros">
                             <canvas id="myChart" style="position: relative; height: 100px; width: 100px;"></canvas>
                         </div>
-                        <div class="legendaGraficoAcertosErros">
+                        <div id="legendaGraficoAcertosErros" class="legendaGraficoAcertosErros">
                             <div class="erros">
                                 <div style="background-color: red; height: 10px; width: 30px"></div>
                                 <span style="padding-left: 20px">Erros: ${Math.round(totalErros)}%</span>
@@ -250,10 +251,16 @@
                 ]
             }
         });
+
+        ctx.style.display = "none";
+        document.getElementById("legendaGraficoAcertosErros").style.display = "none";
     }
 
     function verificarResposta() {
         var respostaSelecionada = document.querySelector('input[name="alternativa"]:checked');
+        document.getElementById('myChart').style.display = "block";
+        document.getElementById("legendaGraficoAcertosErros").style.display = "block";
+
         if (respostaSelecionada) {
             var resposta = respostaSelecionada.value;
             console.log("RESPOSTA SELECIONADA: " + resposta);
@@ -355,7 +362,7 @@
                         <div class="graficoAcertosErros">
                             <canvas id="myChart" style="position: relative; height: 100px; width: 100px;"></canvas>
                         </div>
-                        <div class="legendaGraficoAcertosErros">
+                        <div id="legendaGraficoAcertosErros" class="legendaGraficoAcertosErros">
                             <div class="erros">
                                 <div style="background-color: red; height: 10px; width: 30px"></div>
                                 <span style="padding-left: 20px">Erros: ${Math.round(totalErros)}%</span>
@@ -387,6 +394,9 @@
                 ]
             }
         });
+
+        ctx.style.display = "none";
+        document.getElementById("legendaGraficoAcertosErros").style.display = "none";
     }
 
     function salvarResultado() {
