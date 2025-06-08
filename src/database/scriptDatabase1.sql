@@ -228,33 +228,33 @@ INSERT INTO LutaCard (idLuta, idCard) VALUES
 
 INSERT INTO Noticia (tituloNoticia, previaNoticia, dataPostagem, caminhoImagem) VALUES
 ('Belal Muhammad define alvo e data para retorno após perder título do UFC', 'No último dia 10 de maio, Belal Muhammad viu seu reinado na divisão dos...',
- '2025-06-11', './imgs/imagens-noticias/belal-muhammad-alfinetada.webp'),
+ '2025-06-10', './imgs/imagens-noticias/belal-muhammad-alfinetada.webp'),
  
 ('Ex-campeão do UFC ironiza indefinição sobre futuro de Jon Jones: “Quem se importa?”', 'A novela sobre o eventual retorno de Jon Jones ao octógono parece não ter...',
- '2025-06-12', './imgs/imagens-noticias/robert-whittaker-ufc-298-media-day.webp'),
+ '2025-06-11', './imgs/imagens-noticias/robert-whittaker-ufc-298-media-day.webp'),
  
 ('Carlos Prates surge inconsolável após derrota para Ian Garry no UFC; veja',
  'Carlos Prates comoveu fãs e membros da comunidade do MMA ao publicar, em seu...',
- '2025-06-12', './imgs/imagens-noticias/carlos-prates-entrada-capuz-ufc-vegas-100.webp'),
+ '2025-06-11', './imgs/imagens-noticias/carlos-prates-entrada-capuz-ufc-vegas-100.webp'),
  
 ('Favorito ao title shot, Movsar Evloev indica que foi preterido pelo UFC', 
 'Invicto na carreira e com nove vitórias consecutivas no octógono mais famoso do mundo,...',
- '2025-06-12', './imgs/imagens-noticias/Movsar-Evloev-UFC-Vegas-56.webp'),
+ '2025-06-11', './imgs/imagens-noticias/Movsar-Evloev-UFC-Vegas-56.webp'),
  
 ('Charles Do Bronx cita adaptação de Topuria ao peso-leve como possível vantagem no UFC 317',
- 'No dia 28 de junho, na ‘T-Mobile Arena’, em Las Vegas (EUA), Charles Oliveira...', '2025-06-12',
+ 'No dia 28 de junho, na ‘T-Mobile Arena’, em Las Vegas (EUA), Charles Oliveira...', '2025-06-11',
  './imgs/imagens-noticias/charles-do-bronx-entrada-ufc-309-nova-york.webp'),
  
 ('Jon Jones reage com dureza a Tom Aspinall e tensão aumenta no UFC: “Cale a boca”', 
-'A tensão entre Jon Jones e Tom Aspinall ganhou força nos últimos dias. O...', '2025-06-12',
+'A tensão entre Jon Jones e Tom Aspinall ganhou força nos últimos dias. O...', '2025-06-11',
  './imgs/imagens-noticias/jon-jones-ufc-309-1.webp'),
  
 ('Refém de Jon Jones? Alexander Volkov expressa frustração com situação dos pesos-pesados',
  'A indefinição no topo da divisão dos pesos-pesados do UFC não influencia na carreira apenas dos envolvidos, no caso Jon Jones...',
- '2025-06-12', './imgs/imagens-noticias/volkov-protesto-derrota-ufc-310-dana-white.webp'),
+ '2025-06-11', './imgs/imagens-noticias/volkov-protesto-derrota-ufc-310-dana-white.webp'),
 
 ('Preocupa? Merab Dvalishvili sofre lesão às vésperas de luta no UFC 316',
- 'Às vésperas da realização do UFC 316, marcado para acontecer no dia 7 de...', '2025-06-12',
+ 'Às vésperas da realização do UFC 316, marcado para acontecer no dia 7 de...', '2025-06-11',
  './imgs/imagens-noticias/merab-dvalishvili-comemoracao-ufc-311.webp');
 
 INSERT INTO ParagrafoNoticia (idNoticia, conteudo, ordem) VALUES
