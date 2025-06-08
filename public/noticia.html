@@ -93,8 +93,8 @@
 </body>
 <script>
     function carregarNoticia() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get('id');
         var idUsuarioSession = sessionStorage.ID_USUARIO;
         console.log("ID: " + id);
 
@@ -165,8 +165,8 @@
     }
 
     function excluirNoticia() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get('id');
 
         fetch("/noticias/excluirNoticia", {
             method: "POST",
@@ -188,8 +188,8 @@
     }
 
     function carregarComentarios() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get('id');
         var idUsuarioSession = sessionStorage.ID_USUARIO;
 
         fetch("/noticias/carregarComentarios", {
@@ -267,8 +267,8 @@
     }
 
     function carregarLikes() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get('id');
 
         fetch("/noticias/carregarLikes", {
             method: "POST",
@@ -290,10 +290,10 @@
     }
 
     function verificarLike() {
-        const urlParams = new URLSearchParams(window.location.search);
+        var urlParams = new URLSearchParams(window.location.search);
         var idUsuario = sessionStorage.ID_USUARIO;
         console.log("ID USUARIO: " + idUsuario)
-        const idNoticia = urlParams.get('id');
+        var idNoticia = urlParams.get('id');
 
         if (idUsuario == null || idUsuario == "" || idUsuario == undefined || idUsuario == "null") {
             alert("Você precisa estar logado para dar like!");
@@ -371,10 +371,10 @@
     }
 
     function comentar() {
-        const urlParams = new URLSearchParams(window.location.search);
+        var urlParams = new URLSearchParams(window.location.search);
         var comentario = ipt_comentario.value;
         var idUsuario = sessionStorage.ID_USUARIO;
-        const idNoticia = urlParams.get('id');
+        var idNoticia = urlParams.get('id');
 
         if (sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
             alert("Você precisa estar logado para comentar!");
@@ -421,7 +421,7 @@
     }
 
     function deletarComentario(idComentario) {
-        const urlParams = new URLSearchParams(window.location.search);
+        var urlParams = new URLSearchParams(window.location.search);
 
         if (sessionStorage.ID_USUARIO == null || sessionStorage.ID_USUARIO == "") {
             alert("Você precisa estar logado!");

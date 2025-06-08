@@ -83,13 +83,13 @@
     function cadastrar() {
         div_resultado.innerHTML = "";
 
-        const nome = ipt_nome.value;
-        const email = ipt_email.value;
-        const senha = ipt_senha.value;
-        const confirmacaoSenha = ipt_confirmacaoSenha.value;
+        var nome = ipt_nome.value;
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+        var confirmacaoSenha = ipt_confirmacaoSenha.value;
 
         var emailValido = email.includes("@");
-        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?/\\])[A-Za-z0-9!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?/\\]{8,}$/;
+        var regex = /^(?=.*[0-9])(?=.*[!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?/\\])[A-Za-z0-9!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?/\\]{8,}$/;
 
         if (nome == "" || email == "" || senha == "" || confirmacaoSenha == "") {
             div_resultado.innerHTML = "<h3 style='color: red;'>Preencha todos os campos!<h3>";

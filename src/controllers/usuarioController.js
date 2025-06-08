@@ -28,8 +28,8 @@ function carregarInformacoes(req, res) {
 }
 
 function mudarFotoDePerfil(req, res){
-    const imagem = req.file.filename;
-    const idUsuario = req.body.id;
+    var imagem = req.file.filename;
+    var idUsuario = req.body.id;
     console.log("ID do usuário mudar foto de perfil: ", idUsuario);
 
     usuarioModel.mudarFotoDePerfil(imagem, idUsuario)

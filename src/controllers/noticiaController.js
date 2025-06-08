@@ -115,9 +115,9 @@ function deletarComentario(req, res) {
 }
 
 function publicarNoticia(req, res){
-    const imagem = req.file.filename;
-    const titulo = req.body.titulo;
-    const previa = req.body.previa;
+    var imagem = req.file.filename;
+    var titulo = req.body.titulo;
+    var previa = req.body.previa;
     
 
     noticiaModel.publicarNoticia(titulo, previa, imagem)

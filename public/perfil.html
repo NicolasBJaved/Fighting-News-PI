@@ -38,9 +38,10 @@
             <div class="containerInformacoes">
                 <div id="imagemUsuario" class="imagemUsuario">
                     <input type="file" id="foto" name="foto" hidden>
-                    <label for="foto" class="upload">
+                    <label for="foto" class="upload" style="margin-top: 10px;">
                         Escolher imagem
                     </label>
+                    <p id="mensagemImagemUsuario" style="margin-top: 10px; margin-bottom: 10px"></p>
                 </div>
                 <div id="informacoesUsuario" class="informacoesUsuario">
                     <div id="nomeUsuario" class="dadoUsuario">
@@ -88,8 +89,7 @@
     </footer>
 </body>
 <script>
-
-    function visualizarSenha(){
+    function visualizarSenha() {
         var inputSenha = document.getElementById('ipt_senha');
         if (inputSenha.type === 'password') {
             iconeOlho.innerHTML = '<i class="fa-solid fa-eye" onclick="visualizarSenha()"></i>';
@@ -111,8 +111,8 @@
     }
 
     function carregarInformacoes() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const idUsuario = urlParams.get('id');
+        var urlParams = new URLSearchParams(window.location.search);
+        var idUsuario = urlParams.get('id');
         var idUsuarioSession = sessionStorage.ID_USUARIO;
 
         var nome = null;
@@ -145,10 +145,23 @@
                     imagemUsuario.innerHTML = `
                     <img src="${resposta[0].caminhoImagem}" alt="Imagem do Usuário">
                     <input type="file" id="foto" name="foto" hidden>
-                    <label for="foto" class="upload">
+                    <label for="foto" class="upload" style="margin-top: 10px;">
                         Escolher imagem
                     </label>
+                    <p id="mensagemImagemUsuario" style="margin-top: 10px; padding-bottom: 10px"></p>
                     `;
+
+                    var inputFoto = document.getElementById("foto");
+                    var mensagemImagemUsuario = document.getElementById("mensagemImagemUsuario");
+
+                    inputFoto.addEventListener('change', function () {
+                        if (inputFoto.files.length > 0) {
+                            var nomeArquivo = inputFoto.files[0].name;
+                            mensagemImagemUsuario.innerHTML = `Imagem selecionada: "${nomeArquivo}".`;
+                        } else {
+                            mensagemImagemUsuario.innerHTML = '';
+                        }
+                    })
 
                     nome = resposta[0].nome;
                     console.log("NOME: " + nome)
@@ -164,6 +177,8 @@
             }
         })
     }
+
+
 
     function alterarNome() {
         alterarIptNome.innerHTML = `
@@ -184,14 +199,14 @@
     }
 
     function enviar() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const idUsuarioServer = urlParams.get('id');
+        var urlParams = new URLSearchParams(window.location.search);
+        var idUsuarioServer = urlParams.get('id');
 
         console.log("FOTO: ")
         console.log("FOTO: " + foto.files[0]);
 
         if (foto.files[0] != undefined && foto.files[0] != null && foto.files[0] != "" && foto.files[0] != "undefined") {
-            const formData = new FormData();
+            var formData = new FormData();
             console.log(foto.files[0]);
             formData.append('foto', foto.files[0])
             formData.append('id', idUsuarioServer)
@@ -218,9 +233,9 @@
     }
 
     function atualizarNome(idUsuario) {
-        const inputNome = document.getElementById('ipt_nome');
+        var inputNome = document.getElementById('ipt_nome');
         if (inputNome) {
-            const novoNome = inputNome.value;
+            var novoNome = inputNome.value;
             if (novoNome != "") {
                 console.log("Atualizando nome para:", novoNome);
                 fetch("/usuarios/mudarNome", {
@@ -238,9 +253,9 @@
     }
 
     function atualizarEmail(idUsuario) {
-        const inputEmail = document.getElementById('ipt_email');
+        var inputEmail = document.getElementById('ipt_email');
         if (inputEmail) {
-            const novoEmail = inputEmail.value;
+            var novoEmail = inputEmail.value;
             if (novoEmail != "") {
                 console.log("Atualizando email para:", novoEmail);
                 fetch("/usuarios/mudarEmail", {
@@ -258,9 +273,9 @@
     }
 
     function atualizarSenha(idUsuario) {
-        const inputSenha = document.getElementById('ipt_senha');
+        var inputSenha = document.getElementById('ipt_senha');
         if (inputSenha) {
-            const novaSenha = inputSenha.value;
+            var novaSenha = inputSenha.value;
             if (novaSenha != "") {
                 console.log("Atualizando senha para:", novaSenha);
                 fetch("/usuarios/mudarSenha", {

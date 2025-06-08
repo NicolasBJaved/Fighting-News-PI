@@ -2,10 +2,10 @@ var database = require('../database/config');
 
 function maisHypadas() {
 
-    const data = new Date();
+    var data = new Date();
     data.setDate(data.getDate() - 7);
 
-    const dataFormatada = data.toISOString().split('T')[0];
+    var dataFormatada = data.toISOString().split('T')[0];
 
     console.log("Data formatada: " + dataFormatada);
 

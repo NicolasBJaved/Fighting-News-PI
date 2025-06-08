@@ -1,5 +1,5 @@
 var express = require("express");
-const upload = require('../config/configUploadImagemNoticia'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
+var upload = require('../config/configUploadImagemNoticia'); // ARQUIVO COM A CONFIGURAÇÃO DO UPLOAD
 var router = express.Router();
 
 var noticiasController = require("../controllers/noticiaController");
